@@ -29,8 +29,9 @@ export default function ProductsPage() {
                 </div>
                 <h2 className="mt-5 text-xl font-semibold text-ink">Hardware Layer</h2>
                 <p className="mt-2 text-sm text-body leading-relaxed">
-                  Edge Controller for industrial bus and physical device control, plus terminal-agnostic support for
-                  PAX, Castles, and FEITIAN Android payment terminals.
+                  Edge Controller for industrial bus and physical device control, terminal-agnostic support for
+                  PAX, Castles, and FEITIAN Android payment terminals, and an expanding ecosystem of
+                  next-generation unattended retail hardware.
                 </p>
                 <TagRow className="mt-4" tags={['Edge Controller', 'PAX IM30', 'Castles S1U2', 'FEITIAN']} />
                 <span className="mt-5 inline-flex items-center gap-1 text-sm font-medium text-steel">

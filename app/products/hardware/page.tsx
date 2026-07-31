@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Cpu, Tablet } from 'lucide-react';
+import { Cpu, Tablet, Refrigerator, ScanEye, Layers, PackageOpen } from 'lucide-react';
 import { PageHero } from '@/components/PageHero';
 import { Card } from '@/components/ui/Card';
 import { Pill } from '@/components/ui/Pill';
@@ -9,6 +9,33 @@ import { SectionHeading } from '@/components/SectionHeading';
 import { ScrollReveal } from '@/components/ScrollReveal';
 import { ScenePlaceholder } from '@/components/ScenePlaceholder';
 import { WiringDiagram } from '@/components/WiringDiagram';
+
+// Representative categories only -- deliberately excludes anything outside
+// unattended commercial retail (arcade/toy/shared-mobility equipment from
+// manufacturer catalogs isn't relevant to a payments-infrastructure story).
+// No manufacturer is named; relationship is in discussion, not signed.
+const EXPANDING_ECOSYSTEM = [
+  {
+    icon: Refrigerator,
+    title: 'Refrigerated & Frozen Vending Cabinets',
+    desc: 'Single- and double-door smart cabinets, 5 to 30+ compartments, gravity-sensing dispensing for food & beverage retail.',
+  },
+  {
+    icon: ScanEye,
+    title: 'AI Vision Vending Cabinets',
+    desc: 'Camera-based product recognition for open-shelf and cooler formats — no gravity sensors required.',
+  },
+  {
+    icon: Layers,
+    title: 'Gravity + AI Hybrid Cabinets',
+    desc: 'Combines gravity sensing and computer vision in one cabinet for faster, more accurate checkout.',
+  },
+  {
+    icon: PackageOpen,
+    title: 'Smart Pickup Lockers',
+    desc: 'Refrigerated compartment lockers for order pickup and parcel delivery.',
+  },
+];
 
 export const metadata: Metadata = {
   title: 'Hardware Layer — GoldSky Technologies',
@@ -119,6 +146,44 @@ export default function HardwarePage() {
 
           <ScrollReveal className="mt-8">
             <SpecTable columns={['PAX IM30', 'Castles S1U2', 'FEITIAN M20']} rows={TERMINAL_COMPARISON} />
+          </ScrollReveal>
+        </div>
+      </section>
+
+      {/* Expanding Hardware Ecosystem — in active discussions with
+          international hardware manufacturers, nothing signed yet, so no
+          specific company is named here. */}
+      <section className="bg-warm-white py-16 md:py-20">
+        <div className="mx-auto max-w-content px-5 md:px-10">
+          <ScrollReveal>
+            <Pill variant="comingSoon" className="mb-4">
+              Expanding Ecosystem
+            </Pill>
+            <SectionHeading title="Extending GS-SSP to Next-Generation Unattended Retail Hardware" />
+            <p className="mt-1 text-sm text-body max-w-2xl">
+              Industrial-grade cabinets built for extreme climates, compatible with our GPIO / MDB / RS485
+              control layer — representative categories we're extending GS-SSP to support.
+            </p>
+          </ScrollReveal>
+
+          <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-5">
+            {EXPANDING_ECOSYSTEM.map((item) => (
+              <ScrollReveal key={item.title}>
+                <Card className="h-full opacity-90">
+                  <item.icon size={26} className="text-muted" />
+                  <h3 className="mt-4 text-base font-semibold text-ink">{item.title}</h3>
+                  <p className="mt-2 text-sm text-body leading-relaxed">{item.desc}</p>
+                </Card>
+              </ScrollReveal>
+            ))}
+          </div>
+
+          <ScrollReveal className="mt-6">
+            <p className="text-xs text-muted max-w-2xl">
+              Existing equipment can be retrofitted with GS-SSP control, and new-generation cabinets can ship
+              pre-integrated. GoldSky is in active discussions with international industrial hardware
+              manufacturers to bring these next-generation form factors to the GS-SSP platform.
+            </p>
           </ScrollReveal>
         </div>
       </section>

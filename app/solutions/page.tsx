@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { ArrowRight, Car, ShoppingCart, Zap } from 'lucide-react';
+import { ArrowRight, Car, ShoppingCart, Zap, Building2, Hotel } from 'lucide-react';
 import { PageHero } from '@/components/PageHero';
 import { Card } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
@@ -12,6 +12,32 @@ export const metadata: Metadata = {
   title: 'Solutions — GoldSky Technologies',
   description: 'From coin-op car wash to EV charging to enterprise retail — one platform, any self-serve venue.',
 };
+
+// Target venue types, not proven deployments -- framed with the same
+// "coming soon" / reduced-weight treatment as Next-Gen Infrastructure below.
+// No client names, metrics, or specific hardware models are claimed.
+const EMERGING_SCENARIOS = [
+  {
+    icon: Building2,
+    title: 'Office & Corporate Campus Micro-Markets',
+    fit: 'Break rooms, lobbies, and shared workspaces at corporate campuses and multi-tenant office buildings.',
+    whyNA:
+      'North American workplace amenity budgets are shifting away from staffed cafeterias and coin vending toward 24/7 cashless micro-markets — a format that fits hybrid-office schedules where there is no consistent on-site staff to run a till.',
+    fitDetail:
+      'Gravity-sensing or AI-vision smart cabinets paired with EMV/NFC tap checkout, with fleet-wide reporting so a facilities or HR team can manage inventory and sales across several corporate sites from one dashboard.',
+    tags: ['EMV / NFC Tap', 'AI Vision Cabinets', 'Multi-Site Fleet View'],
+  },
+  {
+    icon: Hotel,
+    title: 'Hotel & Hospitality Self-Serve Retail',
+    fit: 'Lobby markets and dining-area grab-and-go retail at hotels and extended-stay properties.',
+    whyNA:
+      'North American hotel operators are replacing limited-hours room service and traditional mini-bars with always-open self-serve markets, since guests increasingly expect frictionless tap payment rather than waiting on staff at odd hours.',
+    fitDetail:
+      'Refrigerated and ambient smart cabinets for food & beverage, EMV/NFC tap terminals, with centralized sales and inventory reporting across a multi-property portfolio.',
+    tags: ['EMV / NFC Tap', 'Refrigerated Cabinets', 'Multi-Property Reporting'],
+  },
+];
 
 export default function SolutionsPage() {
   return (
@@ -84,6 +110,49 @@ export default function SolutionsPage() {
                   <ScenePlaceholder icon={ShoppingCart} label="Front-desk countertop POS terminal" />
                 </div>
               </div>
+            </Card>
+          </ScrollReveal>
+
+          {/* Section B2 — Emerging Micro-Market Scenarios (target venue types, reduced weight) */}
+          <ScrollReveal>
+            <Card className="p-6 md:p-8 opacity-90">
+              <Pill variant="comingSoon" className="mb-3">
+                Target Scenarios
+              </Pill>
+              <h2 className="text-xl font-semibold text-ink">Emerging Micro-Market Scenarios</h2>
+              <p className="mt-2 text-sm text-body leading-relaxed max-w-2xl">
+                Two unattended-retail venue types we see as especially well-suited to the North American market —
+                extensions of the same smart-cabinet and payment-terminal category as our vending solutions, not
+                yet deployed by GoldSky.
+              </p>
+
+              <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-5">
+                {EMERGING_SCENARIOS.map((s) => (
+                  <div key={s.title} className="rounded-lg border border-border-warm bg-warm-off p-5">
+                    <s.icon size={22} className="text-muted" />
+                    <h3 className="mt-3 text-base font-semibold text-ink">{s.title}</h3>
+                    <p className="mt-1.5 text-xs font-medium text-muted">{s.fit}</p>
+
+                    <p className="mt-3 text-xs font-semibold uppercase tracking-wide text-muted">
+                      Why North America
+                    </p>
+                    <p className="mt-1 text-sm text-body leading-relaxed">{s.whyNA}</p>
+
+                    <p className="mt-3 text-xs font-semibold uppercase tracking-wide text-muted">Platform Fit</p>
+                    <p className="mt-1 text-sm text-body leading-relaxed">{s.fitDetail}</p>
+
+                    <TagRow className="mt-4" tags={s.tags} />
+                  </div>
+                ))}
+              </div>
+
+              <p className="mt-5 text-xs text-muted max-w-2xl">
+                Target scenarios based on category fit, not confirmed deployments.{' '}
+                <a href="/contact" className="text-steel font-medium hover:underline">
+                  Talk to us
+                </a>{' '}
+                if this matches a venue you operate.
+              </p>
             </Card>
           </ScrollReveal>
 
