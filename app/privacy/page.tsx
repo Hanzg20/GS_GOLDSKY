@@ -15,6 +15,9 @@ export default function PrivacyPage() {
       />
       <section className="bg-warm-white py-16 md:py-20">
         <div className="mx-auto max-w-2xl px-5 md:px-10 prose-sm text-sm text-body leading-relaxed space-y-5">
+          <p className="text-xs text-muted">
+            GoldSky Technologies Inc. — Ontario Corporation #1001101532 — Ottawa, Ontario, Canada
+          </p>
           <p>
             This page is a placeholder pending final legal review. GoldSky Technologies collects only the
             information you submit through our contact and developer application forms — name, company, email,

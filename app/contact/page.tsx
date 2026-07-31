@@ -31,10 +31,11 @@ export default function ContactPage() {
           <ScrollReveal>
             <Card>
               <h2 className="text-lg font-semibold text-ink">GoldSky Technologies</h2>
+              <p className="mt-1 text-xs text-muted">GoldSky Technologies Inc. — Ontario Corporation #1001101532</p>
               <div className="mt-4 space-y-3 text-sm text-body">
                 <div className="flex items-start gap-2.5">
                   <MapPin size={16} className="text-steel mt-0.5 shrink-0" />
-                  <span>Ottawa, Ontario, Canada</span>
+                  <span>Ottawa, Ontario, Canada (registered address)</span>
                 </div>
                 <div className="flex items-start gap-2.5">
                   <Clock size={16} className="text-steel mt-0.5 shrink-0" />

@@ -3,13 +3,17 @@
 import { useState } from 'react';
 import { Button } from './ui/Button';
 
+// Static export has no server, so this opens the visitor's own email
+// client via mailto: instead of POSTing to a backend.
+const CONTACT_EMAIL = 'info@goldsky.ca';
+
 export function ContactForm() {
-  const [status, setStatus] = useState<'idle' | 'submitting' | 'sent' | 'error'>('idle');
+  const [status, setStatus] = useState<'idle' | 'error'>('idle');
   const [errorMsg, setErrorMsg] = useState('');
 
-  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    setStatus('submitting');
+    setStatus('idle');
     setErrorMsg('');
     const form = e.currentTarget;
     const data = {
@@ -26,32 +30,9 @@ export function ContactForm() {
       return;
     }
 
-    try {
-      const res = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
-      });
-      if (res.ok) {
-        setStatus('sent');
-      } else {
-        const body = await res.json().catch(() => ({}));
-        setErrorMsg(body.error || 'Something went wrong — please try again.');
-        setStatus('error');
-      }
-    } catch {
-      setErrorMsg('Something went wrong — please try again.');
-      setStatus('error');
-    }
-  }
-
-  if (status === 'sent') {
-    return (
-      <div className="rounded-xl border border-border-warm bg-warm-off p-8 text-center">
-        <p className="text-base font-semibold text-ink">Message sent.</p>
-        <p className="mt-1 text-sm text-body">We&apos;ll respond within 1 business day.</p>
-      </div>
-    );
+    const subject = `[${data.inquiryType}] Inquiry from ${data.name}${data.company ? ` (${data.company})` : ''}`;
+    const body = `Name: ${data.name}\nCompany: ${data.company}\nEmail: ${data.email}\nInquiry Type: ${data.inquiryType}\n\n${data.message}`;
+    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
   }
 
   return (
@@ -127,9 +108,10 @@ export function ContactForm() {
       </div>
 
       {status === 'error' && <p className="text-sm text-red-600">{errorMsg}</p>}
+      <p className="text-xs text-muted">Opens your email client with this pre-filled — nothing is sent until you hit send there.</p>
 
-      <Button type="submit" variant="primary" size="lg" disabled={status === 'submitting'} className="w-full sm:w-auto">
-        {status === 'submitting' ? 'Sending…' : 'Send Message →'}
+      <Button type="submit" variant="primary" size="lg" className="w-full sm:w-auto">
+        Send Message →
       </Button>
     </form>
   );

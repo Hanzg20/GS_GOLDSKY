@@ -72,7 +72,10 @@ export function Footer() {
 
       <div className="border-t border-white/10">
         <div className="mx-auto max-w-[1280px] px-5 md:px-10 py-6 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-xs text-hero-muted">© {new Date().getFullYear()} GoldSky Technologies. All rights reserved.</p>
+          <div className="text-xs text-hero-muted text-center md:text-left space-y-1">
+            <p>© {new Date().getFullYear()} GoldSky Technologies Inc. All rights reserved.</p>
+            <p>Ontario Corporation #1001101532 · Ottawa, Ontario, Canada</p>
+          </div>
           <div className="flex items-center gap-3">
             <a
               href="#"
