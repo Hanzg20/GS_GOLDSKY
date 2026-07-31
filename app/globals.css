@@ -1,0 +1,84 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@keyframes scroll-x {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes fade-up {
+  0% {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #faf8f4;
+  color: #3d3d3a;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Hero section: subtle noise texture instead of neon glow/grid lines */
+.hero-noise {
+  position: relative;
+}
+.hero-noise::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  pointer-events: none;
+}
+
+/* Soft amber glow at the top of the hero (not a neon/blue glow) */
+.hero-orange-glow {
+  background-image: radial-gradient(ellipse 60% 40% at 50% 0%, rgba(200, 102, 26, 0.1), transparent 70%);
+}
+
+/* Hero -> warm-white transition strip */
+.hero-transition {
+  height: 80px;
+  background: linear-gradient(to bottom, #1a1a18, #faf8f4);
+}
+
+/* Logo strip infinite scroll track */
+.logo-track {
+  display: flex;
+  width: max-content;
+  animation: scroll-x 25s linear infinite;
+}
+.logo-track:hover {
+  animation-play-state: paused;
+}
+
+.reveal {
+  opacity: 0;
+}
+.reveal.in-view {
+  animation: fade-up 400ms ease-out forwards;
+}
