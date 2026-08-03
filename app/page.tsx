@@ -9,16 +9,14 @@ import { ScrollReveal } from '@/components/ScrollReveal';
 import { DashboardMockup } from '@/components/DashboardMockup';
 import { CountUp } from '@/components/CountUp';
 
-// Hardware models we build for and standards we comply with -- not a claim
-// of formal partnership. Keep named processors (Moneris/Nuvei/etc.) out of
-// this list until an actual partnership is confirmed.
+// Generic hardware categories and compliance standards only -- no
+// manufacturer names, so this never reads as a claimed vendor partnership.
 const ECOSYSTEM_LOGOS = [
-  'PAX Technology',
-  'Castles Technology',
-  'FEITIAN',
-  'ID TECH',
+  'EMV Payment Terminals',
+  'NFC / Contactless Readers',
+  'PIN Pad Devices',
+  'Coin & Bill Acceptors',
   'Interac Flash',
-  'EMV',
   'PCI DSS 4.0',
   'CSA Certified',
 ];

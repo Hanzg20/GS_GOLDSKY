@@ -87,9 +87,9 @@ const ONBOARDING_STEPS = [
   { step: 5, title: 'Install & Go Live', desc: 'On-site installation, licensed electrician wiring, CSA evaluation if required, then launch.', time: 'Varies by site' },
 ];
 
-// Hardware models we build for -- not a claim of formal partnership. Keep
-// named processors out until an actual partnership is confirmed.
-const HARDWARE_ECOSYSTEM = ['PAX Technology', 'Castles Technology', 'FEITIAN', 'ID TECH'];
+// Generic hardware categories only -- no manufacturer names, so this never
+// reads as a claimed vendor partnership.
+const HARDWARE_ECOSYSTEM = ['EMV Payment Terminals', 'NFC / Contactless Readers', 'PIN Pad Devices', 'Coin & Bill Acceptors'];
 
 export default function InnovationPage() {
   return (
