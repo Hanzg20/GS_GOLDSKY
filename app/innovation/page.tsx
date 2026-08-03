@@ -1,15 +1,51 @@
 import type { Metadata } from 'next';
-import { CreditCard, Nfc, Apple, Smartphone, QrCode, Wallet, Coins, Ticket, WalletCards, CircleDollarSign, MessageSquare } from 'lucide-react';
+import {
+  Cpu,
+  Puzzle,
+  CreditCard,
+  ArrowRight,
+  Nfc,
+  Apple,
+  Smartphone,
+  QrCode,
+  Wallet,
+  Coins,
+  Ticket,
+  WalletCards,
+  CircleDollarSign,
+  MessageSquare,
+} from 'lucide-react';
 import { PageHero } from '@/components/PageHero';
 import { Card } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
 import { SectionHeading } from '@/components/SectionHeading';
 import { ScrollReveal } from '@/components/ScrollReveal';
+import { LogoStrip } from '@/components/LogoStrip';
+import { DeveloperForm } from '@/components/DeveloperForm';
 
 export const metadata: Metadata = {
-  title: 'Payments & Ecosystem — GoldSky Technologies',
-  description: '11 payment methods, a Canadian acquiring path, and a certified route to PCI/EMV/Interac compliance.',
+  title: 'Innovation Center — GoldSky Technologies',
+  description:
+    'Open APIs, 11 payment methods, and a certified compliance path — everything hardware vendors, integrators, and payment processors need to build on GS-SSP.',
 };
+
+const AUDIENCES = [
+  {
+    icon: Cpu,
+    title: 'For OEM Hardware Vendors',
+    desc: 'Connect easily to the GS-SSP hardware control ecosystem, with device adaptation specs and certification support.',
+  },
+  {
+    icon: Puzzle,
+    title: 'For System Integrators',
+    desc: 'Open REST API, Android SDK, and Webhooks — built for deep integration into your own systems.',
+  },
+  {
+    icon: CreditCard,
+    title: 'For Payment Processors',
+    desc: 'A standard semi-integrated architecture for fast onboarding to major acquirers, with a test sandbox environment.',
+  },
+];
 
 const PAYMENT_METHODS = [
   { icon: CreditCard, name: 'EMV Chip', type: 'Card Infrastructure', desc: 'All Visa / Mastercard / Amex chip cards, real-time online authorization.' },
@@ -24,6 +60,16 @@ const PAYMENT_METHODS = [
   { icon: WalletCards, name: 'Member QR / Wallet Pass', type: 'Membership ID', desc: 'Apple Wallet membership card scan — no extra app required.' },
   { icon: CircleDollarSign, name: 'Pre-paid Digital Credits', type: 'Stored Value', desc: 'GS-SSP app in-wallet balance.' },
 ];
+
+const CODE_SAMPLE = `POST /v1/devices/{device_id}/reboot
+Authorization: Bearer <api_key>
+
+GET /v1/transactions?from=2026-01-01&limit=50
+Authorization: Bearer <api_key>
+
+POST /v1/coupons
+Content-Type: application/json
+{ "type": "PERCENT_OFF", "value": 15, "max_uses": 100 }`;
 
 const COMPLIANCE = [
   { title: 'PCI DSS 4.0', desc: 'Fully enforced since March 2025 — GS-SSP’s Semi-Integrated architecture reduces merchant PCI scope to SAQ C.' },
@@ -41,17 +87,38 @@ const ONBOARDING_STEPS = [
   { step: 5, title: 'Install & Go Live', desc: 'On-site installation, licensed electrician wiring, CSA evaluation if required, then launch.', time: 'Varies by site' },
 ];
 
-export default function PaymentsPage() {
+// Hardware models we build for -- not a claim of formal partnership. Keep
+// named processors out until an actual partnership is confirmed.
+const HARDWARE_ECOSYSTEM = ['PAX Technology', 'Castles Technology', 'FEITIAN', 'ID TECH'];
+
+export default function InnovationPage() {
   return (
     <>
       <PageHero
-        title="Payments & Ecosystem"
-        subtitle="Every payment method your customers expect, a certified path to compliance, and a clear route to a Canadian acquiring partner."
-        breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'Payments & Ecosystem' }]}
+        title="Innovation Center"
+        subtitle="Open APIs, every payment method your customers expect, and a certified compliance path — everything you need to build on GS-SSP."
+        breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'Innovation Center' }]}
       />
 
-      {/* Section 1 — Payment Methods */}
+      {/* Section 1 — Audiences */}
       <section className="bg-warm-white py-16 md:py-20">
+        <div className="mx-auto max-w-content px-5 md:px-10">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+            {AUDIENCES.map((a) => (
+              <ScrollReveal key={a.title}>
+                <Card className="h-full">
+                  <a.icon size={26} className="text-steel" />
+                  <h3 className="mt-4 text-lg font-semibold text-ink">{a.title}</h3>
+                  <p className="mt-2 text-sm text-body leading-relaxed">{a.desc}</p>
+                </Card>
+              </ScrollReveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Section 2 — Payment Methods */}
+      <section className="bg-warm-off py-16 md:py-20">
         <div className="mx-auto max-w-content px-5 md:px-10">
           <ScrollReveal>
             <SectionHeading title="11 Payment Methods, One Terminal" align="center" />
@@ -59,7 +126,7 @@ export default function PaymentsPage() {
           <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {PAYMENT_METHODS.map((pm) => (
               <ScrollReveal key={pm.name}>
-                <Card className="h-full">
+                <Card bg="white" className="h-full">
                   <div className="w-10 h-10 rounded-full bg-steel-light flex items-center justify-center">
                     <pm.icon size={18} className="text-steel" />
                   </div>
@@ -73,7 +140,52 @@ export default function PaymentsPage() {
         </div>
       </section>
 
-      {/* Section 2 — Processing Path (no formal acquiring partnership is
+      {/* Section 3 — API & SDK Overview */}
+      <section className="bg-warm-white py-16 md:py-20">
+        <div className="mx-auto max-w-content px-5 md:px-10">
+          <ScrollReveal>
+            <SectionHeading pill="API & SDK" pillVariant="steel" title="Built to Integrate" />
+          </ScrollReveal>
+
+          <div className="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <ScrollReveal>
+              <div className="space-y-5">
+                <div>
+                  <h3 className="text-sm font-semibold text-ink">REST API</h3>
+                  <p className="mt-1 text-sm text-body">
+                    Device management (remote reboot / config / OTA), transaction queries, report exports, member
+                    management, and coupon CRUD.
+                  </p>
+                </div>
+                <div>
+                  <h3 className="text-sm font-semibold text-ink">Android SDK</h3>
+                  <p className="mt-1 text-sm text-body">
+                    Wraps the PAX PAXSTORE SDK — payment triggers, pulse-output control, and device status reads.
+                  </p>
+                </div>
+                <div>
+                  <h3 className="text-sm font-semibold text-ink">Webhooks</h3>
+                  <p className="mt-1 text-sm text-body">
+                    Real-time event push — transaction completion, device online/offline, and fault alerts — to your
+                    external systems.
+                  </p>
+                </div>
+                <Button href="#" variant="textLink">
+                  View Full API Docs <ArrowRight size={14} />
+                </Button>
+              </div>
+            </ScrollReveal>
+
+            <ScrollReveal>
+              <pre className="rounded-xl border border-border-warm-strong bg-warm-off p-5 overflow-x-auto text-xs font-mono text-steel leading-relaxed">
+                {CODE_SAMPLE}
+              </pre>
+            </ScrollReveal>
+          </div>
+        </div>
+      </section>
+
+      {/* Section 4 — Processing Path (no formal acquiring partnership is
           confirmed yet -- this describes the Canadian acquirers GS-SSP's
           architecture is designed around, not an existing agreement). */}
       <section className="bg-warm-off py-16 md:py-20">
@@ -115,7 +227,7 @@ export default function PaymentsPage() {
         </div>
       </section>
 
-      {/* Section 3 — Compliance */}
+      {/* Section 5 — Compliance */}
       <section className="bg-warm-white py-16 md:py-20">
         <div className="mx-auto max-w-content px-5 md:px-10">
           <ScrollReveal>
@@ -139,7 +251,7 @@ export default function PaymentsPage() {
         </div>
       </section>
 
-      {/* Section 4 — Onboarding */}
+      {/* Section 6 — Onboarding */}
       <section className="bg-warm-off py-16 md:py-20">
         <div className="mx-auto max-w-content px-5 md:px-10">
           <ScrollReveal>
@@ -159,6 +271,21 @@ export default function PaymentsPage() {
           </div>
         </div>
       </section>
+
+      {/* Section 7 — Application Form */}
+      <section className="bg-warm-white py-16 md:py-20">
+        <div className="mx-auto max-w-2xl px-5 md:px-10">
+          <ScrollReveal>
+            <SectionHeading title="Apply for Developer Access" align="center" />
+          </ScrollReveal>
+          <div className="mt-8">
+            <DeveloperForm />
+          </div>
+        </div>
+      </section>
+
+      {/* Section 8 — Hardware Ecosystem */}
+      <LogoStrip names={HARDWARE_ECOSYSTEM} label="Hardware We Build For" />
     </>
   );
 }

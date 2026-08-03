@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Cpu, Tablet, Refrigerator, ScanEye, Layers, PackageOpen } from 'lucide-react';
+import { Tablet, Refrigerator, ScanEye, Layers, PackageOpen } from 'lucide-react';
 import { PageHero } from '@/components/PageHero';
 import { Card } from '@/components/ui/Card';
 import { Pill } from '@/components/ui/Pill';
@@ -7,7 +7,7 @@ import { TagRow } from '@/components/TagRow';
 import { SpecTable } from '@/components/SpecTable';
 import { SectionHeading } from '@/components/SectionHeading';
 import { ScrollReveal } from '@/components/ScrollReveal';
-import { ScenePlaceholder } from '@/components/ScenePlaceholder';
+import { ScenePhoto } from '@/components/ScenePhoto';
 import { WiringDiagram } from '@/components/WiringDiagram';
 
 // Representative categories only -- deliberately excludes anything outside
@@ -83,7 +83,11 @@ export default function HardwarePage() {
 
           <div className="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
             <ScrollReveal>
-              <ScenePlaceholder icon={Cpu} label="GS-SSP Edge Controller — enclosure and wiring terminals" />
+              <ScenePhoto
+                src="/images/controller-enclosure-wiring.jpg"
+                alt="Edge controller enclosure and wiring terminals"
+                label="GS-SSP Edge Controller — enclosure and wiring terminals"
+              />
             </ScrollReveal>
             <ScrollReveal>
               <h3 className="text-sm font-semibold text-ink uppercase tracking-wide mb-3">Supported Buses</h3>

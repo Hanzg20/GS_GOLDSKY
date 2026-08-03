@@ -11,8 +11,7 @@ const NAV_ITEMS = [
   { label: 'Home', href: '/' },
   { label: 'Solutions', href: '/solutions' },
   { label: 'Products', href: '/products' },
-  { label: 'Payments & Ecosystem', href: '/payments' },
-  { label: 'Developers & ISVs', href: '/developers' },
+  { label: 'Innovation Center', href: '/innovation' },
   { label: 'Case Studies', href: '/case-studies' },
   { label: 'Contact', href: '/contact' },
 ];

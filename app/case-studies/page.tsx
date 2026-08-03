@@ -1,12 +1,12 @@
 import type { Metadata } from 'next';
-import { ArrowRight, Camera } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { PageHero } from '@/components/PageHero';
 import { Card } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
 import { Pill } from '@/components/ui/Pill';
 import { SectionHeading } from '@/components/SectionHeading';
 import { ScrollReveal } from '@/components/ScrollReveal';
-import { ScenePlaceholder } from '@/components/ScenePlaceholder';
+import { ScenePhoto } from '@/components/ScenePhoto';
 import { CountUp } from '@/components/CountUp';
 
 export const metadata: Metadata = {
@@ -55,10 +55,26 @@ export default function CaseStudiesPage() {
           <div className="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-8">
             <ScrollReveal>
               <div className="space-y-3">
-                <ScenePlaceholder icon={Camera} label="Self-serve car wash — full-site panorama" className="aspect-video" />
+                <ScenePhoto
+                  src="/images/car-wash-bay-panorama.jpg"
+                  alt="Self-serve car wash bay, full-site view"
+                  label="Self-serve car wash — full-site panorama"
+                  note="Representative photo — not the actual site"
+                  className="aspect-video"
+                />
                 <div className="grid grid-cols-2 gap-3">
-                  <ScenePlaceholder icon={Camera} label="Bay closeup — PAX IM30 terminal" />
-                  <ScenePlaceholder icon={Camera} label="Bay closeup — coin + card acceptance" />
+                  <ScenePhoto
+                    src="/images/payment-terminal-closeup.jpg"
+                    alt="Payment terminal closeup at a self-serve bay"
+                    label="Bay closeup — PAX IM30 terminal"
+                    note="Representative photo"
+                  />
+                  <ScenePhoto
+                    src="/images/coin-acceptance-closeup.jpg"
+                    alt="Coin and card acceptance closeup"
+                    label="Bay closeup — coin + card acceptance"
+                    note="Representative photo"
+                  />
                 </div>
               </div>
             </ScrollReveal>

@@ -15,6 +15,16 @@ export function ScrollReveal({
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
+
+    // Content already on screen at mount (e.g. the hero) must show immediately --
+    // don't wait on an async IntersectionObserver callback, which can be delayed
+    // past first paint by layout/font settling right after hydration.
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight && rect.bottom > 0) {
+      setInView(true);
+      return;
+    }
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {

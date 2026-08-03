@@ -1,11 +1,11 @@
 import type { Metadata } from 'next';
-import { ArrowRight, Car, ShoppingCart, Zap, Building2, Hotel } from 'lucide-react';
+import { ArrowRight, Zap, Building2, Hotel } from 'lucide-react';
 import { PageHero } from '@/components/PageHero';
 import { Card } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
 import { Pill } from '@/components/ui/Pill';
 import { TagRow } from '@/components/TagRow';
-import { ScenePlaceholder } from '@/components/ScenePlaceholder';
+import { ScenePhoto } from '@/components/ScenePhoto';
 import { ScrollReveal } from '@/components/ScrollReveal';
 
 export const metadata: Metadata = {
@@ -54,15 +54,20 @@ export default function SolutionsPage() {
           <ScrollReveal>
             <Card className="p-6 md:p-10">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-                <ScenePlaceholder icon={Car} label="PAX IM30 deployed at a self-serve car wash bay" />
+                <ScenePhoto
+                  src="/images/car-wash-bay-panorama.jpg"
+                  alt="Payment terminal deployed at a self-serve car wash bay"
+                  label="Payment terminal deployed at a self-serve car wash bay"
+                />
                 <div>
                   <Pill variant="brand" className="mb-4">
                     Primary Focus
                   </Pill>
                   <h2 className="text-2xl font-bold text-ink">Unattended Commercial Automation</h2>
                   <p className="mt-3 text-base text-body leading-relaxed">
-                    Rugged, outdoor-rated payment and control infrastructure for venues with no staff on site —
-                    engineered for 24/7 operation in extreme weather.
+                    When there's no one on site, the terminal has to handle everything itself — take payment,
+                    survive a Canadian winter, and stay online without a technician nearby. That's what this is
+                    built for: rugged, outdoor-rated hardware engineered for 24/7 self-serve operation.
                   </p>
                   <ul className="mt-4 space-y-1.5 text-sm text-body">
                     <li>• Self-Serve Car Wash (Coin-Op)</li>
@@ -91,12 +96,12 @@ export default function SolutionsPage() {
                 <div className="order-2 lg:order-1">
                   <h2 className="text-xl font-semibold text-ink">Attended & Front-Desk</h2>
                   <p className="mt-3 text-sm text-body leading-relaxed">
-                    Staffed point-of-sale scenarios — front counter checkout, manual refunds, and mobile handheld
-                    payment.
+                    Running a front counter alongside unattended bays usually means two separate systems and two
+                    sets of numbers to reconcile by hand at month-end. Countertop and mobile handheld checkout on
+                    GS-SSP put both on the same cloud ledger instead.
                   </p>
                   <p className="mt-3 text-sm font-medium text-steel">
-                    One unified cloud ledger, one settlement pipeline, front and back office on a single
-                    system.
+                    One unified ledger, one settlement pipeline, front and back office on a single system.
                   </p>
                   <TagRow
                     className="mt-5"
@@ -107,7 +112,11 @@ export default function SolutionsPage() {
                   </a>
                 </div>
                 <div className="order-1 lg:order-2">
-                  <ScenePlaceholder icon={ShoppingCart} label="Front-desk countertop POS terminal" />
+                  <ScenePhoto
+                    src="/images/countertop-pos-terminal.jpg"
+                    alt="Front-desk countertop POS terminal"
+                    label="Front-desk countertop POS terminal"
+                  />
                 </div>
               </div>
             </Card>

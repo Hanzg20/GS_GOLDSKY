@@ -7,8 +7,7 @@ const columns: { title: string; links: { label: string; href: string }[] }[] = [
     links: [
       { label: 'Solutions', href: '/solutions' },
       { label: 'Products', href: '/products' },
-      { label: 'Payments & Ecosystem', href: '/payments' },
-      { label: 'Developers & ISVs', href: '/developers' },
+      { label: 'Innovation Center', href: '/innovation' },
     ],
   },
   {
@@ -23,7 +22,7 @@ const columns: { title: string; links: { label: string; href: string }[] }[] = [
   {
     title: 'Resources',
     links: [
-      { label: 'API & SDK Docs', href: '/developers' },
+      { label: 'API & SDK Docs', href: '/innovation' },
       { label: 'Unattended Solutions', href: '/solutions/unattended' },
       { label: 'Attended Solutions', href: '/solutions/attended' },
       { label: 'Contact', href: '/contact' },
