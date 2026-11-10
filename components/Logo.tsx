@@ -4,9 +4,13 @@ import Image from 'next/image';
 export function Logo({ dark = false, className = '' }: { dark?: boolean; className?: string }) {
   return (
     <Link href="/" className={`flex items-center gap-3 ${className}`}>
-      <Image src="/goldsky-logo.png" alt="GoldSky Technologies" width={46} height={46} priority className="shrink-0" />
-      <span className="flex items-baseline gap-1.5">
-        <span className="font-extrabold text-xl tracking-tight leading-none">
+      <Image src="/goldsky-logo.png" alt="GoldSky Technologies" width={40} height={40} priority className="shrink-0" />
+      {/* dark theme: a wide tracked wordmark, as on starlink.com */}
+      <span className="hidden text-lg font-bold uppercase leading-none tracking-[0.32em] text-ink dark:inline">
+        GoldSky
+      </span>
+      <span className="flex items-baseline gap-1.5 dark:hidden">
+        <span className="font-bold text-xl tracking-tight leading-none">
           <span className={dark ? 'text-hero-fg' : 'text-ink'}>Gold</span>
           <span className="text-steel">Sky</span>
         </span>

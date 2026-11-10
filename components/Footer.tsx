@@ -1,103 +1,67 @@
-import { Linkedin } from 'lucide-react';
 import { Logo } from './Logo';
 
 const columns: { title: string; links: { label: string; href: string }[] }[] = [
   {
-    title: 'Platform',
+    title: 'Product lines',
+    links: [
+      { label: 'Ourea · desktop POS', href: '/solutions/attended' },
+      { label: 'Iris · handheld POS', href: '/solutions/attended' },
+      { label: 'Aegis · self serve', href: '/solutions/unattended' },
+      { label: 'Cael · cloud platform', href: '/products/software' },
+    ],
+  },
+  {
+    title: 'Explore',
     links: [
       { label: 'Solutions', href: '/solutions' },
       { label: 'Products', href: '/products' },
-      { label: 'Innovation Center', href: '/innovation' },
-    ],
-  },
-  {
-    title: 'Products',
-    links: [
-      { label: 'GS-SSP Platform (Software)', href: '/products/software' },
-      { label: 'Edge Controller', href: '/products/hardware' },
-      { label: 'Payment Terminals', href: '/products/hardware' },
-      { label: 'Case Studies', href: '/case-studies' },
-    ],
-  },
-  {
-    title: 'Resources',
-    links: [
-      { label: 'API & SDK Docs', href: '/innovation' },
-      { label: 'Unattended Solutions', href: '/solutions/unattended' },
-      { label: 'Attended Solutions', href: '/solutions/attended' },
-      { label: 'Contact', href: '/contact' },
+      { label: 'Innovation', href: '/innovation' },
+      { label: 'Case studies', href: '/case-studies' },
     ],
   },
   {
     title: 'Company',
     links: [
-      { label: 'Contact Us', href: '/contact' },
-      { label: 'Privacy Policy', href: '/privacy' },
+      { label: 'Contact us', href: '/contact' },
+      { label: 'Privacy policy', href: '/privacy' },
     ],
   },
 ];
 
 export function Footer() {
   return (
-    <footer className="bg-warm-dark text-hero-fg">
-      <div className="mx-auto max-w-[1280px] px-5 md:px-10 py-16 grid grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-10">
-        <div className="col-span-2 xl:col-span-1">
-          <Logo dark />
-          <p className="mt-4 text-sm text-hero-muted leading-relaxed max-w-xs">
-            Payment infrastructure for <span className="text-brand">unattended</span> and{' '}
-            <span className="text-brand">attended</span> commercial venues — one platform, every payment
-            method.
+    <footer className="border-t border-line bg-paper-deep">
+      <div className="mx-auto grid max-w-content grid-cols-2 gap-10 px-4 py-16 md:grid-cols-4">
+        <div className="col-span-2 md:col-span-1">
+          <Logo />
+          <p className="body-6 mt-4 max-w-xs text-ink-soft">
+            GS‑SSP: payment and store tools for Canadian restaurants, shops and self serve sites.
           </p>
-          <p className="mt-4 text-xs text-hero-muted">Founded 2011</p>
         </div>
 
         {columns.map((col) => (
-          <div key={col.title} className="hidden md:block">
-            <h3 className="text-xs font-semibold uppercase tracking-[0.08em] text-hero-muted mb-4">
-              {col.title}
-            </h3>
-            <ul className="space-y-2.5">
+          <nav key={col.title} aria-label={col.title}>
+            <h2 className="caption-3 uppercase tracking-widest text-ink-mute">{col.title}</h2>
+            <ul className="mt-4 space-y-3">
               {col.links.map((link) => (
                 <li key={link.label}>
-                  <a href={link.href} className="text-sm text-hero-fg/80 hover:text-brand transition-colors">
+                  <a
+                    href={link.href}
+                    className="body-6 text-ink-soft transition-colors duration-300 ease-gs hover:text-brand-dark"
+                  >
                     {link.label}
                   </a>
                 </li>
               ))}
             </ul>
-          </div>
+          </nav>
         ))}
       </div>
 
-      <div className="border-t border-white/10">
-        <div className="mx-auto max-w-[1280px] px-5 md:px-10 py-6 flex flex-col md:flex-row items-center justify-between gap-4">
-          <div className="text-xs text-hero-muted text-center md:text-left space-y-1">
-            <p>© {new Date().getFullYear()} GoldSky Technologies Inc. All rights reserved.</p>
-            <p>Ontario Corporation #1001101532 · Ottawa, Ontario, Canada</p>
-          </div>
-          <div className="flex items-center gap-3">
-            <a
-              href="#"
-              aria-label="LinkedIn"
-              className="w-8 h-8 rounded-full border border-white/15 flex items-center justify-center text-hero-muted hover:text-brand hover:border-brand transition-colors"
-            >
-              <Linkedin size={15} />
-            </a>
-            <a
-              href="#"
-              aria-label="Xiaohongshu"
-              className="w-8 h-8 rounded-full border border-white/15 flex items-center justify-center text-[10px] font-bold text-hero-muted hover:text-brand hover:border-brand transition-colors"
-            >
-              小红
-            </a>
-            <a
-              href="#"
-              aria-label="TikTok"
-              className="w-8 h-8 rounded-full border border-white/15 flex items-center justify-center text-[10px] font-bold text-hero-muted hover:text-brand hover:border-brand transition-colors"
-            >
-              TT
-            </a>
-          </div>
+      <div className="border-t border-line">
+        <div className="caption-5 mx-auto max-w-content space-y-1 px-4 py-6 text-ink-mute">
+          <p>© {new Date().getFullYear()} GoldSky Technologies Inc. All rights reserved.</p>
+          <p>Ontario Corporation #1001101532 · Ottawa, Ontario, Canada</p>
         </div>
       </div>
     </footer>

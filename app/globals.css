@@ -2,47 +2,399 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ------------------------------------------------------------------
+   Base
+   ------------------------------------------------------------------ */
+/* ------------------------------------------------------------------
+   Themes. Light is the brand default: warm paper and ink, serif headings,
+   printmaking illustrations. Dark is modelled on starlink.com: pure black,
+   #141414 panels, one DIN style grotesque (Barlow) in bold for headings,
+   white buttons, photographs instead of illustrations, almost no colour. Tailwind colours read these as "r g b".
+   --art-* are plain colours for the SVG illustrations.
+   ------------------------------------------------------------------ */
+:root {
+  color-scheme: light;
+  --c-paper: 250 248 244;
+  --c-paper-deep: 243 239 231;
+  --c-paper-edge: 234 228 216;
+  --c-ink: 31 29 26;
+  --c-ink-soft: 74 70 64;
+  --c-ink-mute: 111 105 95;
+  --c-line: 227 221 209;
+  --c-line-strong: 207 199 184;
+  --c-brand: 200 102 26;
+  --c-brand-dark: 156 79 20;
+  --c-brand-light: 251 234 214;
+  --c-sky: 110 143 166;
+  --c-sky-light: 231 238 242;
+  --c-night: 19 18 9;
+  --c-panel: 250 248 244;
+  --font-body: var(--font-manrope);
+  --font-head: var(--font-newsreader);
+
+  --art-paper: #faf8f4;
+  --art-paper-deep: #f3efe7;
+  --art-mass: #eae4d8;
+  --art-ink: #1f1d1a;
+  --art-mute: #6f695f;
+}
+[data-theme='dark'] {
+  color-scheme: dark;
+  --font-body: var(--font-barlow);
+  --font-head: var(--font-barlow);
+  --c-paper: 0 0 0;
+  --c-paper-deep: 0 0 0;
+  --c-paper-edge: 26 26 26;
+  --c-panel: 20 20 20;
+  --c-ink: 250 250 250;
+  --c-ink-soft: 184 184 184;
+  --c-ink-mute: 128 128 128;
+  --c-line: 40 40 40;
+  --c-line-strong: 64 64 64;
+  --c-brand: 214 112 36;
+  --c-brand-dark: 250 250 250;
+  --c-brand-light: 38 24 14;
+  --c-sky: 134 165 186;
+  --c-sky-light: 24 28 32;
+  --c-night: 20 20 20;
+
+  --art-paper: #141414;
+  --art-paper-deep: #0a0a0a;
+  --art-mass: #262626;
+  --art-ink: #fafafa;
+  --art-mute: #8a8a8a;
+}
+
+/* theme switch: the new theme opens as a circle from the toggle button
+   (View Transitions; --vt-x/--vt-y set by ThemeToggle). Plain swap elsewhere. */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+::view-transition-new(root) {
+  animation: theme-reveal 700ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+@keyframes theme-reveal {
+  from { clip-path: circle(0 at var(--vt-x, 50%) var(--vt-y, 0)); }
+  to { clip-path: circle(150vmax at var(--vt-x, 50%) var(--vt-y, 0)); }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    background-color: rgb(var(--c-paper));
+    color: rgb(var(--c-ink-soft));
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    text-wrap: balance;
+  }
+  p,
+  li,
+  dd {
+    text-wrap: pretty;
+  }
+  :focus-visible {
+    outline: 2px solid rgb(var(--c-brand));
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+}
+
+/* ------------------------------------------------------------------
+   Named text styles (landing-page-design B1). Every text element uses
+   one of these. Headings are serif (the humanistic voice); everything
+   else is the sans. Sizes stay on Tailwind's scale; large headings step
+   down one or two steps on small screens.
+   ------------------------------------------------------------------ */
+@layer components {
+  .heading-1 {
+    @apply font-serif text-4xl font-semibold tracking-tight text-ink sm:text-5xl lg:text-6xl;
+  }
+  .heading-2 {
+    @apply font-serif text-3xl font-semibold tracking-tight text-ink md:text-5xl;
+  }
+  .heading-3 {
+    @apply font-serif text-3xl font-semibold tracking-tight text-ink md:text-4xl;
+  }
+  .heading-4 {
+    @apply font-serif text-2xl font-semibold text-ink md:text-3xl;
+  }
+  .heading-5 {
+    @apply font-serif text-2xl font-semibold text-ink;
+  }
+  .heading-6 {
+    @apply font-serif text-xl font-semibold text-ink;
+  }
+
+  .title-1 { @apply text-xl font-medium text-ink; }
+  .title-2 { @apply text-lg font-medium text-ink; }
+  .title-3 { @apply text-base font-medium text-ink; }
+  .title-4 { @apply text-sm font-medium text-ink; }
+  .title-5 { @apply text-xs font-medium text-ink; }
+
+  .body-1 { @apply text-base font-semibold; }
+  .body-2 { @apply text-base font-medium; }
+  .body-3 { @apply text-base font-normal; }
+  .body-4 { @apply text-sm font-semibold; }
+  .body-5 { @apply text-sm font-medium; }
+  .body-6 { @apply text-sm font-normal; }
+
+  .button-lg { @apply text-lg font-semibold; }
+  .button-md { @apply text-base font-semibold; }
+  .button-sm { @apply text-sm font-semibold; }
+  .button-xsm { @apply text-xs font-semibold; }
+
+  .caption-1 { @apply text-sm font-medium; }
+  .caption-2 { @apply text-sm font-normal; }
+  .caption-3 { @apply text-xs font-semibold; }
+  .caption-4 { @apply text-xs font-medium; }
+  .caption-5 { @apply text-xs font-normal; }
+
+  /* Hero heading: left to right ink gradient on the TEXT only (B5),
+     warmed from the skill's black/grey to stay on palette. */
+  .hero-ink {
+    background-image: linear-gradient(90deg, rgb(var(--c-ink)) 0%, rgb(var(--c-ink-mute)) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* Dark theme type, after starlink.com: bold DIN headings, tight leading,
+     solid white (no ink gradient), slightly open body tracking. */
+  [data-theme='dark'] body {
+    letter-spacing: 0.01em;
+  }
+  [data-theme='dark'] :is(.heading-1, .heading-2, .heading-3, .heading-4, .heading-5, .heading-6) {
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    line-height: 1.05;
+  }
+  [data-theme='dark'] .heading-1 {
+    letter-spacing: -0.015em;
+  }
+  [data-theme='dark'] .hero-ink {
+    background-image: none;
+    color: rgb(var(--c-ink));
+  }
+
+  /* Paper grain over illustration frames. A texture, not a gradient. */
+  .paper-grain {
+    position: relative;
+    isolation: isolate;
+  }
+  .paper-grain::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    border-radius: inherit;
+    opacity: 0.05;
+    mix-blend-mode: multiply;
+  }
+  [data-theme='dark'] .paper-grain::after {
+    opacity: 0.06;
+    mix-blend-mode: screen;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* A fact we don't have yet. Visible on purpose so it can't ship by accident. */
+  .fact-missing {
+    @apply rounded border border-dashed border-brand/60 bg-brand-light px-1 font-mono text-brand-dark;
+  }
+}
+
+/* ------------------------------------------------------------------
+   Motion
+   ------------------------------------------------------------------ */
 @keyframes scroll-x {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }
 
 @keyframes fade-up {
-  0% {
-    opacity: 0;
-    transform: translateY(16px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  0% { opacity: 0; transform: translateY(32px); }
+  100% { opacity: 1; transform: translateY(0); }
 }
 
-html {
-  scroll-behavior: smooth;
+.reveal {
+  opacity: 0;
+}
+.reveal.in-view {
+  animation: fade-up 700ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
-body {
-  background-color: #faf8f4;
-  color: #3d3d3a;
+/* Hero scroll scene (components/ScrollHero.tsx). Defaults: everything drawn.
+   With JS on a wide screen and motion allowed, start from the "before" state
+   so there is no flash before the script takes over. */
+.scroll-hero {
+  --sun: 1;
+  --hint: 0;
+  --g1: 1;
+  --g2: 1;
+  --g3: 1;
+  --g4: 1;
+  --g5: 1;
+}
+@media (min-width: 1024px) and (min-height: 640px) and (prefers-reduced-motion: no-preference) {
+  .js .scroll-hero {
+    --sun: 0.3;
+    --hint: 1;
+    --g1: 0;
+    --g2: 0;
+    --g3: 0;
+    --g4: 0;
+    --g5: 0;
+  }
+  /* pinned: the scroll drives the sun, so the load animation steps aside */
+  .js .scroll-hero .animate-sun-rise {
+    animation: none;
+  }
+}
+/* scenario picker: the new bento rises in when the tab changes */
+.panel-in > * {
+  animation: fade-up 560ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.panel-in > :nth-child(2) { animation-delay: 60ms; }
+.panel-in > :nth-child(3) { animation-delay: 120ms; }
+.panel-in > :nth-child(4) { animation-delay: 180ms; }
+.panel-in > :nth-child(5) { animation-delay: 240ms; }
+.panel-in > :nth-child(6) { animation-delay: 300ms; }
+
+/* a guardian not yet reached is a faint pencil sketch, then inks in */
+.guardian {
+  transition: opacity 240ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+/* hero depth: sky lifts, clouds slide, birds fly off as the sun climbs */
+.par-sky {
+  transform: translateY(calc(var(--p, 0) * -14px));
+}
+.par-cloud {
+  transform: translateX(calc(var(--p, 0) * 60px));
+}
+.par-birds {
+  transform: translate(calc(var(--p, 0) * -260px), calc(var(--p, 0) * -70px));
+}
+
+/* hand drawn underline under the hero's last words: draws itself in once */
+.ink-underline path {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: draw-line 1100ms cubic-bezier(0.22, 1, 0.36, 1) 700ms forwards;
+}
+@keyframes draw-line {
+  to { stroke-dashoffset: 0; }
+}
+
+/* seals stamped on, one after another */
+.reveal .stamp {
+  opacity: 0;
+}
+.in-view .stamp {
+  animation: stamp 520ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+@keyframes stamp {
+  0% { opacity: 0; transform: scale(1.7) rotate(-10deg); }
+  60% { opacity: 1; transform: scale(0.94) rotate(1deg); }
+  100% { opacity: 1; transform: scale(1) rotate(0); }
+}
+
+/* night scene: small signs of a site still working */
+.twinkle {
+  animation: twinkle 3.2s ease-in-out infinite;
+}
+@keyframes twinkle {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.25; }
+}
+.spray {
+  transform-box: fill-box;
+  animation: spray 1100ms linear infinite;
+}
+@keyframes spray {
+  0% { opacity: 0; transform: translateY(-6px); }
+  30% { opacity: 1; }
+  100% { opacity: 0; transform: translateY(14px); }
+}
+.tap-wave {
+  animation: tap-wave 2200ms ease-out infinite;
+}
+@keyframes tap-wave {
+  0%, 100% { opacity: 0.2; }
+  20% { opacity: 1; }
+  60% { opacity: 0.2; }
+}
+.bay-glow {
+  animation: bay-glow 5s ease-in-out infinite;
+}
+@keyframes bay-glow {
+  0%, 100% { fill-opacity: 0.18; }
+  50% { fill-opacity: 0.3; }
+}
+
+/* scenario autoplay: the active tab fills while the bento waits */
+@keyframes fill-x {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+@keyframes fill-y {
+  from { transform: scaleY(0); }
+  to { transform: scaleY(1); }
+}
+
+/* Apex's beaver, waiting for a question */
+@keyframes beaver-bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+.night-zoom {
+  transform: scale(calc(1.12 - 0.12 * var(--p, 0)));
+  transform-origin: 60% 70%;
+}
+.night-shade {
+  opacity: calc(0.1 + 0.5 * var(--p, 0));
+}
+.night-copy {
+  transform: translateY(calc(var(--p, 0) * -40px));
+}
+
+.sun-scroll {
+  transform: translateY(calc((1 - var(--sun)) * 100px));
 }
 
 @media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal,
+  .reveal.in-view {
+    opacity: 1;
+    animation: none;
+  }
+  .twinkle,
+  .spray,
+  .tap-wave,
+  .bay-glow {
+    animation: none !important;
+  }
   *,
   *::before,
   *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
   }
 }
 
-/* Hero section: subtle noise texture instead of neon glow/grid lines */
+/* ------------------------------------------------------------------
+   Legacy helpers still used by pages not yet redesigned
+   ------------------------------------------------------------------ */
 .hero-noise {
   position: relative;
 }
@@ -55,30 +407,16 @@ body {
   pointer-events: none;
 }
 
-/* Soft amber glow at the top of the hero (not a neon/blue glow) */
-.hero-orange-glow {
-  background-image: radial-gradient(ellipse 60% 40% at 50% 0%, rgba(200, 102, 26, 0.1), transparent 70%);
-}
-
-/* Hero -> warm-white transition strip */
-.hero-transition {
-  height: 80px;
-  background: linear-gradient(to bottom, #1a1a18, #faf8f4);
-}
-
-/* Logo strip infinite scroll track */
 .logo-track {
   display: flex;
   width: max-content;
-  animation: scroll-x 25s linear infinite;
+  animation: scroll-x 45s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .logo-track {
+    animation: none;
+  }
 }
 .logo-track:hover {
   animation-play-state: paused;
-}
-
-.reveal {
-  opacity: 0;
-}
-.reveal.in-view {
-  animation: fade-up 400ms ease-out forwards;
 }

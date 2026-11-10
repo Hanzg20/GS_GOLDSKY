@@ -5,18 +5,20 @@ type Variant = 'primary' | 'secondary' | 'steelGhost' | 'heroSecondary' | 'textL
 type Size = 'lg' | 'md' | 'sm';
 
 const variantClasses: Record<Variant, string> = {
+  // dark: Starlink's button, white with black text, 4px corners, bold
   primary:
-    'bg-brand text-white border border-transparent shadow-[0_2px_8px_rgba(232,137,10,0.3)] hover:bg-brand-dark hover:shadow-[0_4px_14px_rgba(232,137,10,0.4)]',
-  secondary: 'bg-transparent text-ink border border-ink hover:bg-warm-off',
+    'bg-brand text-cream border border-transparent hover:bg-brand-dark dark:rounded dark:bg-[#FAFAFA] dark:font-bold dark:text-black dark:hover:bg-white/80',
+  secondary: 'bg-transparent text-ink border border-ink/80 hover:bg-paper-deep dark:rounded dark:font-bold',
   steelGhost: 'bg-transparent text-steel border border-steel hover:bg-steel-light',
   heroSecondary: 'bg-transparent text-hero-fg border border-hero-fg/30 hover:bg-white/10',
-  textLink: 'bg-transparent text-steel border-0 underline-offset-4 hover:underline p-0',
+  textLink: 'bg-transparent text-brand-dark border-0 underline-offset-4 hover:underline p-0',
 };
 
+// Spacing from the B2 scale only. md is the skill's main button (8px / 12px).
 const sizeClasses: Record<Size, string> = {
-  lg: 'text-[15px] px-8 py-3.5',
-  md: 'text-sm px-[22px] py-[11px]',
-  sm: 'text-[13px] px-4 py-2',
+  lg: 'button-md px-6 py-3',
+  md: 'button-sm px-3 py-2',
+  sm: 'button-xsm px-3 py-2',
 };
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -34,7 +36,8 @@ export function Button({
   ...props
 }: ButtonProps) {
   const classes = cn(
-    'inline-flex items-center justify-center gap-2 rounded-lg font-semibold transition-colors duration-150 ease-out whitespace-nowrap',
+    'inline-flex items-center justify-center gap-2 rounded-lg whitespace-nowrap',
+    'transition-[background-color,border-color,color,transform] duration-300 ease-gs active:scale-[0.98]',
     variant !== 'textLink' && sizeClasses[size],
     variantClasses[variant],
     className,
