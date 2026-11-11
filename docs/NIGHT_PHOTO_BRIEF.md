@@ -145,7 +145,7 @@ counter、wash、vend 三格现在暂用仓库里已有的 Pexels 图库照片�
 
 ### 2026-11-10：洗车房三张
 
-来源 `C:\goldsky\EaglesonCarWash\n1\kanata wash (1–3).png`，都是豆包生成（带水印），只当氛围照片用，页面上不写店名和地点。原图复制到 `D:\MYAPP\goldsky-art-masters\night\kanata-wash-1/2/3.png`。
+来源 `C:\goldsky\EaglesonCarWash\n1\kanata wash (1–3).png`，店主确认是 Eagleson 的实拍（2026-11-11），经豆包处理过，带水印，网站上的版本都裁掉了水印。深色版作为氛围照片使用，同时裁成 `public/photos/eagleson-*.webp` 填进 Eagleson 案例区的三个实拍位。原图复制到 `D:\MYAPP\goldsky-art-masters\night\kanata-wash-1/2/3.png`。
 
 - **aegis.jpg**（2560×1440）：黄昏的一排洗车位，用作 Aegis 区满屏背景。从顶部裁 16:9，避开右下角水印。
 - **aegis-terminal.jpg**（1440×1800）：墙上的刷卡终端，用作首页 Aegis 卡片，不再和场景选择器的洗车照片重复。
