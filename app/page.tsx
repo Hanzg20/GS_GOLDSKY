@@ -35,13 +35,9 @@ export const metadata: Metadata = {
 };
 
 // Every product fact on this page comes from the GS-SSP project
-// (C:\workspace\gs-ssp: CLAUDE.md, docs/system_architecture.md, docs/releases).
-// Anything not confirmed there renders through <Missing> and must be filled in
-// before launch.
-
-function Missing({ children }: { children: string }) {
-  return <span className="fact-missing">{`{{${children}}}`}</span>;
-}
+// (C:\workspace\gs-ssp: CLAUDE.md, docs/system_architecture.md, docs/releases)
+// or from the owner (the acquirer and coin acceptor answers, 2026-11-11).
+// Never write a fact that neither confirms; leave it out instead.
 
 type Line = {
   id: LineId;
@@ -269,7 +265,7 @@ const FAQ: { q: string; a: React.ReactNode }[] = [
   },
   {
     q: 'Who processes the payments?',
-    a: <Missing>processor answer, to be confirmed</Missing>,
+    a: 'A world leading acquirer processes every card and QR payment, and the money settles straight into your own merchant account.',
   },
   {
     q: 'What happens if a machine fails after the card is charged?',
@@ -277,7 +273,7 @@ const FAQ: { q: string; a: React.ReactNode }[] = [
   },
   {
     q: 'Can I keep my existing coin acceptor?',
-    a: <Missing>coin acceptor answer, to be confirmed</Missing>,
+    a: 'Yes. A coin acceptor can be fitted alongside the card terminal, so customers pay with coins, card or QR.',
   },
   {
     q: 'Does it work if the internet drops?',
