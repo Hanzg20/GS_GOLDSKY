@@ -54,7 +54,8 @@ type Line = {
   art: { src: string; srcSet: string; alt: string };
   /** dark theme: the photograph */
   night: NightId;
-  apps?: string[];
+  /** Aegis apps with where each stands (docs/CAPABILITIES.md) */
+  apps?: { name: string; live: boolean }[];
 };
 
 const LINES: Record<'ourea' | 'iris' | 'aegis' | 'cael', Line> = {
@@ -63,7 +64,7 @@ const LINES: Record<'ourea' | 'iris' | 'aegis' | 'cael', Line> = {
     name: 'Ourea',
     cn: '山神',
     role: 'At the counter',
-    text: 'The counter that holds steady: quick service, dine in, a customer display and table QR ordering.',
+    text: 'The counter that holds steady. Quick service and dine in, a customer display, cash drawer and shifts, and table QR ordering where guests order in one sentence, in their own language.',
     href: '/solutions/attended',
     art: {
       src: '/images/art/line-ourea-640.webp',
@@ -77,7 +78,7 @@ const LINES: Record<'ourea' | 'iris' | 'aegis' | 'cael', Line> = {
     name: 'Iris',
     cn: '虹',
     role: 'In hand',
-    text: "Checkout that walks to the table, in your staff's hand.",
+    text: "Checkout that walks to the table. Card or cash in your staff's hand, on terminals from three makers.",
     href: '/solutions/attended',
     art: {
       src: '/images/art/line-iris-640.webp',
@@ -91,22 +92,27 @@ const LINES: Record<'ourea' | 'iris' | 'aegis' | 'cael', Line> = {
     name: 'Aegis',
     cn: '神盾',
     role: 'When no one is there',
-    text: 'Card and QR payment for car washes, vending and partner machines, guarding the site when no one is there.',
+    text: 'On guard when no one is there. Card and code payment for car washes, vacuums, vending and partner machines. No product, no charge: if the machine does not confirm, the payment is reversed.',
     href: '/solutions/unattended',
     art: {
       src: '/images/art/home-aegis-night-720.webp',
       srcSet: '/images/art/home-aegis-night-720.webp 720w, /images/art/home-aegis-night.webp 1300w',
       alt: 'Illustration: self serve wash bays at night under a glowing shield',
     },
-    night: 'wash',
-    apps: ['Wash', 'Timer', 'Vend', 'Flex'],
+    night: 'terminal',
+    apps: [
+      { name: 'Wash', live: true },
+      { name: 'Timer', live: true },
+      { name: 'Vend', live: false },
+      { name: 'Flex', live: false },
+    ],
   },
   cael: {
     id: 'cael',
     name: 'Cael',
     cn: '云',
     role: 'Behind every store',
-    text: 'Every store and terminal in one place: menus, prices, devices and screens, managed from anywhere.',
+    text: 'Every store in one place. Prices, menus, screens, ads, coupons and sales, managed from anywhere.',
     href: '/products/software',
     art: {
       src: '/images/art/line-cael-640.webp',
@@ -153,8 +159,21 @@ function LineCard({ line }: { line: Line }) {
         {line.apps && (
           <ul className="mt-4 flex flex-wrap gap-2" aria-label={`${line.name} apps`}>
             {line.apps.map((app) => (
-              <li key={app} className="caption-1 rounded-lg border border-line bg-paper-deep px-3 py-1.5 text-ink-soft">
-                {line.name} {app}
+              <li
+                key={app.name}
+                className="caption-1 inline-flex items-center gap-2 rounded-lg border border-line bg-paper-deep px-3 py-1.5 text-ink-soft"
+              >
+                {line.name} {app.name}
+                <span
+                  className={
+                    app.live
+                      ? 'caption-5 inline-flex items-center gap-1 font-semibold uppercase tracking-wider text-brand-dark dark:text-brand'
+                      : 'caption-5 uppercase tracking-wider text-ink-mute'
+                  }
+                >
+                  {app.live && <span aria-hidden className="h-1.5 w-1.5 rounded-full bg-brand" />}
+                  {app.live ? 'Live' : 'In pilot'}
+                </span>
               </li>
             ))}
           </ul>
@@ -171,6 +190,13 @@ function LineCard({ line }: { line: Line }) {
     </article>
   );
 }
+
+// What makes Apex worth trusting, each built (docs/CAPABILITIES.md §1.1).
+const APEX_PROOFS = [
+  { title: 'Every number has a source.', text: 'The data does the sums, and each figure is checked before you see it.' },
+  { title: 'It suggests, you decide.', text: 'Say "record hydro 234.50" and nothing is saved until a manager confirms.' },
+  { title: 'It speaks up first.', text: 'Low stock, a long shift, an unpaid delivery.' },
+];
 
 // The five guardians as they ink into the hero picture, in scroll order.
 const GUARDIANS = [
@@ -414,11 +440,12 @@ export default function HomePage() {
           <ScrollReveal className="max-w-prose">
             <DayMark hour={12}>Midday</DayMark>
             <h2 id="lines-title" className="heading-3 mt-4">
-              Five lines, each named for an old guardian
+              Every counter, every bay, one mind
             </h2>
             <p className="body-3 mt-4 text-ink-soft">
-              Mountain, rainbow, shield, summit and cloud. Each one looks after a different part of your
-              business, and they all share one platform.
+              At the counter, in hand, when no one is there and in the cloud, with an assistant that listens in
+              the middle. Five lines on one platform, each named for an old guardian: mountain, rainbow,
+              shield, summit and cloud.
             </p>
           </ScrollReveal>
 
@@ -443,12 +470,21 @@ export default function HomePage() {
                   </div>
                 </div>
                 <p className="body-6 mt-4 text-[#B9AF9E]">
-                  Ask in plain words: sales, stock, members, staff hours. Apex looks it up and shows where each
-                  number came from. It lives in Ourea and Iris, and the beaver is the same one your guests
-                  order from.
+                  Ask in plain words: sales, stock, members, staff hours. It lives in Ourea, Iris and Cael, and
+                  the beaver is the same one your guests order from.
                 </p>
+                <ul className="mt-4 space-y-2">
+                  {APEX_PROOFS.map((proof) => (
+                    <li key={proof.title} className="body-6 flex gap-3 text-[#B9AF9E]">
+                      <span aria-hidden className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-brand" />
+                      <span>
+                        <span className="font-semibold text-cream">{proof.title}</span> {proof.text}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
                 <ApexBeaver className="mt-6 flex-1 justify-center" />
-                <a href="/products/software" className="body-5 group mt-6 inline-flex items-center gap-1 text-cream">
+                <a href="/apex" className="body-5 group mt-6 inline-flex items-center gap-1 text-cream">
                   Meet Apex
                   <ArrowRight
                     size={14}

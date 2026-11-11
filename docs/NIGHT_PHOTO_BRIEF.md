@@ -142,3 +142,11 @@ counter、wash、vend 三格现在暂用仓库里已有的 Pexels 图库照片�
 - **浅色版**：洗衣、柴火、充电、加油这四格还没有插画，暂时显示「插画待生成」的占位框。
 - **原图位置**：原图在 `D:\MYAPP\goldsky-art-masters\night\`，原来下午的洗车图另存为 `wash-afternoon-web.jpg`。
 - **aegis**：还在等新图，Aegis 区暂时显示占位。
+
+### 2026-11-10：洗车房三张
+
+来源 `C:\goldsky\EaglesonCarWash\n1\kanata wash (1–3).png`，都是豆包生成（带水印），只当氛围照片用，页面上不写店名和地点。原图复制到 `D:\MYAPP\goldsky-art-masters\night\kanata-wash-1/2/3.png`。
+
+- **aegis.jpg**（2560×1440）：黄昏的一排洗车位，用作 Aegis 区满屏背景。从顶部裁 16:9，避开右下角水印。
+- **aegis-terminal.jpg**（1440×1800）：墙上的刷卡终端，用作首页 Aegis 卡片，不再和场景选择器的洗车照片重复。
+- **vacuum.jpg**（1440×1800）：吸尘器立柱，裁掉左右黑边，先登记在 `lib/nightPhotos.ts`，留给 `/products` 的 Aegis Timer。

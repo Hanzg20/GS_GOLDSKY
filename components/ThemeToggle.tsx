@@ -5,7 +5,7 @@ import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
 import { THEME_KEY, isThemed } from '@/lib/theme';
 
-// Light (warm paper, the brand default) / dark (the town after sunset).
+// Dark (the default, after starlink.com) / light (warm paper, illustrations).
 // The choice is remembered per browser; the inline script in app/layout.tsx
 // applies it before first paint so there is no flash. The switch opens the
 // new theme as a circle from this button where View Transitions exist.
@@ -21,9 +21,9 @@ function apply(t: Theme) {
 
 function saved(): Theme {
   try {
-    return localStorage.getItem(THEME_KEY) === 'dark' ? 'dark' : 'light';
+    return localStorage.getItem(THEME_KEY) === 'light' ? 'light' : 'dark';
   } catch {
-    return 'light';
+    return 'dark';
   }
 }
 
