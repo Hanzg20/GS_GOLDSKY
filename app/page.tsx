@@ -646,20 +646,6 @@ export default function HomePage() {
               A self serve wash in Kanata, Ontario, taking card and QR payments on Aegis Wash, with Aegis
               Timer running the vacuum station beside it. Prices and terminals are managed from Cael.
             </p>
-            <dl className="mt-8 grid grid-cols-2 gap-6">
-              <div>
-                <dt className="caption-4 text-ink-mute">Wash bays</dt>
-                <dd className="heading-5 mt-1">
-                  <Missing>bays</Missing>
-                </dd>
-              </div>
-              <div>
-                <dt className="caption-4 text-ink-mute">Live since</dt>
-                <dd className="heading-5 mt-1">
-                  <Missing>go live month</Missing>
-                </dd>
-              </div>
-            </dl>
             <a
               href="/case-studies"
               className="body-5 group mt-8 inline-flex items-center gap-1 text-brand-dark"
