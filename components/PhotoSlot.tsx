@@ -25,13 +25,26 @@ export function PhotoSlot({
   if (photo.ready) {
     return (
       <div className={cn(frame, 'overflow-hidden border-line')} style={ratio}>
+        {photo.video && (
+          <video
+            src={`/photos/${photo.video.file}`}
+            poster={`/photos/${photo.video.poster}`}
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            aria-label={photo.alt}
+            className="h-full w-full object-cover motion-reduce:hidden"
+          />
+        )}
         {/* static export: plain img, no Image Optimization */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={`/photos/${photo.file}`}
           alt={photo.alt}
           loading="lazy"
-          className="h-full w-full object-cover"
+          className={cn('h-full w-full object-cover', photo.video && 'hidden motion-reduce:block')}
         />
       </div>
     );

@@ -28,6 +28,12 @@ export type Photo = {
   brief: string[];
   /** English alt text, required before ready: true */
   alt: string;
+  /**
+   * Optional silent loop shot on site, played in place of the photo
+   * (public/photos/<video.file>, H.264 MP4, no audio, a few hundred KB).
+   * `poster` is its first frame. Visitors who prefer reduced motion get the photo.
+   */
+  video?: { file: string; poster: string };
 };
 
 export const PHOTOS: Record<PhotoId, Photo> = {
@@ -52,6 +58,8 @@ export const PHOTOS: Record<PhotoId, Photo> = {
     title: '湾位上的 Aegis Wash 终端',
     brief: ['终端装在湾位里的样子，屏幕亮着', '一只手正在拍卡'],
     alt: 'An Aegis Wash card terminal mounted on a blue steel panel in a wash bay, its screen lit, beside the coin box',
+    // phone footage at Eagleson: tap to pay, pick a $4 wash, the pay screen (C:\goldsky\EaglesonCarWash\n1\wash bay.mp4, 12s to 21.5s)
+    video: { file: 'eagleson-terminal.mp4', poster: 'eagleson-terminal-poster.webp' },
   },
   'eagleson-vacuum': {
     file: 'eagleson-vacuum.webp',
@@ -61,6 +69,8 @@ export const PHOTOS: Record<PhotoId, Photo> = {
     title: '吸尘站和 Aegis Timer',
     brief: ['吸尘站整体，带上终端和吸管', '能看出它在洗车场旁边'],
     alt: 'The vacuum station at Eagleson Coin Wash, hoses on both sides, its Aegis Timer card terminal lit in orange',
+    // phone footage at Eagleson: pick Vacuum 2, the $2 for 4 min pay screen (C:\goldsky\EaglesonCarWash\n1\vacuum.mp4, 9s to 18.6s)
+    video: { file: 'eagleson-vacuum.mp4', poster: 'eagleson-vacuum-poster.webp' },
   },
   'ourea-counter': {
     file: 'ourea-counter.webp',
