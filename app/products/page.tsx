@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/Button';
 import { ScrollReveal } from '@/components/ScrollReveal';
 import { AegisAppIcon, LineEmblem, type AegisApp, type LineId } from '@/components/art/LineEmblem';
 import { NightPhoto } from '@/components/NightPhoto';
+import { PhotoSlot } from '@/components/PhotoSlot';
 import { ApexBeaver } from '@/components/ApexBeaver';
 import { QuickContact } from '@/components/QuickContact';
 import type { NightId } from '@/lib/nightPhotos';
@@ -321,7 +322,8 @@ export default function ProductsPage() {
             </ScrollReveal>
           </div>
 
-          {/* dark theme: the two machines that are live today */}
+          {/* dark theme: the two machines that are live today; the vacuum one is the
+              on-site loop from Eagleson (PhotoSlot plays it, falling back to the still) */}
           <div className="mt-12 hidden grid-cols-2 gap-4 dark:grid">
             {(
               [
@@ -330,7 +332,11 @@ export default function ProductsPage() {
               ] as const
             ).map(([id, name, caption]) => (
               <ScrollReveal key={id} className="relative aspect-[4/5] overflow-hidden rounded-2xl md:aspect-[4/3]">
-                <NightPhoto id={id} className="h-full w-full" sizes="(min-width: 768px) 50vw, 50vw" />
+                {id === 'vacuum' ? (
+                  <PhotoSlot id="eagleson-vacuum" fill play className="rounded-none border-0" />
+                ) : (
+                  <NightPhoto id={id} className="h-full w-full" sizes="(min-width: 768px) 50vw, 50vw" />
+                )}
                 <div aria-hidden className="pointer-events-none absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/80 to-transparent" />
                 <p className="absolute bottom-4 left-4 right-4">
                   <span className="title-2 block text-cream">{name}</span>

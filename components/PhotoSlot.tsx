@@ -9,8 +9,11 @@ export function PhotoSlot({
   id,
   compact = false,
   fill = false,
+  play = false,
   className,
 }: {
+  /** play the photo's on-site loop (lib/photos.ts `video`) instead of the still; off by default */
+  play?: boolean;
   id: PhotoId;
   /** small slots show the title and spec only; the brief is in docs/PHOTO_SHOTLIST.md */
   compact?: boolean;
@@ -23,12 +26,13 @@ export function PhotoSlot({
   const ratio = fill ? undefined : { aspectRatio: photo.ratio };
 
   if (photo.ready) {
+    const video = play ? photo.video : undefined;
     return (
       <div className={cn(frame, 'overflow-hidden border-line')} style={ratio}>
-        {photo.video && (
+        {video && (
           <video
-            src={`/photos/${photo.video.file}`}
-            poster={`/photos/${photo.video.poster}`}
+            src={`/photos/${video.file}`}
+            poster={`/photos/${video.poster}`}
             autoPlay
             muted
             loop
@@ -44,7 +48,7 @@ export function PhotoSlot({
           src={`/photos/${photo.file}`}
           alt={photo.alt}
           loading="lazy"
-          className={cn('h-full w-full object-cover', photo.video && 'hidden motion-reduce:block')}
+          className={cn('h-full w-full object-cover', video && 'hidden motion-reduce:block')}
         />
       </div>
     );

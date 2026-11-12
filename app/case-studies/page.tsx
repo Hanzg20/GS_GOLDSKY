@@ -99,7 +99,7 @@ function Clip({
 }) {
   return (
     <div className="flex flex-col gap-6 sm:flex-row sm:items-start lg:flex-col">
-      <PhotoSlot id={id} compact className="w-full sm:max-w-[280px] lg:max-w-none" />
+      <PhotoSlot id={id} compact play className="w-full sm:max-w-[280px] lg:max-w-none" />
       <div>
         <p className="caption-4 uppercase tracking-widest text-brand">{label}</p>
         <h3 className="heading-5 mt-2">{title}</h3>
