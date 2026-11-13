@@ -2,11 +2,15 @@ import type { Metadata } from 'next';
 import {
   ArrowRight,
   CloudArrowUp,
+  Code,
   Cpu,
   HandCoins,
   LockKey,
+  Plug,
   Plugs,
   Scales,
+  SlidersHorizontal,
+  WaveSquare,
 } from '@phosphor-icons/react/dist/ssr';
 import { Button } from '@/components/ui/Button';
 import { ScrollReveal } from '@/components/ScrollReveal';
@@ -22,6 +26,46 @@ export const metadata: Metadata = {
 // docs/CAPABILITIES.md. Aegis Flex is "terminal done, partner controller not
 // yet" there, so it is written as "in pilot". No open cloud API, keys or
 // webhooks exist yet: they only appear under "Coming soon", with no date.
+
+// Four ways in, least work first (the ladder idea is from helcim.com's
+// Download / No code / Low code / Full code). Status per CAPABILITIES.md:
+// Cael and the pulse output are live at Eagleson; MDB runs on test machines
+// only; Flex is in pilot. Keep the status labels honest when they change.
+const TIERS = [
+  {
+    icon: SlidersHorizontal,
+    level: 'No code',
+    title: 'Set it up in Cael',
+    text: 'Prices, products, screens, ads, coupons and member codes, changed from anywhere. Every sale shows up there.',
+    status: 'Live',
+    live: true,
+  },
+  {
+    icon: WaveSquare,
+    level: 'Wiring only',
+    title: 'Pulse to your timer board',
+    text: 'For timed equipment like wash bays and vacuums. The terminal sends the start pulse your timer already understands.',
+    status: 'Live at Eagleson',
+    live: true,
+  },
+  {
+    icon: Plug,
+    level: 'Standard port',
+    title: 'MDB vending machines',
+    text: 'The terminal plugs into the machine’s existing card reader port. Item first or card first, English and French.',
+    status: 'On test machines',
+    live: false,
+  },
+  {
+    icon: Code,
+    level: 'Full code',
+    title: 'Flex Controller API',
+    text: 'Your own controller, two HTTP endpoints. For machines that need to confirm the hand‑over or charge by weight.',
+    status: 'In pilot',
+    live: false,
+    href: '#flex',
+  },
+];
 
 const FLEX_POINTS = [
   { icon: Plugs, title: 'Two endpoints on your side', text: 'Your controller answers a status check and a dispense call over the site LAN. No GoldSky SDK or hardware inside your machine.' },
@@ -61,7 +105,7 @@ export default function DevelopersPage() {
             </h1>
             <p className="body-2 mt-6 max-w-prose text-ink-soft">
               Put a GoldSky payment terminal in front of your own machine, or bring GS‑SSP to the terminals you
-              work with. Start with the interface that runs today.
+              work with. Most machines need less code than you think.
             </p>
             <div className="mt-10 flex flex-wrap gap-3">
               <Button href="#access">Request developer access</Button>
@@ -81,8 +125,68 @@ export default function DevelopersPage() {
         </div>
       </section>
 
+      {/* Integration ladder */}
+      <section aria-labelledby="tiers-title" className="px-4 pb-16 md:pb-24">
+        <div className="mx-auto max-w-content">
+          <ScrollReveal className="max-w-prose">
+            <h2 id="tiers-title" className="heading-3">
+              Four ways to connect, least work first
+            </h2>
+            <p className="body-3 mt-4 text-ink-soft">
+              Pick the lightest one that does the job. The payment, the receipt and the “no product, no charge”
+              rule stay the same at every level.
+            </p>
+          </ScrollReveal>
+          <ol className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {TIERS.map((t, i) => {
+              const body = (
+                <>
+                  <div className="flex items-center justify-between gap-3">
+                    <t.icon size={26} className="text-brand" />
+                    <span
+                      className={`caption-5 rounded-full px-2.5 py-1 ${
+                        t.live ? 'bg-brand/10 text-brand-dark' : 'bg-paper-deep text-ink-mute'
+                      }`}
+                    >
+                      {t.status}
+                    </span>
+                  </div>
+                  <p className="caption-4 mt-6 uppercase tracking-widest text-ink-mute">
+                    {i + 1} · {t.level}
+                  </p>
+                  <h3 className="title-2 mt-2">{t.title}</h3>
+                  <p className="body-6 mt-2 text-ink-soft">{t.text}</p>
+                  {t.href && (
+                    <span className="body-6 mt-4 inline-flex items-center gap-1 text-brand-dark">
+                      See the API
+                      <ArrowRight size={14} weight="bold" className="transition-transform duration-300 ease-gs group-hover:translate-x-1" />
+                    </span>
+                  )}
+                </>
+              );
+              return (
+                <li key={t.title}>
+                  <ScrollReveal delay={i * 80} className="h-full">
+                    {t.href ? (
+                      <a
+                        href={t.href}
+                        className="group flex h-full flex-col rounded-2xl border border-line bg-panel p-6 transition-colors duration-300 ease-gs hover:border-line-strong"
+                      >
+                        {body}
+                      </a>
+                    ) : (
+                      <div className="flex h-full flex-col rounded-2xl border border-line bg-panel p-6">{body}</div>
+                    )}
+                  </ScrollReveal>
+                </li>
+              );
+            })}
+          </ol>
+        </div>
+      </section>
+
       {/* Available now: Aegis Flex */}
-      <section aria-labelledby="flex-title" className="border-y border-line bg-paper-deep px-4 py-16 md:py-24">
+      <section id="flex" aria-labelledby="flex-title" className="scroll-mt-24 border-y border-line bg-paper-deep px-4 py-16 md:py-24">
         <div className="mx-auto max-w-content">
           <ScrollReveal className="max-w-prose">
             <p className="caption-4 uppercase tracking-widest text-brand">Available now · v1, in pilot</p>
