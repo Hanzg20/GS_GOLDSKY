@@ -15,6 +15,7 @@ export const SITE_TYPES = [
   'Self serve car wash',
   'Vending or partner machines',
   'Several sites',
+  'Developer or integration partner',
   'Something else',
 ];
 
@@ -22,7 +23,15 @@ const field =
   'mt-2 w-full rounded-lg border border-[#34302A] bg-[#1C1A14] px-3 py-3 text-sm text-cream placeholder:text-[#6F695F] transition-colors duration-300 ease-gs focus:border-brand focus:outline-none';
 const label = 'caption-1 text-[#D9D1C2]';
 
-export function QuickContact() {
+export function QuickContact({
+  defaultSite = SITE_TYPES[0],
+  messageHint = 'How many bays or counters, and how customers pay today',
+  submitLabel = 'Talk to our team',
+}: {
+  defaultSite?: (typeof SITE_TYPES)[number];
+  messageHint?: string;
+  submitLabel?: string;
+} = {}) {
   function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const f = new FormData(e.currentTarget);
@@ -60,7 +69,7 @@ export function QuickContact() {
         <label htmlFor="qc-site" className={label}>
           Kind of site
         </label>
-        <select id="qc-site" name="site" defaultValue={SITE_TYPES[0]} className={field}>
+        <select id="qc-site" name="site" defaultValue={defaultSite} className={field}>
           {SITE_TYPES.map((t) => (
             <option key={t}>{t}</option>
           ))}
@@ -86,13 +95,13 @@ export function QuickContact() {
           id="qc-message"
           name="message"
           rows={3}
-          placeholder="How many bays or counters, and how customers pay today"
+          placeholder={messageHint}
           className={field}
         />
       </div>
       <div className="flex flex-col items-start gap-3 sm:col-span-2">
         <Button type="submit">
-          Talk to our team <ArrowRight size={18} weight="bold" />
+          {submitLabel} <ArrowRight size={18} weight="bold" />
         </Button>
         <p className="caption-5 text-[#9C9384]">
           This opens your email app with everything filled in. Nothing is sent until you press send.
