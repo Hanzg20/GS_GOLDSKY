@@ -80,8 +80,8 @@ const SWITCH_STEPS = [
   },
   {
     icon: CloudArrowDown,
-    title: 'Updates arrive over the air',
-    text: 'Every release since, from the card reader fix to the coupon rules, reached the terminals over the network.',
+    title: 'Most updates arrive over the air',
+    text: 'Most releases since, including the card reader fix and the coupon rules, reached the terminals over the network, with no site visit.',
   },
 ];
 
