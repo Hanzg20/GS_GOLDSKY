@@ -1,198 +1,184 @@
 import type { Metadata } from 'next';
-import { ArrowRight, Zap, Building2, Hotel } from 'lucide-react';
-import { PageHero } from '@/components/PageHero';
-import { Card } from '@/components/ui/Card';
-import { Button } from '@/components/ui/Button';
-import { Pill } from '@/components/ui/Pill';
-import { TagRow } from '@/components/TagRow';
-import { ScenePhoto } from '@/components/ScenePhoto';
+import {
+  ArrowRight,
+  Buildings,
+  CallBell,
+  Car,
+  ForkKnife,
+  Storefront,
+  Package,
+} from '@phosphor-icons/react/dist/ssr';
 import { ScrollReveal } from '@/components/ScrollReveal';
+import { QuickContact } from '@/components/QuickContact';
 
 export const metadata: Metadata = {
-  title: 'Solutions — GoldSky Technologies',
-  description: 'From coin-op car wash to EV charging to enterprise retail — one platform, any self-serve venue.',
+  title: 'Solutions · By kind of business',
+  description:
+    'GoldSky for quick service counters, dine in restaurants, self serve car washes, vending and partner machines, and owners with several sites.',
 };
 
-// Target venue types, not proven deployments -- framed with the same
-// "coming soon" / reduced-weight treatment as Next-Gen Infrastructure below.
-// No client names, metrics, or specific hardware models are claimed.
-const EMERGING_SCENARIOS = [
+// By kind of business, matching the site types in the contact form. Every
+// line is a ✅ item in docs/CAPABILITIES.md, or carries its status pill
+// (🟡 = "In pilot"). Planned work is only under "Coming soon", never dated.
+
+type Status = 'live' | 'pilot';
+
+const BUSINESSES: {
+  icon: typeof Storefront;
+  title: string;
+  lines: string;
+  text: string;
+  points: string[];
+  status: Status;
+  href: string;
+  cta: string;
+}[] = [
   {
-    icon: Building2,
-    title: 'Office & Corporate Campus Micro-Markets',
-    fit: 'Break rooms, lobbies, and shared workspaces at corporate campuses and multi-tenant office buildings.',
-    whyNA:
-      'North American workplace amenity budgets are shifting away from staffed cafeterias and coin vending toward 24/7 cashless micro-markets — a format that fits hybrid-office schedules where there is no consistent on-site staff to run a till.',
-    fitDetail:
-      'Gravity-sensing or AI-vision smart cabinets paired with EMV/NFC tap checkout, with fleet-wide reporting so a facilities or HR team can manage inventory and sales across several corporate sites from one dashboard.',
-    tags: ['EMV / NFC Tap', 'AI Vision Cabinets', 'Multi-Site Fleet View'],
+    icon: CallBell,
+    title: 'Quick service counter',
+    lines: 'Ourea · Apex',
+    text: 'Orders in fast, out to the kitchen, paid at the counter.',
+    points: ['Dine in or take out, order notes, daily call numbers', 'Kitchen tickets', 'Customer display where guests pick their own tip', 'Cash drawer and shifts, counted at close'],
+    status: 'live',
+    href: '/solutions/attended',
+    cta: 'Counter and handheld',
   },
   {
-    icon: Hotel,
-    title: 'Hotel & Hospitality Self-Serve Retail',
-    fit: 'Lobby markets and dining-area grab-and-go retail at hotels and extended-stay properties.',
-    whyNA:
-      'North American hotel operators are replacing limited-hours room service and traditional mini-bars with always-open self-serve markets, since guests increasingly expect frictionless tap payment rather than waiting on staff at odd hours.',
-    fitDetail:
-      'Refrigerated and ambient smart cabinets for food & beverage, EMV/NFC tap terminals, with centralized sales and inventory reporting across a multi-property portfolio.',
-    tags: ['EMV / NFC Tap', 'Refrigerated Cabinets', 'Multi-Property Reporting'],
+    icon: ForkKnife,
+    title: 'Dine in restaurant',
+    lines: 'Ourea · Iris · Apex',
+    text: 'The floor plan at the counter, the payment at the table.',
+    points: ['Floor plan, checks, rounds, split payments', 'Handheld checkout at the table, card or cash', 'QR ordering from the table, straight to the kitchen', 'Guests order in their own language'],
+    status: 'live',
+    href: '/solutions/attended',
+    cta: 'Counter and handheld',
+  },
+  {
+    icon: Car,
+    title: 'Self serve car wash',
+    lines: 'Aegis Wash · Aegis Timer',
+    text: 'Card, phone and member codes at the bay and the vacuum, with nobody on site.',
+    points: ['Running at Eagleson Coin Wash in Kanata', 'Works with the timers you have', 'Member top ups, coupons, promotions', 'No wash, no charge'],
+    status: 'live',
+    href: '/case-studies',
+    cta: 'Read the Eagleson case',
+  },
+  {
+    icon: Package,
+    title: 'Vending and partner machines',
+    lines: 'Aegis Vend · Aegis Flex',
+    text: 'Card payment on a vending machine, or our terminal in front of your own.',
+    points: ['Vending machines over MDB, English and French', 'Your own machine through two HTTP endpoints', 'The money is kept only when the product is handed over'],
+    status: 'pilot',
+    href: '/solutions/unattended',
+    cta: 'Self serve in detail',
+  },
+  {
+    icon: Buildings,
+    title: 'Several sites',
+    lines: 'Cael · Apex',
+    text: 'Every store, terminal and screen from one place.',
+    points: ['Prices, products and ads published to every terminal', 'Device health, remote reboot and lock', 'Ask Apex which store did best this week'],
+    status: 'live',
+    href: '/products/software',
+    cta: 'About Cael',
   },
 ];
+
+const NEXT = ['Self serve laundry', 'EV charging', 'Uber Eats and DoorDash orders', 'Pay at the table from the guest’s phone'];
 
 export default function SolutionsPage() {
   return (
     <>
-      <PageHero
-        title="Solutions — Designed for Your Vertical"
-        subtitle="From coin-op car wash to EV charging to enterprise retail — one platform, any self-serve venue."
-        breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'Solutions' }]}
-      />
+      {/* Hero */}
+      <section aria-labelledby="solutions-title" className="px-4 pb-12 pt-32 md:pb-16 md:pt-40">
+        <ScrollReveal className="mx-auto max-w-content">
+          <p className="caption-4 uppercase tracking-widest text-brand">Solutions</p>
+          <h1 id="solutions-title" className="heading-1 mt-6 max-w-[16ch]">
+            Find your kind of business
+          </h1>
+          <p className="body-2 mt-6 max-w-prose text-ink-soft">
+            One platform runs the counter, the handheld, the machines that work alone and the cloud behind them.
+            Start from what you run.
+          </p>
+        </ScrollReveal>
+      </section>
 
-      <section className="bg-warm-white py-16 md:py-20">
-        <div className="mx-auto max-w-content px-5 md:px-10 space-y-6">
-          {/* Section A — Unattended Commercial (primary) */}
-          <ScrollReveal>
-            <Card className="p-6 md:p-10">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-                <ScenePhoto
-                  src="/images/car-wash-bay-panorama.jpg"
-                  alt="Payment terminal deployed at a self-serve car wash bay"
-                  label="Payment terminal deployed at a self-serve car wash bay"
-                />
-                <div>
-                  <Pill variant="brand" className="mb-4">
-                    Primary Focus
-                  </Pill>
-                  <h2 className="text-2xl font-bold text-ink">Unattended Commercial Automation</h2>
-                  <p className="mt-3 text-base text-body leading-relaxed">
-                    When there's no one on site, the terminal has to handle everything itself — take payment,
-                    survive a Canadian winter, and stay online without a technician nearby. That's what this is
-                    built for: rugged, outdoor-rated hardware engineered for 24/7 self-serve operation.
-                  </p>
-                  <ul className="mt-4 space-y-1.5 text-sm text-body">
-                    <li>• Self-Serve Car Wash (Coin-Op)</li>
-                    <li>• Vending Machine & Smart Locker</li>
-                    <li>• Laundromat</li>
-                    <li>• Dog Wash Station</li>
+      {/* Businesses */}
+      <section aria-label="Kinds of business" className="px-4 pb-16 md:pb-24">
+        <ul className="mx-auto grid max-w-content grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+          {BUSINESSES.map((b, i) => (
+            <li key={b.title}>
+              <ScrollReveal delay={(i % 3) * 80} className="h-full">
+                <a
+                  href={b.href}
+                  className="group flex h-full flex-col rounded-2xl border border-line bg-panel p-6 transition-colors duration-300 ease-gs hover:border-line-strong md:p-8"
+                >
+                  <div className="flex items-center justify-between gap-3">
+                    <b.icon size={28} className="text-brand" />
+                    <span
+                      className={`caption-5 rounded-full px-2.5 py-1 ${
+                        b.status === 'live' ? 'bg-brand/10 text-brand-dark' : 'bg-paper-deep text-ink-mute'
+                      }`}
+                    >
+                      {b.status === 'live' ? 'Live' : 'In pilot'}
+                    </span>
+                  </div>
+                  <h2 className="heading-5 mt-6">{b.title}</h2>
+                  <p className="caption-4 mt-1 uppercase tracking-widest text-ink-mute">{b.lines}</p>
+                  <p className="body-5 mt-4 text-ink-soft">{b.text}</p>
+                  <ul className="body-6 mt-4 flex-1 space-y-2 text-ink-soft">
+                    {b.points.map((p) => (
+                      <li key={p} className="flex gap-2">
+                        <span aria-hidden className="mt-2 h-1 w-1 shrink-0 rounded-full bg-brand" />
+                        {p}
+                      </li>
+                    ))}
                   </ul>
-                  <TagRow
-                    className="mt-5"
-                    tags={['IP65', 'IK09', 'EMV L3', 'Interac Flash', 'Mifare RFID', '−30°C Rated', '24/7 Unattended']}
-                  />
-                  <div className="mt-6">
-                    <Button href="/solutions/unattended" variant="primary">
-                      Explore Unattended Solutions <ArrowRight size={17} />
-                    </Button>
-                  </div>
-                </div>
-              </div>
-            </Card>
-          </ScrollReveal>
-
-          {/* Section B — Attended & Front-Desk (secondary) */}
-          <ScrollReveal>
-            <Card className="p-6 md:p-8">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-                <div className="order-2 lg:order-1">
-                  <h2 className="text-xl font-semibold text-ink">Attended & Front-Desk</h2>
-                  <p className="mt-3 text-sm text-body leading-relaxed">
-                    Running a front counter alongside unattended bays usually means two separate systems and two
-                    sets of numbers to reconcile by hand at month-end. Countertop and mobile handheld checkout on
-                    GS-SSP put both on the same cloud ledger instead.
-                  </p>
-                  <p className="mt-3 text-sm font-medium text-steel">
-                    One unified ledger, one settlement pipeline, front and back office on a single system.
-                  </p>
-                  <TagRow
-                    className="mt-5"
-                    tags={['Countertop POS', 'Mobile Handheld', 'Unified Processing', 'Cloud Reconciliation']}
-                  />
-                  <a href="/solutions/attended" className="mt-5 inline-flex items-center gap-1 text-sm font-medium text-steel hover:underline">
-                    Learn More <ArrowRight size={14} />
-                  </a>
-                </div>
-                <div className="order-1 lg:order-2">
-                  <ScenePhoto
-                    src="/images/countertop-pos-terminal.jpg"
-                    alt="Front-desk countertop POS terminal"
-                    label="Front-desk countertop POS terminal"
-                  />
-                </div>
-              </div>
-            </Card>
-          </ScrollReveal>
-
-          {/* Section B2 — Emerging Micro-Market Scenarios (target venue types, reduced weight) */}
-          <ScrollReveal>
-            <Card className="p-6 md:p-8 opacity-90">
-              <Pill variant="comingSoon" className="mb-3">
-                Target Scenarios
-              </Pill>
-              <h2 className="text-xl font-semibold text-ink">Emerging Micro-Market Scenarios</h2>
-              <p className="mt-2 text-sm text-body leading-relaxed max-w-2xl">
-                Two unattended-retail venue types we see as especially well-suited to the North American market —
-                extensions of the same smart-cabinet and payment-terminal category as our vending solutions, not
-                yet deployed by GoldSky.
-              </p>
-
-              <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-5">
-                {EMERGING_SCENARIOS.map((s) => (
-                  <div key={s.title} className="rounded-lg border border-border-warm bg-warm-off p-5">
-                    <s.icon size={22} className="text-muted" />
-                    <h3 className="mt-3 text-base font-semibold text-ink">{s.title}</h3>
-                    <p className="mt-1.5 text-xs font-medium text-muted">{s.fit}</p>
-
-                    <p className="mt-3 text-xs font-semibold uppercase tracking-wide text-muted">
-                      Why North America
-                    </p>
-                    <p className="mt-1 text-sm text-body leading-relaxed">{s.whyNA}</p>
-
-                    <p className="mt-3 text-xs font-semibold uppercase tracking-wide text-muted">Platform Fit</p>
-                    <p className="mt-1 text-sm text-body leading-relaxed">{s.fitDetail}</p>
-
-                    <TagRow className="mt-4" tags={s.tags} />
-                  </div>
-                ))}
-              </div>
-
-              <p className="mt-5 text-xs text-muted max-w-2xl">
-                Target scenarios based on category fit, not confirmed deployments.{' '}
-                <a href="/contact" className="text-steel font-medium hover:underline">
-                  Talk to us
-                </a>{' '}
-                if this matches a venue you operate.
-              </p>
-            </Card>
-          </ScrollReveal>
-
-          {/* Section C — Next-Gen Infrastructure (placeholder, reduced weight) */}
-          <ScrollReveal>
-            <Card className="p-6 md:p-8 opacity-90">
-              <div className="flex items-center gap-3 mb-4">
-                <Zap size={22} className="text-muted" />
-                <h2 className="text-xl font-semibold text-ink">Next-Gen Infrastructure</h2>
-                <Pill variant="comingSoon">Coming Q4 2026</Pill>
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm text-body">
-                <div>
-                  <p className="font-medium text-ink">EV Charging & Energy</p>
-                  <p className="mt-1 text-muted">OCPP 1.6/2.0 · Dynamic billing · Advertising displays</p>
-                </div>
-                <div>
-                  <p className="font-medium text-ink">Smart Mobility & Parking</p>
-                  <p className="mt-1 text-muted">ALPR license-plate recognition · Gate integration</p>
-                </div>
-              </div>
-              <TagRow className="mt-5" tags={['OCPP 1.6', 'OCPP 2.0', 'ALPR', 'OCPI Roaming', 'Dynamic Pricing']} />
-              <p className="mt-5 text-xs text-muted">
-                Interested in EV or Parking?{' '}
-                <a href="/contact" className="text-steel font-medium hover:underline">
-                  Talk to us early.
+                  <span className="body-6 mt-6 inline-flex items-center gap-1 text-brand-dark">
+                    {b.cta}
+                    <ArrowRight size={14} weight="bold" className="transition-transform duration-300 ease-gs group-hover:translate-x-1" />
+                  </span>
                 </a>
+              </ScrollReveal>
+            </li>
+          ))}
+          <li>
+            <ScrollReveal delay={160} className="h-full">
+              <div className="flex h-full flex-col rounded-2xl border border-dashed border-line-strong p-6 md:p-8">
+                <Storefront size={28} className="text-ink-mute" />
+                <h2 className="heading-5 mt-6">Coming soon</h2>
+                <p className="body-5 mt-4 text-ink-soft">Next on the platform. Run one of these? Tell us below.</p>
+                <ul className="body-6 mt-4 space-y-2 text-ink-soft">
+                  {NEXT.map((n) => (
+                    <li key={n} className="flex gap-2">
+                      <span aria-hidden className="mt-2 h-1 w-1 shrink-0 rounded-full bg-ink-mute" />
+                      {n}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </ScrollReveal>
+          </li>
+        </ul>
+      </section>
+
+      {/* CTA */}
+      <section id="talk" aria-labelledby="talk-title" className="scroll-mt-24 px-4 pb-24">
+        <ScrollReveal>
+          <div className="mx-auto grid max-w-content grid-cols-1 gap-12 rounded-2xl bg-night px-6 py-12 dark:ring-1 dark:ring-inset dark:ring-white/10 md:px-12 md:py-16 lg:grid-cols-[2fr_3fr] lg:gap-16">
+            <div>
+              <h2 id="talk-title" className="heading-2 text-cream">
+                Not sure which fits?
+              </h2>
+              <p className="body-3 mt-4 text-[#B9AF9E]">
+                Tell us what you run and how customers pay today. We will tell you what works now and what does
+                not yet.
               </p>
-            </Card>
-          </ScrollReveal>
-        </div>
+            </div>
+            <QuickContact />
+          </div>
+        </ScrollReveal>
       </section>
     </>
   );

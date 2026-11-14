@@ -1,151 +1,161 @@
 import type { Metadata } from 'next';
-import { ArrowRight, WashingMachine, PawPrint, ShoppingBasket } from 'lucide-react';
-import { PageHero } from '@/components/PageHero';
-import { Card } from '@/components/ui/Card';
+import {
+  ArrowRight,
+  ArrowsClockwise,
+  HandCoins,
+  Lock,
+  SpeakerHigh,
+  Television,
+} from '@phosphor-icons/react/dist/ssr';
 import { Button } from '@/components/ui/Button';
-import { TagRow } from '@/components/TagRow';
-import { SectionHeading } from '@/components/SectionHeading';
 import { ScrollReveal } from '@/components/ScrollReveal';
+import { PhotoSlot } from '@/components/PhotoSlot';
+import { AegisAppIcon, type AegisApp } from '@/components/art/LineEmblem';
+import { QuickContact } from '@/components/QuickContact';
 
 export const metadata: Metadata = {
-  title: 'Unattended Commercial Automation — GoldSky Technologies',
-  description: 'Rugged self-serve payment and control infrastructure for car washes, vending, laundromats, and pet stations.',
+  title: 'Self serve · Aegis',
+  description:
+    'Aegis puts a card terminal on machines that work alone: car wash bays and vacuums today, vending and partner machines in pilot. No product, no charge.',
 };
 
-const USE_CASES = [
-  {
-    icon: WashingMachine,
-    title: 'Self-Serve Car Wash',
-    desc: 'Coin-op and card-based bay control with automated relay/pulse output.',
-    tag: 'Coin-Op',
-  },
-  {
-    icon: ShoppingBasket,
-    title: 'Vending & Smart Locker',
-    desc: 'Cashless vending and parcel locker access with remote inventory visibility.',
-    tag: 'Retail',
-  },
-  {
-    icon: PawPrint,
-    title: 'Dog Wash & Pet Station',
-    desc: 'Timed self-serve wash bays with membership and top-up wallet support.',
-    tag: 'Pet Care',
-  },
+// Aegis, from docs/CAPABILITIES.md (the Aegis table and "shared by every
+// Aegis app"). Status words match the Products page. The self-serve app can
+// reverse a charge but not refund one, so never write "refunds any time".
+
+const APPS: { app: AegisApp; name: string; text: string; status: 'live' | 'pilot' | 'next' }[] = [
+  { app: 'wash', name: 'Aegis Wash', text: 'Pick a package, pay by card or code, the water runs for the time bought. Member codes, coupons, promotions.', status: 'live' },
+  { app: 'timer', name: 'Aegis Timer', text: 'Pay by time. First up, the vacuum beside the wash.', status: 'live' },
+  { app: 'vend', name: 'Aegis Vend', text: 'Card payment on a vending machine over MDB. Item first or card first, English and French.', status: 'pilot' },
+  { app: 'flex', name: 'Aegis Flex', text: 'Our terminal takes the payment; your own machine hands the product over.', status: 'pilot' },
+  { app: 'laundry', name: 'Aegis Laundry', text: 'Self serve laundry, one terminal for a row of machines.', status: 'next' },
+  { app: 'ev', name: 'Aegis EV', text: 'EV charging.', status: 'next' },
 ];
 
-const PAYMENT_METHODS = ['Tap', 'Insert', 'QR', 'WeChat Pay', 'Alipay', '25¢ / $1 / $2 Coins', 'Custom Token'];
+const STATUS = {
+  live: { label: 'Live', cls: 'bg-brand/10 text-brand-dark' },
+  pilot: { label: 'In pilot', cls: 'bg-paper-deep text-ink-soft' },
+  next: { label: 'Coming soon', cls: 'text-ink-mute' },
+} as const;
 
-const GS_SSP_FEATURES = [
-  'Coin-Op Compatibility',
-  'Relay / Pulse Output',
-  'Remote Management',
-  'Membership & Loyalty',
-  'Coupons & Vouchers',
-  'Dynamic Pricing',
+const SHARED = [
+  { icon: HandCoins, title: 'No product, no charge', text: 'If the machine does not confirm, the payment is reversed or given back.' },
+  { icon: ArrowsClockwise, title: 'Back after a power cut', text: 'The terminal restarts and opens straight into the app.' },
+  { icon: SpeakerHigh, title: 'It talks the customer through', text: 'Voice prompts, the key ones spoken three times, at a volume you set.' },
+  { icon: Television, title: 'Ads when idle', text: 'Images and video from Cael play between customers.' },
+  { icon: Lock, title: 'Locked or reversed from afar', text: 'Lock a terminal or reverse a charge from Cael without going to the site.' },
 ];
 
 export default function UnattendedPage() {
   return (
     <>
-      <PageHero
-        title="Unattended Commercial Automation"
-        subtitle="Outdoor-rated, 24/7 self-serve payment infrastructure — engineered for extreme weather and unattended operation."
-        breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'Solutions', href: '/solutions' }, { label: 'Unattended Commercial' }]}
-      />
-
-      {/* Use Cases */}
-      <section className="bg-warm-white py-16 md:py-20">
-        <div className="mx-auto max-w-content px-5 md:px-10">
+      {/* Hero */}
+      <section aria-labelledby="unattended-title" className="px-4 pb-16 pt-32 md:pb-24 md:pt-40">
+        <div className="mx-auto grid max-w-content grid-cols-1 items-center gap-12 lg:grid-cols-2">
           <ScrollReveal>
-            <SectionHeading title="Use Cases" />
-          </ScrollReveal>
-          <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-5">
-            {USE_CASES.map((uc) => (
-              <ScrollReveal key={uc.title}>
-                <Card className="h-full">
-                  <uc.icon size={28} className="text-steel" />
-                  <h3 className="mt-4 text-lg font-semibold text-ink">{uc.title}</h3>
-                  <p className="mt-2 text-sm text-body leading-relaxed">{uc.desc}</p>
-                  <span className="mt-3 inline-block text-[11px] font-medium text-muted bg-warm-off px-2.5 py-1 rounded-md border border-border-warm">
-                    {uc.tag}
-                  </span>
-                </Card>
-              </ScrollReveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Hardware Spec */}
-      <section className="bg-warm-off py-16 md:py-20">
-        <div className="mx-auto max-w-content px-5 md:px-10">
-          <ScrollReveal>
-            <SectionHeading pill="Hardware" pillVariant="steel" title="Terminal Options" />
-          </ScrollReveal>
-          <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-5">
-            <ScrollReveal>
-              <Card bg="white">
-                <div className="flex items-center justify-between">
-                  <h3 className="text-lg font-semibold text-ink">PAX IM30</h3>
-                  <span className="text-[11px] font-semibold text-brand uppercase tracking-wide">Primary</span>
-                </div>
-                <TagRow className="mt-4" tags={['IP65', '−30°C to +60°C', '6.0" Screen', 'EMV L3', 'NFC', '4G LTE']} />
-              </Card>
-            </ScrollReveal>
-            <ScrollReveal>
-              <Card bg="white">
-                <h3 className="text-lg font-semibold text-ink">Castles S1U2</h3>
-                <p className="text-xs text-muted mt-1">Alternate option</p>
-                <TagRow className="mt-4" tags={['IP54', '−20°C to +50°C', '5.5" Screen', 'EMV L3', 'NFC', 'WiFi + BT']} />
-              </Card>
-            </ScrollReveal>
-          </div>
-        </div>
-      </section>
-
-      {/* Payment Coverage + GS-SSP Features */}
-      <section className="bg-warm-white py-16 md:py-20">
-        <div className="mx-auto max-w-content px-5 md:px-10 grid grid-cols-1 md:grid-cols-2 gap-10">
-          <ScrollReveal>
-            <h3 className="text-lg font-semibold text-ink mb-4">Payment Coverage</h3>
-            <TagRow tags={PAYMENT_METHODS} />
-          </ScrollReveal>
-          <ScrollReveal>
-            <h3 className="text-lg font-semibold text-ink mb-4">GS-SSP Feature Set</h3>
-            <ul className="space-y-2">
-              {GS_SSP_FEATURES.map((f) => (
-                <li key={f} className="text-sm text-body flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-brand" />
-                  <span>{f}</span>
-                </li>
-              ))}
-            </ul>
-          </ScrollReveal>
-        </div>
-      </section>
-
-      {/* Case study reference + CTA (customer name withheld by request) */}
-      <section className="bg-warm-off py-16 md:py-20">
-        <div className="mx-auto max-w-content px-5 md:px-10">
-          <ScrollReveal>
-            <Card bg="white" className="flex flex-col md:flex-row items-center justify-between gap-6">
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.08em] text-brand mb-1">Real Deployment</p>
-                <h3 className="text-lg font-semibold text-ink">6-Bay Self-Serve Car Wash — Ottawa, ON</h3>
-                <p className="mt-1 text-sm text-body">6 bays, 20+ years in operation, now running GS-SSP.</p>
-              </div>
-              <Button href="/case-studies" variant="steelGhost">
-                Read the Case Study <ArrowRight size={16} />
+            <p className="caption-4 uppercase tracking-widest text-brand">Aegis · self serve</p>
+            <h1 id="unattended-title" className="heading-1 mt-6">
+              On guard when no one is there
+            </h1>
+            <p className="body-2 mt-6 max-w-prose text-ink-soft">
+              A card terminal on the machines that work alone. Customers pay by card, phone or member code; the
+              machine runs only for what was paid.
+            </p>
+            <div className="mt-10 flex flex-wrap gap-3">
+              <Button href="#talk">Talk to our team</Button>
+              <Button href="/case-studies" variant="secondary">
+                See it at a real wash
               </Button>
-            </Card>
+            </div>
           </ScrollReveal>
-
-          <div className="mt-10 text-center">
-            <Button href="/contact" variant="primary" size="lg">
-              Request a Demo for Car Wash Integration <ArrowRight size={17} />
-            </Button>
-          </div>
+          <ScrollReveal delay={80}>
+            <PhotoSlot id="eagleson-site" />
+          </ScrollReveal>
         </div>
+      </section>
+
+      {/* The series */}
+      <section aria-labelledby="apps-title" className="border-y border-line bg-paper-deep px-4 py-16 md:py-24">
+        <div className="mx-auto max-w-content">
+          <ScrollReveal className="max-w-prose">
+            <h2 id="apps-title" className="heading-3">
+              One app for each kind of machine
+            </h2>
+            <p className="body-3 mt-4 text-ink-soft">Where each one stands today.</p>
+          </ScrollReveal>
+          <ul className="mt-12 divide-y divide-line border-y border-line">
+            {APPS.map((a) => (
+              <li key={a.app}>
+                <ScrollReveal className="grid grid-cols-[auto_1fr] items-center gap-x-5 gap-y-2 py-6 md:grid-cols-[auto_200px_1fr_auto]">
+                  <AegisAppIcon app={a.app} />
+                  <p className="title-2">{a.name}</p>
+                  <p className="body-6 col-span-2 text-ink-soft md:col-span-1">{a.text}</p>
+                  <span className={`caption-5 col-span-2 w-fit rounded-full px-2.5 py-1 md:col-span-1 ${STATUS[a.status].cls}`}>
+                    {STATUS[a.status].label}
+                  </span>
+                </ScrollReveal>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      {/* Shared */}
+      <section aria-labelledby="shared-title" className="px-4 py-16 md:py-24">
+        <div className="mx-auto max-w-content">
+          <ScrollReveal className="max-w-prose">
+            <h2 id="shared-title" className="heading-3">
+              What every Aegis app does
+            </h2>
+          </ScrollReveal>
+          <ul className="mt-12 grid grid-cols-1 gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-5">
+            {SHARED.map((s, i) => (
+              <li key={s.title}>
+                <ScrollReveal delay={(i % 5) * 60} className="border-t border-line-strong pt-6">
+                  <s.icon size={24} className="text-brand" />
+                  <h3 className="title-2 mt-4">{s.title}</h3>
+                  <p className="body-6 mt-2 text-ink-soft">{s.text}</p>
+                </ScrollReveal>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      {/* Connecting */}
+      <section aria-labelledby="connect-title" className="border-y border-line bg-paper-deep px-4 py-16 md:py-20">
+        <ScrollReveal className="mx-auto flex max-w-content flex-col gap-6 md:flex-row md:items-center md:justify-between">
+          <div className="max-w-prose">
+            <h2 id="connect-title" className="heading-4">
+              Connecting it to your machine
+            </h2>
+            <p className="body-4 mt-3 text-ink-soft">
+              A start pulse to the timer you already have, the vending machine’s own card reader port, or two HTTP
+              endpoints on your controller. The lightest one that does the job.
+            </p>
+          </div>
+          <a href="/developers#tiers-title" className="body-4 group inline-flex shrink-0 items-center gap-1 text-brand-dark">
+            The four ways to connect
+            <ArrowRight size={16} weight="bold" className="transition-transform duration-300 ease-gs group-hover:translate-x-1" />
+          </a>
+        </ScrollReveal>
+      </section>
+
+      {/* CTA */}
+      <section id="talk" aria-labelledby="talk-title" className="scroll-mt-24 px-4 py-24">
+        <ScrollReveal>
+          <div className="mx-auto grid max-w-content grid-cols-1 gap-12 rounded-2xl bg-night px-6 py-12 dark:ring-1 dark:ring-inset dark:ring-white/10 md:px-12 md:py-16 lg:grid-cols-[2fr_3fr] lg:gap-16">
+            <div>
+              <h2 id="talk-title" className="heading-2 text-cream">
+                Tell us about your machines
+              </h2>
+              <p className="body-3 mt-4 text-[#B9AF9E]">
+                What they are, how many, and how customers pay today. We will say plainly what works now.
+              </p>
+            </div>
+            <QuickContact defaultSite="Self serve car wash" messageHint="What machines, how many, and how customers pay today" />
+          </div>
+        </ScrollReveal>
       </section>
     </>
   );
