@@ -61,8 +61,8 @@ export function Header() {
       <div
         className={cn(
           'pointer-events-auto relative z-50 mx-auto flex w-full items-center justify-between gap-6 rounded-2xl border border-line',
-          'bg-paper/80 px-3 py-2 backdrop-blur-md transition-[background-color,border-color] duration-500 ease-gs xl:w-fit',
-          'dark:xl:w-full dark:xl:max-w-[1280px]',
+          'bg-paper/80 px-3 py-2 backdrop-blur-md transition-[background-color,border-color] duration-500 ease-gs lg:w-fit',
+          'dark:lg:w-full dark:lg:max-w-[1280px]',
           scrolled
             ? 'dark:border-white/10 dark:bg-[#1c1c1c]/75 dark:backdrop-blur-xl'
             : 'dark:border-transparent dark:bg-transparent dark:backdrop-blur-0',
@@ -70,7 +70,7 @@ export function Header() {
       >
         <Logo />
 
-        <nav aria-label="Main" className="hidden items-center gap-1 xl:flex">
+        <nav aria-label="Main" className="hidden items-center gap-1 lg:flex">
           {NAV_ITEMS.map((item) => {
             const active = isActive(pathname, item.href);
             return (
@@ -91,21 +91,21 @@ export function Header() {
           })}
         </nav>
 
-        <div className="hidden items-center gap-1 xl:flex">
+        <div className="hidden items-center gap-1 lg:flex">
           <ThemeToggle />
           <Button href="/contact" size="md">
             Talk to our team
           </Button>
         </div>
 
-        <div className="flex items-center gap-1 xl:hidden">
+        <div className="flex items-center gap-1 lg:hidden">
           <ThemeToggle />
           <button
             type="button"
             aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
             aria-expanded={mobileOpen}
             aria-controls="mobile-menu"
-            className="rounded-lg p-2 transition-colors duration-300 ease-gs hover:bg-paper-deep active:scale-[0.98] xl:hidden"
+            className="rounded-lg p-2 transition-colors duration-300 ease-gs hover:bg-paper-deep active:scale-[0.98] lg:hidden"
             onClick={() => setMobileOpen((o) => !o)}
           >
             <MenuIcon open={mobileOpen} />
@@ -117,7 +117,7 @@ export function Header() {
       <div
         id="mobile-menu"
         className={cn(
-          'fixed inset-0 z-40 bg-paper/95 backdrop-blur-xl transition-opacity duration-500 ease-gs xl:hidden',
+          'fixed inset-0 z-40 bg-paper/95 backdrop-blur-xl transition-opacity duration-500 ease-gs lg:hidden',
           mobileOpen ? 'pointer-events-auto opacity-100' : 'pointer-events-none opacity-0',
         )}
         aria-hidden={!mobileOpen}
