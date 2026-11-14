@@ -12,7 +12,7 @@ export default function PrivacyPage() {
   return (
     <section aria-labelledby="privacy-title" className="px-4 pb-24 pt-32 md:pt-40">
       <div className="mx-auto max-w-prose">
-        <p className="caption-4 uppercase tracking-widest text-brand">Privacy</p>
+        <p className="caption-4 uppercase tracking-widest text-brand-ink">Privacy</p>
         <h1 id="privacy-title" className="heading-2 mt-6">
           Privacy policy
         </h1>

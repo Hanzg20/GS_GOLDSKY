@@ -17,7 +17,7 @@ const config: Config = {
         paper: { DEFAULT: 'rgb(var(--c-paper) / <alpha-value>)', deep: 'rgb(var(--c-paper-deep) / <alpha-value>)', edge: 'rgb(var(--c-paper-edge) / <alpha-value>)' },
         ink: { DEFAULT: 'rgb(var(--c-ink) / <alpha-value>)', soft: 'rgb(var(--c-ink-soft) / <alpha-value>)', mute: 'rgb(var(--c-ink-mute) / <alpha-value>)' },
         line: { DEFAULT: 'rgb(var(--c-line) / <alpha-value>)', strong: 'rgb(var(--c-line-strong) / <alpha-value>)' },
-        brand: { DEFAULT: 'rgb(var(--c-brand) / <alpha-value>)', dark: 'rgb(var(--c-brand-dark) / <alpha-value>)', light: 'rgb(var(--c-brand-light) / <alpha-value>)' },
+        brand: { DEFAULT: 'rgb(var(--c-brand) / <alpha-value>)', dark: 'rgb(var(--c-brand-dark) / <alpha-value>)', light: 'rgb(var(--c-brand-light) / <alpha-value>)', ink: 'rgb(var(--c-brand-ink) / <alpha-value>)' },
         sky: { DEFAULT: 'rgb(var(--c-sky) / <alpha-value>)', light: 'rgb(var(--c-sky-light) / <alpha-value>)' },
         // night: the dark panels (Aegis, the form, bento title cell); a touch
         // lighter than the page in dark mode so they still read as panels

@@ -89,7 +89,7 @@ export default function FlexApiPage() {
         </aside>
 
         <article className="max-w-[720px]">
-          <p className="caption-4 uppercase tracking-widest text-brand">API reference · v1</p>
+          <p className="caption-4 uppercase tracking-widest text-brand-ink">API reference · v1</p>
           <h1 className="heading-2 mt-4">Aegis Flex Controller API</h1>
           <p className="body-3 mt-6 text-ink-soft">
             GoldSky Aegis Flex is the payment terminal in front of your machine: the customer chooses and pays on

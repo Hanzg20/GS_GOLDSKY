@@ -213,7 +213,7 @@ export default function ProductsPage() {
       <section aria-labelledby="products-title" className="px-4 pb-16 pt-32 md:pb-24 md:pt-40">
         <div className="mx-auto max-w-content">
           <ScrollReveal className="max-w-3xl">
-            <p className="caption-4 uppercase tracking-widest text-brand">The GoldSky terminal family</p>
+            <p className="caption-4 uppercase tracking-widest text-brand-ink">The GoldSky terminal family</p>
             <h1 id="products-title" className="heading-1 mt-6">
               Every counter, every bay, one mind
             </h1>
@@ -369,7 +369,7 @@ export default function ProductsPage() {
       <section aria-labelledby="platform-title" className="border-y border-line bg-paper-deep px-4 py-16 md:py-24">
         <div className="mx-auto max-w-content">
           <ScrollReveal className="max-w-prose">
-            <p className="caption-4 uppercase tracking-widest text-brand">Underneath</p>
+            <p className="caption-4 uppercase tracking-widest text-brand-ink">Underneath</p>
             <h2 id="platform-title" className="heading-3 mt-3">
               One platform, GS‑SSP
             </h2>

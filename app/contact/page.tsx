@@ -23,7 +23,7 @@ export default function ContactPage() {
     <section aria-labelledby="contact-title" className="px-4 pb-24 pt-32 md:pt-40">
       <div className="mx-auto grid max-w-content grid-cols-1 gap-12 lg:grid-cols-[2fr_3fr] lg:gap-16">
         <ScrollReveal>
-          <p className="caption-4 uppercase tracking-widest text-brand">Contact</p>
+          <p className="caption-4 uppercase tracking-widest text-brand-ink">Contact</p>
           <h1 id="contact-title" className="heading-1 mt-6">
             Talk to our team
           </h1>

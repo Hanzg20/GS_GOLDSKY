@@ -42,7 +42,7 @@ export default function CaelPage() {
       <section aria-labelledby="cael-title" className="px-4 pb-16 pt-32 md:pb-24 md:pt-40">
         <div className="mx-auto grid max-w-content grid-cols-1 items-center gap-12 lg:grid-cols-2">
           <ScrollReveal>
-            <p className="caption-4 uppercase tracking-widest text-brand">Cael · the cloud</p>
+            <p className="caption-4 uppercase tracking-widest text-brand-ink">Cael · the cloud</p>
             <h1 id="cael-title" className="heading-1 mt-6">
               Every store in one place
             </h1>

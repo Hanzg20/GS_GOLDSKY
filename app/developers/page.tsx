@@ -99,7 +99,7 @@ export default function DevelopersPage() {
       <section aria-labelledby="dev-title" className="px-4 pb-16 pt-32 md:pb-24 md:pt-40">
         <div className="mx-auto grid max-w-content grid-cols-1 items-center gap-12 lg:grid-cols-[1.1fr_1fr]">
           <ScrollReveal>
-            <p className="caption-4 uppercase tracking-widest text-brand">Developers</p>
+            <p className="caption-4 uppercase tracking-widest text-brand-ink">Developers</p>
             <h1 id="dev-title" className="heading-1 mt-6">
               Build on GS‑SSP
             </h1>
@@ -189,7 +189,7 @@ export default function DevelopersPage() {
       <section id="flex" aria-labelledby="flex-title" className="scroll-mt-24 border-y border-line bg-paper-deep px-4 py-16 md:py-24">
         <div className="mx-auto max-w-content">
           <ScrollReveal className="max-w-prose">
-            <p className="caption-4 uppercase tracking-widest text-brand">Available now · v1, in pilot</p>
+            <p className="caption-4 uppercase tracking-widest text-brand-ink">Available now · v1, in pilot</p>
             <h2 id="flex-title" className="heading-3 mt-3">
               Aegis Flex Controller API
             </h2>

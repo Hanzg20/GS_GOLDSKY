@@ -93,7 +93,7 @@ export default function SolutionsPage() {
       {/* Hero */}
       <section aria-labelledby="solutions-title" className="px-4 pb-12 pt-32 md:pb-16 md:pt-40">
         <ScrollReveal className="mx-auto max-w-content">
-          <p className="caption-4 uppercase tracking-widest text-brand">Solutions</p>
+          <p className="caption-4 uppercase tracking-widest text-brand-ink">Solutions</p>
           <h1 id="solutions-title" className="heading-1 mt-6 max-w-[16ch]">
             Find your kind of business
           </h1>

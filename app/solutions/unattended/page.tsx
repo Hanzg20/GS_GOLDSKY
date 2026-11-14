@@ -53,7 +53,7 @@ export default function UnattendedPage() {
       <section aria-labelledby="unattended-title" className="px-4 pb-16 pt-32 md:pb-24 md:pt-40">
         <div className="mx-auto grid max-w-content grid-cols-1 items-center gap-12 lg:grid-cols-2">
           <ScrollReveal>
-            <p className="caption-4 uppercase tracking-widest text-brand">Aegis · self serve</p>
+            <p className="caption-4 uppercase tracking-widest text-brand-ink">Aegis · self serve</p>
             <h1 id="unattended-title" className="heading-1 mt-6">
               On guard when no one is there
             </h1>

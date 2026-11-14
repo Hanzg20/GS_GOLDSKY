@@ -133,7 +133,7 @@ function Clip({
     <div className="flex flex-col gap-6 sm:flex-row sm:items-start lg:flex-col">
       <PhotoSlot id={id} compact play className="w-full sm:max-w-[280px] lg:max-w-none" />
       <div>
-        <p className="caption-4 uppercase tracking-widest text-brand">{label}</p>
+        <p className="caption-4 uppercase tracking-widest text-brand-ink">{label}</p>
         <h3 className="heading-5 mt-2">{title}</h3>
         <ol className="mt-4 space-y-2">
           {steps.map((s, i) => (
@@ -155,7 +155,7 @@ export default function CaseStudiesPage() {
       <section aria-labelledby="case-title" className="px-4 pb-16 pt-32 md:pb-24 md:pt-40">
         <div className="mx-auto grid max-w-content grid-cols-1 items-center gap-12 lg:grid-cols-[1fr_1.2fr]">
           <ScrollReveal>
-            <p className="caption-4 uppercase tracking-widest text-brand">Case study · Kanata, Ontario</p>
+            <p className="caption-4 uppercase tracking-widest text-brand-ink">Case study · Kanata, Ontario</p>
             <h1 id="case-title" className="heading-1 mt-6">
               Eagleson Coin Wash
             </h1>

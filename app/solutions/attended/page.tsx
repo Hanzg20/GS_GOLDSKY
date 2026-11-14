@@ -70,7 +70,7 @@ export default function AttendedPage() {
       <section aria-labelledby="attended-title" className="px-4 pb-16 pt-32 md:pb-24 md:pt-40">
         <div className="mx-auto grid max-w-content grid-cols-1 items-center gap-12 lg:grid-cols-2">
           <ScrollReveal>
-            <p className="caption-4 uppercase tracking-widest text-brand">Ourea · Iris</p>
+            <p className="caption-4 uppercase tracking-widest text-brand-ink">Ourea · Iris</p>
             <h1 id="attended-title" className="heading-1 mt-6">
               At the counter and at the table
             </h1>

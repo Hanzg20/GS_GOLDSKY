@@ -139,7 +139,7 @@ export default function ApexPage() {
           <ScrollReveal>
             <div className="flex items-center gap-4">
               <LineEmblem line="apex" />
-              <p className="caption-4 uppercase tracking-widest text-brand">Apex · the AI assistant</p>
+              <p className="caption-4 uppercase tracking-widest text-brand-ink">Apex · the AI assistant</p>
             </div>
             <h1 id="apex-title" className="heading-1 mt-8">
               Ask in plain words. Get numbers you can check.
@@ -219,7 +219,7 @@ export default function ApexPage() {
       <section id="abilities" aria-labelledby="abilities-title" className="scroll-mt-24 px-4 py-16 md:py-24">
         <div className="mx-auto max-w-content">
           <ScrollReveal className="max-w-prose">
-            <p className="caption-4 uppercase tracking-widest text-brand">For you</p>
+            <p className="caption-4 uppercase tracking-widest text-brand-ink">For you</p>
             <h2 id="abilities-title" className="heading-3 mt-3">
               It looks up, it does, it speaks up, it writes
             </h2>
@@ -272,7 +272,7 @@ export default function ApexPage() {
       <section id="guests" aria-labelledby="guests-title" className="scroll-mt-24 border-y border-line bg-paper-deep px-4 py-16 md:py-24">
         <div className="mx-auto max-w-content">
           <ScrollReveal className="max-w-prose">
-            <p className="caption-4 uppercase tracking-widest text-brand">For your guests · Ourea Scan</p>
+            <p className="caption-4 uppercase tracking-widest text-brand-ink">For your guests · Ourea Scan</p>
             <h2 id="guests-title" className="heading-3 mt-3">
               Your guests order in one sentence, in their own language
             </h2>

@@ -24,6 +24,8 @@
   --c-line-strong: 207 199 184;
   --c-brand: 200 102 26;
   --c-brand-dark: 156 79 20;
+  /* Brand orange for small text on paper: 4.8:1 on paper-deep (WCAG AA). */
+  --c-brand-ink: 166 82 18;
   --c-brand-light: 251 234 214;
   --c-sky: 110 143 166;
   --c-sky-light: 231 238 242;
@@ -53,6 +55,7 @@
   --c-line-strong: 64 64 64;
   --c-brand: 214 112 36;
   --c-brand-dark: 250 250 250;
+  --c-brand-ink: 214 112 36;
   --c-brand-light: 38 24 14;
   --c-sky: 134 165 186;
   --c-sky-light: 24 28 32;
