@@ -455,32 +455,32 @@ export default function HomePage() {
               </ScrollReveal>
             ))}
             <ScrollReveal delay={120} className="md:col-span-2 lg:col-span-1 lg:col-start-2 lg:row-span-2 lg:row-start-1">
-              <article className="flex h-full flex-col rounded-2xl bg-night p-6 dark:ring-1 dark:ring-inset dark:ring-white/10">
+              <article className="flex h-full flex-col rounded-2xl border border-line bg-panel p-6">
                 <div className="flex items-center gap-4">
                   <LineEmblem line="apex" />
                   <div>
-                    <p className="caption-4 uppercase tracking-widest text-brand">AI assistant</p>
-                    <h3 className="heading-5 mt-1 flex items-baseline gap-2 text-cream">
-                      Apex <span className="caption-2 font-seal text-cream/60">顶峰</span>
+                    <p className="caption-4 uppercase tracking-widest text-brand-ink">AI assistant</p>
+                    <h3 className="heading-5 mt-1 flex items-baseline gap-2 text-ink">
+                      Apex <span className="caption-2 font-seal text-ink-mute">顶峰</span>
                     </h3>
                   </div>
                 </div>
-                <p className="body-6 mt-4 text-[#B9AF9E]">
+                <p className="body-6 mt-4 text-ink-soft">
                   Ask in plain words: sales, stock, members, staff hours. It lives in Ourea, Iris and Cael, and
                   the beaver is the same one your guests order from.
                 </p>
                 <ul className="mt-4 space-y-2">
                   {APEX_PROOFS.map((proof) => (
-                    <li key={proof.title} className="body-6 flex gap-3 text-[#B9AF9E]">
+                    <li key={proof.title} className="body-6 flex gap-3 text-ink-soft">
                       <span aria-hidden className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-brand" />
                       <span>
-                        <span className="font-semibold text-cream">{proof.title}</span> {proof.text}
+                        <span className="font-semibold text-ink">{proof.title}</span> {proof.text}
                       </span>
                     </li>
                   ))}
                 </ul>
-                <ApexBeaver className="mt-6 flex-1 justify-center" />
-                <a href="/apex" className="body-5 group mt-6 inline-flex items-center gap-1 text-cream">
+                <ApexBeaver tone="theme" className="mt-6 flex-1 justify-center" />
+                <a href="/apex" className="body-5 group mt-6 inline-flex items-center gap-1 text-brand-dark">
                   Meet Apex
                   <ArrowRight
                     size={14}

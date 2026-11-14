@@ -157,8 +157,8 @@ export default function ApexPage() {
             </div>
           </ScrollReveal>
           <ScrollReveal delay={120}>
-            <div className="rounded-2xl bg-night p-6 dark:ring-1 dark:ring-inset dark:ring-white/10 md:p-10">
-              <ApexBeaver />
+            <div className="rounded-2xl border border-line bg-panel p-6 md:p-10">
+              <ApexBeaver tone="theme" />
             </div>
           </ScrollReveal>
         </div>

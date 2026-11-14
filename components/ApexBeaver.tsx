@@ -22,7 +22,10 @@ const ALT: Record<State, string> = {
   done: 'Apex giving a thumbs up',
 };
 
-export function ApexBeaver({ className }: { className?: string }) {
+// tone "night": always on a dark panel. tone "theme": on a card that follows the
+// theme (light paper in light mode, dark in dark mode).
+export function ApexBeaver({ className, tone = 'night' }: { className?: string; tone?: 'night' | 'theme' }) {
+  const themed = tone === 'theme';
   const [step, setStep] = useState(3);
   const [play, setPlay] = useState(false);
   const root = useRef<HTMLDivElement>(null);
@@ -50,7 +53,8 @@ export function ApexBeaver({ className }: { className?: string }) {
       <div className="flex flex-col gap-2" aria-live="off">
         <p
           className={cn(
-            'body-6 max-w-[85%] self-end rounded-2xl rounded-br-md bg-cream/10 px-4 py-2 text-cream transition-[opacity,transform] duration-500 ease-gs',
+            'body-6 max-w-[85%] self-end rounded-2xl rounded-br-md px-4 py-2 transition-[opacity,transform] duration-500 ease-gs',
+            themed ? 'bg-paper-deep text-ink dark:bg-cream/10 dark:text-cream' : 'bg-cream/10 text-cream',
             asked ? 'translate-y-0 opacity-100' : 'translate-y-2 opacity-0',
           )}
         >
@@ -85,7 +89,7 @@ export function ApexBeaver({ className }: { className?: string }) {
           />
         ))}
       </div>
-      <p className="caption-5 mt-2 text-center text-cream/50">Example question</p>
+      <p className={cn('caption-5 mt-2 text-center', themed ? 'text-ink-mute dark:text-cream/50' : 'text-cream/50')}>Example question</p>
     </div>
   );
 }
