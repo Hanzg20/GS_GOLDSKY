@@ -21,14 +21,14 @@ function Code({ children }: { children: string }) {
 }
 
 function C({ children }: { children: React.ReactNode }) {
-  return <code className="rounded bg-paper-deep px-1.5 py-0.5 font-mono text-[0.9em] text-ink">{children}</code>;
+  return <code className="rounded bg-paper-deep px-1.5 dark:bg-paper-edge py-0.5 font-mono text-[0.9em] text-ink">{children}</code>;
 }
 
 function Table({ head, rows }: { head: string[]; rows: React.ReactNode[][] }) {
   return (
     <div className="mt-4 overflow-x-auto rounded-xl border border-line">
       <table className="body-6 w-full min-w-[520px] text-left">
-        <thead className="bg-paper-deep">
+        <thead className="bg-paper-deep dark:bg-paper-edge">
           <tr>
             {head.map((h) => (
               <th key={h} scope="col" className="caption-4 px-4 py-3 uppercase tracking-wider text-ink-mute">

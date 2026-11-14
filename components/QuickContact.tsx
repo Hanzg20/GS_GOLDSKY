@@ -83,13 +83,13 @@ export function QuickContact({
       </div>
       <div>
         <label htmlFor="qc-phone" className={label}>
-          Phone <span className="text-[#6F695F]">(optional)</span>
+          Phone <span className="text-[#9C9384]">(optional)</span>
         </label>
         <input id="qc-phone" name="phone" type="tel" autoComplete="tel" className={field} />
       </div>
       <div className="sm:col-span-2">
         <label htmlFor="qc-message" className={label}>
-          Anything we should know <span className="text-[#6F695F]">(optional)</span>
+          Anything we should know <span className="text-[#9C9384]">(optional)</span>
         </label>
         <textarea
           id="qc-message"

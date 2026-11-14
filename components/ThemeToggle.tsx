@@ -3,7 +3,7 @@
 import { useEffect, useId, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
-import { THEME_KEY, isThemed } from '@/lib/theme';
+import { THEME_KEY } from '@/lib/theme';
 
 // Dark (the default, after starlink.com) / light (warm paper, illustrations).
 // The choice is remembered per browser; the inline script in app/layout.tsx
@@ -27,12 +27,11 @@ function saved(): Theme {
   }
 }
 
-/** Keeps the page theme right on client side navigation: the saved theme on
- *  themed pages, always light on pages not yet redesigned (lib/theme.ts). */
+/** Keeps the saved theme applied across client side navigation. */
 export function ThemeRoute() {
   const pathname = usePathname();
   useEffect(() => {
-    document.documentElement.dataset.theme = isThemed(pathname) ? saved() : 'light';
+    document.documentElement.dataset.theme = saved();
   }, [pathname]);
   return null;
 }

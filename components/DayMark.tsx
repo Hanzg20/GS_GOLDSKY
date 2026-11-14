@@ -27,7 +27,7 @@ export function DayMark({
   const color = {
     light: { line: 'rgb(var(--c-line-strong))', text: 'text-ink-mute', label: 'text-brand-dark', sun: '#C8661A' },
     dark: { line: '#4A453C', text: 'text-[#9C9384]', label: 'text-brand', sun: '#C8661A' },
-    brand: { line: 'rgba(250,248,244,.5)', text: 'text-cream/70', label: 'text-cream', sun: '#FAF8F4' },
+    brand: { line: 'rgba(250,248,244,.5)', text: 'text-cream', label: 'text-cream', sun: '#FAF8F4' },
   }[tone];
 
   return (

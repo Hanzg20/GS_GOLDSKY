@@ -6,7 +6,6 @@ import { Logo } from './Logo';
 import { Button } from './ui/Button';
 import { ThemeToggle } from './ThemeToggle';
 import { cn } from '@/lib/utils';
-import { isThemed } from '@/lib/theme';
 
 const NAV_ITEMS = [
   { label: 'Home', href: '/' },
@@ -36,7 +35,6 @@ function MenuIcon({ open }: { open: boolean }) {
 export function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const pathname = usePathname();
-  const themed = isThemed(pathname);
   // dark theme (Starlink): no bar over the hero photo, a glass bar once scrolled
   const [scrolled, setScrolled] = useState(false);
 
@@ -94,14 +92,14 @@ export function Header() {
         </nav>
 
         <div className="hidden items-center gap-1 xl:flex">
-          {themed && <ThemeToggle />}
+          <ThemeToggle />
           <Button href="/contact" size="md">
             Talk to our team
           </Button>
         </div>
 
         <div className="flex items-center gap-1 xl:hidden">
-          {themed && <ThemeToggle />}
+          <ThemeToggle />
           <button
             type="button"
             aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
