@@ -3,14 +3,18 @@ import {
   ArrowCounterClockwise,
   ArrowRight,
   ClockCountdown,
+  CloudArrowDown,
   Coins,
   CreditCard,
   LockKey,
   Plug,
   QrCode,
   ShieldCheck,
+  SlidersHorizontal,
   Television,
   Ticket,
+  WaveSquare,
+  WifiHigh,
 } from '@phosphor-icons/react/dist/ssr';
 import { Button } from '@/components/ui/Button';
 import { ScrollReveal } from '@/components/ScrollReveal';
@@ -51,6 +55,34 @@ const VIP = [
   { pay: 20, get: 25 },
   { pay: 50, get: 70 },
   { pay: 100, get: 160 },
+];
+
+// How the terminals went in. Sources: release notes 2026-10-21 (Timer: coin
+// pulses, one pulse = one $1 coin; network Wi-Fi / SIM, Ethernet untested),
+// 2026-10-26 (per-unit pulse adjust on the technician page), wizarpos_upt
+// spec §1.1 (wash timer board on the pulse output, wired 2026-09-22), TMS
+// installs in the release notes. Install time and downtime are unknown: left out.
+const SWITCH_STEPS = [
+  {
+    icon: WaveSquare,
+    title: 'The timers stayed',
+    text: 'Each terminal is wired to the bay’s existing timer board and sends it the same pulses a coin does. At the vacuum, one pulse is one dollar coin.',
+  },
+  {
+    icon: SlidersHorizontal,
+    title: 'Tuned on the screen, not rewired',
+    text: 'When a timer counted differently than expected, the technician adjusted the pulses for that unit on the terminal itself.',
+  },
+  {
+    icon: WifiHigh,
+    title: 'Online by Wi‑Fi or SIM',
+    text: 'No new cabling to an office. The technician screen shows the network, the cloud link and the payment app, red when anything is wrong.',
+  },
+  {
+    icon: CloudArrowDown,
+    title: 'Updates arrive over the air',
+    text: 'Every release since, from the card reader fix to the coupon rules, reached the terminals over the network.',
+  },
 ];
 
 const FIELD_LESSONS = [
@@ -243,8 +275,37 @@ export default function CaseStudiesPage() {
         </div>
       </section>
 
+      {/* How the switch worked */}
+      <section aria-labelledby="switch-title" className="px-4 py-16 md:py-24">
+        <div className="mx-auto max-w-content">
+          <ScrollReveal className="max-w-prose">
+            <h2 id="switch-title" className="heading-3">
+              How the switch worked
+            </h2>
+            <p className="body-3 mt-4 text-ink-soft">
+              Eagleson already had coin boxes, timers and customers who knew them. The terminals went in beside
+              all of that, not instead of it.
+            </p>
+          </ScrollReveal>
+          <ol className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {SWITCH_STEPS.map((s, i) => (
+              <li key={s.title}>
+                <ScrollReveal delay={i * 80} className="h-full rounded-2xl border border-line bg-panel p-6">
+                  <div className="flex items-center justify-between">
+                    <s.icon size={24} className="text-brand" />
+                    <span className="caption-3 text-ink-mute">0{i + 1}</span>
+                  </div>
+                  <h3 className="title-2 mt-6">{s.title}</h3>
+                  <p className="body-6 mt-2 text-ink-soft">{s.text}</p>
+                </ScrollReveal>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
       {/* Shaped by the site */}
-      <section aria-labelledby="lessons-title" className="px-4 py-16 md:py-24">
+      <section aria-labelledby="lessons-title" className="border-t border-line px-4 py-16 md:py-24">
         <div className="mx-auto max-w-content">
           <ScrollReveal className="max-w-prose">
             <h2 id="lessons-title" className="heading-3">
