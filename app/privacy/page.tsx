@@ -5,9 +5,9 @@ export const metadata: Metadata = {
   description: 'How GoldSky Technologies collects, uses and protects your information.',
 };
 
-// Text unchanged from the previous page (pending legal review), except that
-// the developer application form it mentioned no longer exists: enquiries,
-// developer ones included, all go through the contact form now.
+// Text from the previous page (pending legal review). Changes: the developer
+// application form no longer exists, and the paragraph on where form messages
+// go (D1 on Cloudflare, Resend, Turnstile; see functions/api/contact.ts).
 export default function PrivacyPage() {
   return (
     <section aria-labelledby="privacy-title" className="px-4 pb-24 pt-32 md:pt-40">
@@ -22,8 +22,12 @@ export default function PrivacyPage() {
         <div className="body-4 mt-10 space-y-5 text-ink-soft">
           <p>
             This page is a placeholder pending final legal review. GoldSky Technologies collects only the
-            information you submit through our contact forms (name, company, email and your message) solely to
-            respond to your inquiry.
+            information you submit through our contact forms (name, company, email, phone if given and your
+            message) solely to respond to your inquiry.
+          </p>
+          <p>
+            Messages sent through the form are stored in our database on Cloudflare and delivered to our team by
+            email through Resend. A Cloudflare check may run to keep automated spam out.
           </p>
           <p>
             We do not sell or share your information with third parties for marketing purposes. Information
