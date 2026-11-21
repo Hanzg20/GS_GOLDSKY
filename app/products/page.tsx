@@ -24,7 +24,6 @@ export const metadata: Metadata = {
 type Section = {
   id: LineId;
   name: string;
-  cn: string;
   role: string;
   title: string;
   text: string;
@@ -38,7 +37,6 @@ const SECTIONS: Section[] = [
   {
     id: 'ourea',
     name: 'Ourea',
-    cn: '山神',
     role: 'At the counter',
     title: 'The counter that holds steady',
     text: 'A countertop POS for quick service, dine in and shops, with a customer display beside it and QR ordering at the tables.',
@@ -61,7 +59,6 @@ const SECTIONS: Section[] = [
   {
     id: 'iris',
     name: 'Iris',
-    cn: '虹',
     role: 'In hand',
     title: 'Checkout that walks to the table',
     text: 'The full counter checkout in your staff’s hand: cart, tip, payment and receipt, at the table or at the door.',
@@ -81,7 +78,6 @@ const SECTIONS: Section[] = [
   {
     id: 'cael',
     name: 'Cael',
-    cn: '云',
     role: 'Behind every store',
     title: 'Every store in one place',
     text: 'The cloud console for owners and for us: every store, terminal and screen, managed from anywhere.',
@@ -140,7 +136,7 @@ function Points({ items }: { items: string[] }) {
   );
 }
 
-function Heading({ s, tone = 'ink' }: { s: Pick<Section, 'id' | 'name' | 'cn' | 'role' | 'title'>; tone?: 'ink' | 'cream' }) {
+function Heading({ s, tone = 'ink' }: { s: Pick<Section, 'id' | 'name' | 'role' | 'title'>; tone?: 'ink' | 'cream' }) {
   return (
     <>
       <div className="flex items-center gap-4">
@@ -151,7 +147,6 @@ function Heading({ s, tone = 'ink' }: { s: Pick<Section, 'id' | 'name' | 'cn' | 
           </p>
           <p className={cn('heading-5 mt-1 flex items-baseline gap-2', tone === 'cream' && 'text-cream')}>
             {s.name}
-            <span className={cn('caption-2 font-seal', tone === 'cream' ? 'text-cream/60' : 'text-ink-mute')}>{s.cn}</span>
           </p>
         </div>
       </div>
@@ -259,7 +254,7 @@ export default function ProductsPage() {
       <section aria-labelledby="apex-title" className="px-4 py-16 md:py-24">
         <ScrollReveal className="mx-auto grid max-w-content grid-cols-1 items-center gap-10 rounded-2xl bg-night p-6 dark:ring-1 dark:ring-inset dark:ring-white/10 md:p-12 lg:grid-cols-[1.2fr_1fr] lg:gap-16">
           <div>
-            <Heading s={{ id: 'apex', name: 'Apex', cn: '顶峰', role: 'The AI assistant', title: 'The assistant that listens' }} tone="cream" />
+            <Heading s={{ id: 'apex', name: 'Apex', role: 'The AI assistant', title: 'The assistant that listens' }} tone="cream" />
             <p className="body-3 mt-4 text-[#B9AF9E]">
               Ask your store in plain words and get numbers you can check. It lives in Ourea, Iris and Cael, and
               the same beaver helps your guests order in one sentence, in their own language.
@@ -290,7 +285,7 @@ export default function ProductsPage() {
         <div className="mx-auto max-w-content">
           <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-16">
             <ScrollReveal>
-              <Heading s={{ id: 'aegis', name: 'Aegis', cn: '神盾', role: 'When no one is there', title: 'On guard when no one is there' }} />
+              <Heading s={{ id: 'aegis', name: 'Aegis', role: 'When no one is there', title: 'On guard when no one is there' }} />
               <p className="body-3 mt-4 text-ink-soft">
                 A family of self serve terminals, each its own app built for one kind of machine, all reporting to
                 Cael. No product, no charge: if the machine does not confirm, the payment is reversed.

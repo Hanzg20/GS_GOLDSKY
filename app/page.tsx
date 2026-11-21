@@ -42,7 +42,6 @@ export const metadata: Metadata = {
 type Line = {
   id: LineId;
   name: string;
-  cn: string;
   role: string;
   text: string;
   href: string;
@@ -58,7 +57,6 @@ const LINES: Record<'ourea' | 'iris' | 'aegis' | 'cael', Line> = {
   ourea: {
     id: 'ourea',
     name: 'Ourea',
-    cn: '山神',
     role: 'At the counter',
     text: 'The counter that holds steady. Quick service and dine in, a customer display, cash drawer and shifts, and table QR ordering where guests order in one sentence, in their own language.',
     href: '/solutions/attended',
@@ -72,7 +70,6 @@ const LINES: Record<'ourea' | 'iris' | 'aegis' | 'cael', Line> = {
   iris: {
     id: 'iris',
     name: 'Iris',
-    cn: '虹',
     role: 'In hand',
     text: "Checkout that walks to the table. Card or cash in your staff's hand, on terminals from three makers.",
     href: '/solutions/attended',
@@ -86,7 +83,6 @@ const LINES: Record<'ourea' | 'iris' | 'aegis' | 'cael', Line> = {
   aegis: {
     id: 'aegis',
     name: 'Aegis',
-    cn: '神盾',
     role: 'When no one is there',
     text: 'On guard when no one is there. Card and code payment for car washes, vacuums, vending and partner machines. No product, no charge: if the machine does not confirm, the payment is reversed.',
     href: '/solutions/unattended',
@@ -106,7 +102,6 @@ const LINES: Record<'ourea' | 'iris' | 'aegis' | 'cael', Line> = {
   cael: {
     id: 'cael',
     name: 'Cael',
-    cn: '云',
     role: 'Behind every store',
     text: 'Every store in one place. Prices, menus, screens, ads, coupons and sales, managed from anywhere.',
     href: '/products/software',
@@ -147,7 +142,6 @@ function LineCard({ line }: { line: Line }) {
             <p className="caption-4 uppercase tracking-widest text-ink-mute">{line.role}</p>
             <h3 className="heading-5 mt-1 flex items-baseline gap-2">
               {line.name}
-              <span className="caption-2 font-seal text-ink-mute">{line.cn}</span>
             </h3>
           </div>
         </div>
@@ -461,7 +455,7 @@ export default function HomePage() {
                   <div>
                     <p className="caption-4 uppercase tracking-widest text-brand-ink">AI assistant</p>
                     <h3 className="heading-5 mt-1 flex items-baseline gap-2 text-ink">
-                      Apex <span className="caption-2 font-seal text-ink-mute">顶峰</span>
+                      Apex
                     </h3>
                   </div>
                 </div>
@@ -605,7 +599,7 @@ export default function HomePage() {
           <ScrollReveal className="order-1 lg:order-2 dark:lg:order-1">
             <div className="flex items-center gap-4">
               <LineEmblem line="aegis" />
-              <SectionLabel className="text-brand">Aegis · 神盾</SectionLabel>
+              <SectionLabel className="text-brand">Aegis</SectionLabel>
             </div>
             <h2 id="aegis-title" className="heading-2 mt-6 text-cream">
               No one on site,
