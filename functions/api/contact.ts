@@ -8,6 +8,8 @@
 // Every binding is optional so the form degrades instead of breaking:
 //   DB                 D1 database binding; enquiries are stored here
 //   RESEND_API_KEY     secret; without it nothing is emailed
+//                      (RESEND_CONTACT_API_KEY is read too, the name it was
+//                      first saved under in Cloudflare)
 //   CONTACT_TO         where enquiries go (default info@goldsky.ca)
 //   CONTACT_FROM       sender on a domain verified in Resend
 //                      (default "GoldSky website <website@goldsky.ca>")
@@ -25,6 +27,7 @@ interface D1Database {
 interface Env {
   DB?: D1Database;
   RESEND_API_KEY?: string;
+  RESEND_CONTACT_API_KEY?: string;
   CONTACT_TO?: string;
   CONTACT_FROM?: string;
   TURNSTILE_SECRET?: string;
@@ -92,7 +95,7 @@ async function verifyTurnstile(secret: string, token: string, ip: string | null)
   }
 }
 
-async function sendEmail(env: Env, v: Record<Field, string>) {
+async function sendEmail(key: string, env: Env, v: Record<Field, string>) {
   const rows: [string, string][] = [
     ['Name', v.name],
     ['Business', v.business],
@@ -110,7 +113,7 @@ async function sendEmail(env: Env, v: Record<Field, string>) {
 
   const r = await fetch('https://api.resend.com/emails', {
     method: 'POST',
-    headers: { authorization: `Bearer ${env.RESEND_API_KEY}`, 'content-type': 'application/json' },
+    headers: { authorization: `Bearer ${key}`, 'content-type': 'application/json' },
     body: JSON.stringify({
       from: env.CONTACT_FROM || 'GoldSky website <website@goldsky.ca>',
       to: [env.CONTACT_TO || 'info@goldsky.ca'],
@@ -155,9 +158,10 @@ export async function onRequestPost({ request, env }: Ctx): Promise<Response> {
   }
 
   let emailed = false;
-  if (env.RESEND_API_KEY) {
+  const resendKey = env.RESEND_API_KEY || env.RESEND_CONTACT_API_KEY;
+  if (resendKey) {
     try {
-      emailed = await sendEmail(env, v);
+      emailed = await sendEmail(resendKey, env, v);
     } catch (e) {
       console.error('resend', e);
     }
