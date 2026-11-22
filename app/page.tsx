@@ -395,7 +395,7 @@ export default function HomePage() {
       </ScrollHero>
 
       <PlacesRibbon
-        label="Companies GoldSky works with"
+        label="Our partners"
         partners={[
           { name: 'Nuvei', logo: '/images/partners/nuvei.svg', ratio: 77 / 25 },
           { name: 'Elavon', logo: '/images/partners/elavon.svg', mark: true },
@@ -405,6 +405,9 @@ export default function HomePage() {
           { name: 'Mastercard', logo: '/images/partners/mastercard.svg', mark: true },
           { name: 'American Express', logo: '/images/partners/amex.svg' },
           { name: 'UnionPay', logo: '/images/partners/unionpay.svg', ratio: 256 / 160 },
+          { name: 'Interac', logo: '/images/partners/interac.svg' },
+          { name: 'Apple Pay', logo: '/images/partners/applepay.svg', ratio: 24 / 15.365 },
+          { name: 'Google Pay', logo: '/images/partners/googlepay.svg', ratio: 24 / 9.531 },
           { name: 'PAX', logo: '/images/partners/pax.svg', ratio: 130.648 / 56.873 },
           { name: 'WizarPOS', logo: '/images/partners/wizarpos.png', ratio: 645 / 96 },
           { name: 'ID TECH', logo: '/images/partners/idtech.png', ratio: 533 / 96 },

@@ -10,6 +10,9 @@
 // Mastercard and American Express from Simple Icons (simple-icons@13.21.0,
 // Visa's viewBox cropped to the wordmark); UnionPay from Wikimedia Commons
 // (File:UnionPay_logo.svg), rebuilt as a mask so its lettering stays cut out.
+// Apple Pay and Google Pay from Simple Icons, viewBox cropped to the drawing;
+// Interac from Wikimedia Commons (File:InteracLogo.svg), rebuilt as a mask:
+// square solid, lettering and hand cut out.
 
 export type Partner = { name: string; logo?: string; ratio?: number; mark?: boolean };
 
@@ -58,11 +61,14 @@ export function PlacesRibbon({ partners, label }: { partners: Partner[]; label: 
     </ul>
   );
   return (
-    <div className="overflow-hidden border-y border-line py-6" aria-label={label}>
+    <section aria-labelledby="partners-label" className="overflow-hidden border-y border-line py-6">
+      <p id="partners-label" className="caption-4 mb-5 text-center uppercase tracking-widest text-ink-mute">
+        {label}
+      </p>
       <div className="logo-track">
         {row(false)}
         {row(true)}
       </div>
-    </div>
+    </section>
   );
 }
