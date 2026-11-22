@@ -395,14 +395,22 @@ export default function HomePage() {
       </ScrollHero>
 
       <PlacesRibbon
-        places={[
-          'Self serve car washes',
-          'Vacuum stations',
-          'Vending machines',
-          'Quick service counters',
-          'Dine in restaurants',
-          'Table QR ordering',
-          'Partner machines',
+        label="Companies GoldSky works with"
+        partners={[
+          { name: 'Nuvei', logo: '/images/partners/nuvei.svg', ratio: 77 / 25 },
+          { name: 'Elavon', logo: '/images/partners/elavon.svg', mark: true },
+          { name: 'WeChat Pay', logo: '/images/partners/wechat.svg', mark: true },
+          { name: 'Alipay', logo: '/images/partners/alipay.svg', mark: true },
+          { name: 'Visa', logo: '/images/partners/visa.svg', ratio: 24 / 8.4 },
+          { name: 'Mastercard', logo: '/images/partners/mastercard.svg', mark: true },
+          { name: 'American Express', logo: '/images/partners/amex.svg' },
+          { name: 'UnionPay', logo: '/images/partners/unionpay.svg', ratio: 256 / 160 },
+          { name: 'PAX', logo: '/images/partners/pax.svg', ratio: 130.648 / 56.873 },
+          { name: 'WizarPOS', logo: '/images/partners/wizarpos.png', ratio: 645 / 96 },
+          { name: 'ID TECH', logo: '/images/partners/idtech.png', ratio: 533 / 96 },
+          { name: 'BlueStar', logo: '/images/partners/bluestar.png', ratio: 270 / 96 },
+          { name: 'TGR' },
+          { name: 'Uber Eats', logo: '/images/partners/ubereats.svg' },
         ]}
       />
 
