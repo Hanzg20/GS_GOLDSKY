@@ -3,17 +3,19 @@
 //
 // Logos live in public/images/partners and are drawn as a mask filled with
 // the text colour, so every mark is one colour and follows the light and dark
-// themes. `ratio` is the logo's width / height; `mark` is a symbol-only logo
-// (no wordmark), so the name is set beside it. No logo: the name alone.
+// themes. A logo that is or contains the name stands alone; `mark` is a
+// symbol-only logo (no name in it), so the English name is set beside it.
+// `ratio` is the logo's width / height. No logo: the name alone.
 // Sources: each company's own site; WeChat, Alipay, Elavon, Uber Eats, Visa,
 // Mastercard and American Express from Simple Icons (simple-icons@13.21.0,
 // Visa's viewBox cropped to the wordmark); UnionPay from Wikimedia Commons
-// (File:UnionPay_logo.svg), rebuilt as a mask so the lettering stays cut out.
+// (File:UnionPay_logo.svg), rebuilt as a mask so its lettering stays cut out.
 
 export type Partner = { name: string; logo?: string; ratio?: number; mark?: boolean };
 
 function Logo({ p }: { p: Partner }) {
-  if (!p.logo) return <span className="font-serif text-3xl text-ink md:text-4xl">{p.name}</span>;
+  const name = <span className="font-serif text-3xl text-ink md:text-4xl">{p.name}</span>;
+  if (!p.logo) return name;
   const img = (
     <span
       role="img"
@@ -37,7 +39,7 @@ function Logo({ p }: { p: Partner }) {
   return (
     <span className="flex items-center gap-3">
       {img}
-      <span className="font-serif text-3xl text-ink md:text-4xl">{p.name}</span>
+      {name}
     </span>
   );
 }
