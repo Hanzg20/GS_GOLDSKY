@@ -362,27 +362,20 @@ export function ScenarioPicker() {
         <div className="aspect-square sm:col-span-2 sm:aspect-[16/10] md:col-span-1 md:row-span-2 md:aspect-auto md:min-h-[400px]">
           {s.photo && PHOTOS[s.photo].ready ? (
             <PhotoSlot id={s.photo} compact fill />
-          ) : (
+          ) : s.art ? (
             <>
-              {/* light: the illustration (or the photo brief); dark: a photograph */}
-              <div className="h-full dark:hidden">
-                {s.art ? (
-                  <ArtImage name={s.art} className="h-full" sizes="(min-width: 768px) 320px, 100vw" />
-                ) : s.photo ? (
-                  <PhotoSlot id={s.photo} compact fill />
-                ) : (
-                  // newer businesses: no illustration yet (docs/NIGHT_PHOTO_BRIEF.md)
-                  <div className="flex h-full flex-col justify-end rounded-2xl border border-dashed border-line-strong bg-paper-deep p-4">
-                    <p className="caption-4 font-mono text-ink-mute">插画待生成 · line-{s.id}</p>
-                  </div>
-                )}
-              </div>
+              {/* light: the illustration; dark: a photograph */}
+              <ArtImage name={s.art} className="h-full dark:hidden" sizes="(min-width: 768px) 320px, 100vw" />
               <NightPhoto
                 id={s.night}
                 className="hidden h-full rounded-2xl dark:block"
                 sizes="(min-width: 768px) 320px, 100vw"
               />
             </>
+          ) : (
+            // no illustration yet (docs/AI_IMAGE_PROMPT.md, batch C): the
+            // photograph in both themes rather than an empty frame
+            <NightPhoto id={s.night} className="h-full rounded-2xl" sizes="(min-width: 768px) 320px, 100vw" />
           )}
         </div>
 

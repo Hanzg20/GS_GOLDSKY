@@ -155,6 +155,33 @@ All 1600 x 2000 (4:5). Each scene features its guardian symbol subtly.
                     landscape, one fine thread of orange light linking them
                     (the single accent).
 
+--- BATCH C: the "Which one is your business?" picker on the home page ---
+All 1600 x 2000 (4:5), day palette, same line weight as [6]-[10]. The picture
+is cropped to a tall column on desktop and a square on phones: keep the subject
+in the middle 60% of the width. Web files: <name>.webp at 1200 x 1500 and
+<name>-640.webp at 640 x 800.
+
+[11] scene-fuel     Early morning at a small self serve fuel station on a
+                    highway edge, pines and a snowy peak (Ourea) behind. A
+                    driver seen from the side taps a card at the pump.
+                    Accent: the low sun.
+[12] scene-laundry  A quiet laundromat seen through its front window: a row of
+                    front loading washers, one turning, a customer paying at a
+                    small terminal on the wall. Accent: one lit window pane.
+[13] scene-wash     Daytime at a self serve car wash: one open bay, a car being
+                    rinsed, the card terminal on its post, a small shield
+                    shaped sign (Aegis) by the entrance. Accent: the tap mark
+                    on the terminal.
+[14] scene-vend     A vending machine under a porch roof of a small building,
+                    a person paying with a phone, pines beside it. No brands,
+                    no products readable. Accent: the porch light.
+[15] scene-firewood A wooden firewood kiosk at the edge of the pines, bundles
+                    stacked inside, a card terminal on its front, a customer
+                    walking off with a bundle. Accent: the low sun.
+[16] scene-ev       Two electric vehicle chargers at the edge of a small town
+                    lot, a car plugged in, the driver tapping a card on the
+                    charger. Faint clouds (Cael) above. Accent: the tap mark.
+
 ==================================================================
 6. DO NOT PRODUCE
 ==================================================================
