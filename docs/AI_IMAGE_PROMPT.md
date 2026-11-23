@@ -84,6 +84,14 @@ not like a tech startup.
         web/            final WebP files only, no version suffix
         contact-sheet.png   all final images side by side, labelled by file name
 - Do not crop away the safe zones described per image.
+- WATERMARK STRIP, every image: below the picture, add a plain band about 8%
+  of the picture's height (1600 x 2000 picture -> generate 1600 x 2160, a
+  160 px band at the bottom). The band is one flat colour and empty: white /
+  paper cream #FAF8F4 under day images, black #131209 under night images.
+  Nothing from the drawing reaches into it; the picture ends on a straight
+  horizontal line. Any watermark or signature the generator adds goes in this
+  band. The sizes listed per image are the picture without the band: cut the
+  band off before exporting the web files.
 
 ==================================================================
 5. IMAGES TO PRODUCE
@@ -177,7 +185,8 @@ What they share, and every new image must have:
   snowy peaks in the distance.
 - Absolutely no readable text: signs are blank boards or shapes only.
   (Retouch out any letters the generator invents.)
-All 1600 x 2000 (4:5). The picture is cropped to a tall column on desktop and
+All 1600 x 2000 (4:5) picture, plus the white watermark strip below it
+(section 4): generate at 1600 x 2160. The picture is cropped to a tall column on desktop and
 a square on phones: keep the subject in the middle 60% of the width and the
 middle 70% of the height. Web files: <name>.webp at 1200 x 1500 and
 <name>-640.webp at 640 x 800.
@@ -227,6 +236,7 @@ terminals, real staff or customers. Those will be photographed.
 ==================================================================
 7. ACCEPTANCE CHECK (verify each image before delivering)
 ==================================================================
+[ ] Plain watermark strip at the bottom, nothing drawn in it; cut off for web
 [ ] Exact size and aspect ratio      [ ] Exactly one orange element
 [ ] Palette colours only             [ ] No text, logos, plates, brands
 [ ] Hatching for shading, no gradients or glow
