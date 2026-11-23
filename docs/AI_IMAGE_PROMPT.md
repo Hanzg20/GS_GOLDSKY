@@ -265,7 +265,115 @@ terminals, real staff or customers. Those will be photographed.
 | 5 | `not-found.webp` | 1600 × 1000 | 404 页面 |
 | 6–10 | `line-ourea.webp` 等 5 张 | 1600 × 2000 | 各产品线页面（下一步改版） |
 
+| 11–16 | `scene-fuel`、`scene-laundry`、`scene-wash`、`scene-vend`、`scene-firewood`、`scene-ev` | 1600 × 2000（生成时 1600 × 2160，含底部白边） | 首页「Which one is your business?」对应的 6 个场景 |
+
 注：分享图要另存一份 PNG，因为部分社交平台不识别 WebP。
+
+## 单张提示词（组 C，一次生成一张）
+
+每段都完整，直接整段复制给豆包等工具，**同时上传 `line-ourea.webp`、`line-iris.webp`、`line-cael.webp` 作为风格参考图**。生成后先把底部白边连同水印裁掉，再检查画面里有没有乱码字。
+
+### [13] scene-wash · Self serve car wash
+
+```
+Match the style of the attached reference images exactly: an editorial engraving
+style illustration in warm sepia brown ink on cream paper, shading made only with
+dense parallel and curved hatching lines, cross hatching in the darkest areas. Soft
+flat washes of cream, beige and light grey, with a muted orange (#C8661A) and its
+pale peach tints on only a few things. Lots of open, lightly hatched space. No
+gradients, no glow, no 3D, no photo realism.
+
+Scene: a self serve car wash in a small Canadian town on a clear day, seen from the
+parking lot at a slight angle. Two open wash bays under a low flat roof; in one bay a
+person seen from behind rinses a plain car with a hand held spray wand, water
+spray drawn as fine lines. A slim card payment terminal stands on a post at the bay
+entrance. A small blank shield shaped sign on a post by the driveway. Pines and
+spruce behind the building, snowy mountains far away, a wide sky with horizontal
+hatching and fine orange sun rays. Orange only on the bay door trim and the small
+tap symbol on the terminal.
+
+Rules: absolutely no letters, words, numbers, logos, brand names or licence plates
+anywhere; any sign is a blank board. Portrait format 4:5 for the picture. Below the
+picture add a plain empty white strip about 8% of the picture's height, with
+nothing drawn in it, the picture ending on a straight horizontal line; any
+watermark goes in that strip.
+```
+
+### [12] scene-laundry · Laundromat
+
+```
+Match the style of the attached reference images exactly: an editorial engraving
+style illustration in warm sepia brown ink on cream paper, shading made only with
+dense parallel and curved hatching lines, cross hatching in the darkest areas. Soft
+flat washes of cream, beige and light grey, with a muted orange (#C8661A) and its
+pale peach tints on only a few things. Lots of open, lightly hatched space. No
+gradients, no glow, no 3D, no photo realism.
+
+Scene: inside a small, quiet laundromat in a Canadian town on a winter morning,
+drawn in perspective like the dining room in the reference. A row of front loading
+washing machines along the right wall, round doors, one showing clothes turning
+inside; a row of dryers stacked above. A folding table with a basket of towels. A
+large window on the far wall with pines and snow outside, morning light falling
+across the floor. A customer seen from behind stands at a small card payment
+terminal mounted on the wall and taps a card. Orange only on the laundry basket, one
+plastic chair and the light from the window.
+
+Rules: absolutely no letters, words, numbers, logos, brand names or control panel
+text anywhere; machine panels are plain shapes. Portrait format 4:5 for the
+picture. Below the picture add a plain empty white strip about 8% of the picture's
+height, with nothing drawn in it, the picture ending on a straight horizontal line;
+any watermark goes in that strip.
+```
+
+### [15] scene-firewood · Firewood and partner machines
+
+```
+Match the style of the attached reference images exactly: an editorial engraving
+style illustration in warm sepia brown ink on cream paper, shading made only with
+dense parallel and curved hatching lines, cross hatching in the darkest areas. Soft
+flat washes of cream, beige and light grey, with a muted orange (#C8661A) and its
+pale peach tints on only a few things. Lots of open, lightly hatched space. No
+gradients, no glow, no 3D, no photo realism.
+
+Scene: a small wooden firewood kiosk with a peaked roof at the edge of a pine forest
+beside a country road in Canada, late afternoon, light snow on the ground. Split
+firewood bundles tied with cord are stacked on shelves behind its open front. A
+slim card payment terminal is fixed to a post beside the kiosk. A customer seen
+from behind walks away toward a parked plain car, carrying one bundle. Tall pines
+and spruce around, a low sun shining through the trees with fine hatched rays.
+Orange only on the sun rays and the cords around the bundles.
+
+Rules: absolutely no letters, words, numbers, logos, brand names, prices or licence
+plates anywhere; any sign is a blank board. Portrait format 4:5 for the picture.
+Below the picture add a plain empty white strip about 8% of the picture's height,
+with nothing drawn in it, the picture ending on a straight horizontal line; any
+watermark goes in that strip.
+```
+
+### [16] scene-ev · EV charging
+
+```
+Match the style of the attached reference images exactly: an editorial engraving
+style illustration in warm sepia brown ink on cream paper, shading made only with
+dense parallel and curved hatching lines, cross hatching in the darkest areas. Soft
+flat washes of cream, beige and light grey, with a muted orange (#C8661A) and its
+pale peach tints on only a few things. Lots of open, lightly hatched space. No
+gradients, no glow, no 3D, no photo realism.
+
+Scene: two slim electric vehicle charging posts at the edge of a small town parking
+lot in Canada, early evening light. A plain compact car is plugged into one of them
+with a thick cable. The driver, seen from the side, taps a card on a small reader on
+the charging post. Behind the lot, a row of low shops like in the reference, one
+with a striped awning, pines and a snowy peak beyond, soft rounded clouds in a sky
+of horizontal hatching. Orange only on the small tap symbol on the charger and the
+shop awning.
+
+Rules: absolutely no letters, words, numbers, logos, brand names, screens with
+text or licence plates anywhere; any sign is a blank board. No glowing lights or
+neon. Portrait format 4:5 for the picture. Below the picture add a plain empty
+white strip about 8% of the picture's height, with nothing drawn in it, the picture
+ending on a straight horizontal line; any watermark goes in that strip.
+```
 
 ## 接入记录
 
