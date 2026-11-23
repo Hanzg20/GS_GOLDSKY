@@ -16,6 +16,25 @@ export const ART = {
   'line-apex': {
     alt: 'Illustration: the view from a high summit at sunrise over a small town in a wide valley',
   },
+  // the scenario picker on Home (batch C, 2026-11-23)
+  'scene-fuel': {
+    alt: 'Illustration: a driver paying at a self serve fuel pump under a canopy, pines and a snowy peak behind',
+  },
+  'scene-laundry': {
+    alt: 'Illustration: a quiet laundromat on a winter morning, a customer at the card terminal on the wall between rows of washers',
+  },
+  'scene-wash': {
+    alt: 'Illustration: a self serve car wash in daylight, someone rinsing a car in an open bay beside a payment terminal',
+  },
+  'scene-vend': {
+    alt: 'Illustration: someone paying with a phone at a vending machine under a snowy porch roof at dusk',
+  },
+  'scene-firewood': {
+    alt: 'Illustration: a wooden firewood kiosk at the edge of the pines at sunset, a payment terminal beside it, a customer carrying a bundle to the car',
+  },
+  'scene-ev': {
+    alt: 'Illustration: a driver tapping a card on an electric vehicle charger, a plugged in car beside it',
+  },
 } as const;
 export type ArtName = keyof typeof ART;
 

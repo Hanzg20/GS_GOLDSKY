@@ -74,6 +74,7 @@ const SCENARIOS: Scenario[] = [
       { id: 'cael', name: 'Cael' },
     ],
     night: 'fuel',
+    art: 'scene-fuel',
     title: 'Pay at the pump, the same way',
     text: 'Self serve fuel is on our list. Tell us about your station and we will tell you honestly where we are.',
     points: [
@@ -111,6 +112,7 @@ const SCENARIOS: Scenario[] = [
       { id: 'cael', name: 'Cael' },
     ],
     night: 'laundry',
+    art: 'scene-laundry',
     title: 'A row of washers and dryers, one card terminal',
     text: 'Aegis Laundry is in development: one terminal that takes the payment for a row of machines.',
     points: [
@@ -129,6 +131,7 @@ const SCENARIOS: Scenario[] = [
     ],
     photo: 'aegis-bay',
     night: 'wash',
+    art: 'scene-wash',
     title: 'Every bay takes cards, day and night',
     text: 'Aegis Wash takes card and QR payment in each bay. Aegis Timer runs the vacuum for the minutes bought.',
     points: [
@@ -166,6 +169,7 @@ const SCENARIOS: Scenario[] = [
     ],
     photo: 'aegis-vend',
     night: 'vend',
+    art: 'scene-vend',
     title: 'Card payment for the machines you already have',
     text: 'Aegis Vend adds card payment to MDB vending machines.',
     points: [
@@ -183,6 +187,7 @@ const SCENARIOS: Scenario[] = [
       { id: 'cael', name: 'Cael' },
     ],
     night: 'firewood',
+    art: 'scene-firewood',
     title: 'Their machine, our payment',
     text: "Aegis Flex is the card terminal in front of a partner's machine, such as a firewood kiosk: the customer pays on our terminal, their machine hands it over.",
     points: [
@@ -201,6 +206,7 @@ const SCENARIOS: Scenario[] = [
       { id: 'cael', name: 'Cael' },
     ],
     night: 'ev',
+    art: 'scene-ev',
     title: 'Tap to pay at the charger',
     text: 'Aegis EV is in development: the same card payment, built for electric vehicle chargers.',
     points: [

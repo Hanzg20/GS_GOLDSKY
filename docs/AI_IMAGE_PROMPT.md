@@ -408,3 +408,12 @@ ending on a straight horizontal line; any watermark goes in that strip.
   - 画风变软了，有喷枪式的光晕和彩色彩虹，和第一批放在一起不统一；
   - 有 3 张直接把 "Apex"、"Cael"、"Ourea" 写进了画面；
   - 首页大图和 `line-aegis` 里的机器仍然像加油机或充电桩。
+
+**2026-11-23，组 C（豆包生成）**
+
+6 张场景图全部采用，接入首页「Which one is your business?」：`scene-fuel`、`scene-laundry`、`scene-wash`、`scene-vend`、`scene-firewood`、`scene-ev`。浅色版显示插画，深色版仍是照片。
+
+- 原图在 `C:\goldsky\info\website images`；裁好的母版存为 `D:\MYAPP\goldsky-art-masters\batchC\*-v1.png`。
+- 每张往画框内侧裁一圈，底部白边和「豆包 AI 生成」水印一起裁掉，再居中裁成 4:5，导出 1200 × 1500 和 640 × 800 两个 WebP。
+- 画风比第一批略粗、颜色略深，但纸色、棕色墨线和橙色用法一致，放在一起可以接受。
+- 留意：洗衣房左墙两块告示牌上有模糊的假字，缩小到页面尺寸后看不清；充电桩那辆车的外形接近某个真实车型，以后如重画可以改成更普通的轿车。
