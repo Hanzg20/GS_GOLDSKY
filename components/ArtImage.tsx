@@ -5,10 +5,10 @@ import { cn } from '@/lib/utils';
 // Illustrations only: never stand-ins for real sites, terminals or people.
 export const ART = {
   'line-ourea': {
-    alt: 'Illustration: a cashier at a restaurant counter with a countertop terminal and a customer display, mountains through the window',
+    alt: 'Illustration: a cashier at a restaurant counter with a countertop terminal, mountains through the window',
   },
   'line-iris': {
-    alt: 'Illustration: a server walking through a bright restaurant toward the tables, a handheld device in hand',
+    alt: 'Illustration: a server walking between the tables of a restaurant with arched windows, a handheld device in hand',
   },
   'line-cael': {
     alt: 'Illustration: soft clouds over a row of small shops, a beam of warm light linking them',

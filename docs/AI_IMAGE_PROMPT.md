@@ -417,3 +417,16 @@ ending on a straight horizontal line; any watermark goes in that strip.
 - 每张往画框内侧裁一圈，底部白边和「豆包 AI 生成」水印一起裁掉，再居中裁成 4:5，导出 1200 × 1500 和 640 × 800 两个 WebP。
 - 画风比第一批略粗、颜色略深，但纸色、棕色墨线和橙色用法一致，放在一起可以接受。
 - 留意：洗衣房左墙两块告示牌上有模糊的假字，缩小到页面尺寸后看不清；充电桩那辆车的外形接近某个真实车型，以后如重画可以改成更普通的轿车。
+
+**2026-11-23，第三批（豆包生成，「10 (1)–(10)」）**
+
+逐张和在用的图比较，只换了两张，母版存为 `D:\MYAPP\goldsky-art-masters\batch3\*-v4.png`：
+- `line-ourea` ← `10 (10)`：旧图窗外招牌有乱码字（"Diner""BREEKST"），新图没有字，画风和组 C 一致。
+- `line-iris` ← `10 (1)`：和组 C 同一画风，首页选择器里的 9 张风格更统一。
+
+没有采用：
+- `line-cael`：云里写了「Cael」。
+- `line-apex`：山顶有个多余的标志；旧图「从山顶俯瞰小镇」更贴题。
+- `line-aegis`、`home-aegis-night`：又画成了加油站顶棚。
+- `home-hero-panorama-desktop`、`-mobile`：首页大图是代码画的 SVG，滚动时五个守护者逐个亮起，换成位图会失去这个效果。
+- `share-og`：左半边空白，招牌有乱码。`not-found`：旧图更好。
