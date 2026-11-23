@@ -188,15 +188,6 @@ const APEX_PROOFS = [
   { title: 'It speaks up first.', text: 'Low stock, a long shift, an unpaid delivery.' },
 ];
 
-// The five guardians as they ink into the hero picture, in scroll order.
-const GUARDIANS = [
-  { n: 1, char: '山', name: 'Ourea', role: 'at the counter' },
-  { n: 2, char: '虹', name: 'Iris', role: 'in hand' },
-  { n: 3, char: '盾', name: 'Aegis', role: 'self serve' },
-  { n: 4, char: '峰', name: 'Apex', role: 'the assistant' },
-  { n: 5, char: '云', name: 'Cael', role: 'the cloud' },
-];
-
 // Big numbers, facts only, counting down 5 to 1: lines, Aegis apps, terminal
 // makers, languages, and the one platform they all run on.
 const STATS = [
@@ -356,32 +347,10 @@ export default function HomePage() {
             </ScrollReveal>
           </div>
 
-          <ScrollReveal
-            delay={200}
-            className="mx-auto mt-10 w-full max-w-[1280px] dark:hidden lg:w-[min(100%,calc((100svh_-_480px)*2.3))]"
-          >
-            <HeroPanorama />
-            <ul
-              aria-label="The five GS-SSP lines, each a guardian in the picture"
-              className="mt-4 grid grid-cols-2 gap-x-6 gap-y-3 sm:grid-cols-3 lg:flex lg:justify-between"
-            >
-              {GUARDIANS.map((g) => (
-                <li
-                  key={g.n}
-                  className="guardian flex items-center gap-2"
-                  style={{ opacity: `calc(0.3 + 0.7 * var(--g${g.n}, 1))` }}
-                >
-                  <span
-                    aria-hidden
-                    className="flex h-6 w-6 items-center justify-center rounded-sm bg-ink font-seal text-xs text-paper"
-                  >
-                    {g.char}
-                  </span>
-                  <span className="title-4">{g.name}</span>
-                  <span className="caption-5 text-ink-mute">{g.role}</span>
-                </li>
-              ))}
-            </ul>
+          {/* the panorama runs edge to edge; on large screens it takes the
+              height left under the headline */}
+          <ScrollReveal delay={200} className="-mx-4 mt-8 dark:hidden md:mt-10">
+            <HeroPanorama className="aspect-[16/9] border-y border-line sm:aspect-[5/2] lg:aspect-auto lg:h-[clamp(320px,calc(100svh_-_460px),640px)]" />
           </ScrollReveal>
 
           <p
