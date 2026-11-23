@@ -156,31 +156,67 @@ All 1600 x 2000 (4:5). Each scene features its guardian symbol subtly.
                     (the single accent).
 
 --- BATCH C: the "Which one is your business?" picker on the home page ---
-All 1600 x 2000 (4:5), day palette, same line weight as [6]-[10]. The picture
-is cropped to a tall column on desktop and a square on phones: keep the subject
-in the middle 60% of the width. Web files: <name>.webp at 1200 x 1500 and
+MATCH THE EXISTING SET. Attach these three as style reference images and copy
+their look, not the rules in section 2 where the two differ:
+    public/images/art/line-ourea.webp   (counter, mountains through window)
+    public/images/art/line-iris.webp    (server walking through a dining room)
+    public/images/art/line-cael.webp    (clouds over a row of small shops)
+What they share, and every new image must have:
+- Warm sepia brown ink lines (not black), engraving style: dense parallel and
+  curved hatching for all shading, cross hatching in the darkest areas.
+- Cream paper ground (#FAF8F4 to #F3EFE7) filling most of the picture; lots
+  of open, lightly hatched space, especially sky, walls and floor.
+- Soft flat washes only: cream, beige, light grey, and a muted orange
+  (#C8661A, also lighter peach tints of it) on a few chosen things: an
+  awning, a chair, an apron, sun rays, a lit window. Orange stays under
+  about 15% of the picture. No other strong colours, no blue screens.
+- Warm daylight or low sun; horizontal hatched sky with fine orange rays.
+- One or two people at most, small to mid size, seen from behind or the side,
+  faces not detailed, plain work clothes.
+- Canadian small town: pines and spruce, low commercial buildings, wide sky,
+  snowy peaks in the distance.
+- Absolutely no readable text: signs are blank boards or shapes only.
+  (Retouch out any letters the generator invents.)
+All 1600 x 2000 (4:5). The picture is cropped to a tall column on desktop and
+a square on phones: keep the subject in the middle 60% of the width and the
+middle 70% of the height. Web files: <name>.webp at 1200 x 1500 and
 <name>-640.webp at 640 x 800.
 
-[11] scene-fuel     Early morning at a small self serve fuel station on a
-                    highway edge, pines and a snowy peak (Ourea) behind. A
-                    driver seen from the side taps a card at the pump.
-                    Accent: the low sun.
-[12] scene-laundry  A quiet laundromat seen through its front window: a row of
-                    front loading washers, one turning, a customer paying at a
-                    small terminal on the wall. Accent: one lit window pane.
-[13] scene-wash     Daytime at a self serve car wash: one open bay, a car being
-                    rinsed, the card terminal on its post, a small shield
-                    shaped sign (Aegis) by the entrance. Accent: the tap mark
-                    on the terminal.
-[14] scene-vend     A vending machine under a porch roof of a small building,
-                    a person paying with a phone, pines beside it. No brands,
-                    no products readable. Accent: the porch light.
-[15] scene-firewood A wooden firewood kiosk at the edge of the pines, bundles
-                    stacked inside, a card terminal on its front, a customer
-                    walking off with a bundle. Accent: the low sun.
-[16] scene-ev       Two electric vehicle chargers at the edge of a small town
-                    lot, a car plugged in, the driver tapping a card on the
-                    charger. Faint clouds (Cael) above. Accent: the tap mark.
+[11] scene-fuel     A small self serve fuel station on a highway edge in early
+                    morning, seen at an angle like the shop row in line-cael:
+                    canopy over two pumps, pines and a snowy peak behind, a
+                    hatched sky with fine rays from a low sun. A driver seen
+                    from the side holds a card to the pump's reader.
+                    Orange on: the canopy edge stripe, the sun rays.
+[12] scene-laundry  Inside a small laundromat, drawn like the dining room in
+                    line-iris: a row of front loading washers along the wall,
+                    one door showing a turning drum, a folding table, a big
+                    window with pines and snow outside. A customer seen from
+                    behind pays at a small card terminal on the wall.
+                    Orange on: a laundry basket, a chair, the window light.
+[13] scene-wash     A self serve car wash in daylight seen from the lot: two
+                    open bays like the ones in line-cael, a car in one being
+                    rinsed with a hand wand by a person seen from behind, a
+                    card terminal on a post at the bay entrance, a small
+                    shield shaped blank sign by the road, pines behind.
+                    Orange on: the bay door trim, the terminal's tap mark.
+[14] scene-vend     A vending machine under the porch roof of a small wooden
+                    building in late afternoon, pines beside it, snow on the
+                    ground. A person seen from the side pays with a phone at
+                    the machine's reader. Products are simple shapes, no
+                    brands or labels. Orange on: the porch light, the
+                    machine's side panel.
+[15] scene-firewood A wooden firewood kiosk with a peaked roof at the edge of
+                    the pines, split bundles stacked behind its open front, a
+                    small card terminal on a post beside it. A customer seen
+                    from behind walks off carrying a bundle toward a parked
+                    car. Low sun through the trees. Orange on: the sun rays,
+                    the bundle ties.
+[16] scene-ev       Two slim electric vehicle chargers at the edge of a small
+                    town parking lot, a car plugged in, the driver seen from
+                    the side tapping a card on the charger. Shops and pines
+                    beyond, soft clouds in a hatched sky.
+                    Orange on: the charger's tap mark, a shop awning.
 
 ==================================================================
 6. DO NOT PRODUCE
