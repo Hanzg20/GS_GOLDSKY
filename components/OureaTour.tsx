@@ -16,7 +16,7 @@ type Stop = {
   title: string;
   text: string;
   points: string[];
-  layout: 'tablet' | 'phones' | 'handheld' | 'pair' | 'browser';
+  layout: 'tablet' | 'phones' | 'handhelds' | 'pair' | 'browser';
   shots: Shot[];
   note?: string;
 };
@@ -100,14 +100,26 @@ const STOPS: Stop[] = [
     where: 'Iris',
     title: 'The checkout walks to the table',
     text: 'Iris is Ourea in your staff’s hand: the floor plan, the keypad, the menu and delivery, with card or cash taken at the table.',
-    points: ['Runs on terminals from PAX, WizarPOS and ID TECH', 'Reminders and Apex, the store assistant, on the same device'],
-    layout: 'handheld',
+    points: ['Tables, a keypad for quick amounts, the menu and delivery', 'Ask Beaver to set a reminder; it shows it to confirm first', 'Runs on WizarPOS, PAX and ID TECH terminals'],
+    layout: 'handhelds',
     shots: [
       {
         src: '/images/ourea/iris-tables.webp',
-        alt: 'Iris on a WizarPOS Q2 handheld: the opening checklist, tabs for Tables, Keypad, Library and Delivery, three tables with one seated, and a reminder from Beaver',
+        alt: 'Iris on a WizarPOS Q2: the opening checklist, tabs for Tables, Keypad, Library and Delivery, three tables with one seated',
         w: 720,
         h: 1082,
+      },
+      {
+        src: '/images/ourea/iris-keypad.webp',
+        alt: 'Iris keypad: enter an amount in Canadian dollars and confirm',
+        w: 720,
+        h: 1072,
+      },
+      {
+        src: '/images/ourea/iris-beaver.webp',
+        alt: 'Beaver on Iris: asked in Chinese to check for a delivery in ten minutes, it shows the reminder to confirm before saving',
+        w: 720,
+        h: 1072,
       },
     ],
   },
@@ -131,26 +143,26 @@ const STOPS: Stop[] = [
     id: 'cael',
     tab: 'Cael cloud',
     where: 'Cael',
-    title: 'Every store’s menu and tables, from any browser',
-    text: 'Products, barcodes, prices and tax rates for every store, tables and their QR cards, devices and reports. Change it once and Ourea and Iris pick it up.',
+    title: 'Every store’s sales, menu and tables, from any browser',
+    text: 'Sales reports, products, barcodes, prices and tax rates for every store, plus tables, devices and ads. Change it once and Ourea and Iris pick it up.',
     points: [
-      'Bulk import of products from CSV or Excel',
-      'A tax rate per product, stock, and a switch to take an item off sale',
+      'Sales over time against the previous period, by device, location or payment method',
+      'Bulk import of products from CSV or Excel, a tax rate per product, stock',
       'Tables by area, each with a QR card to print',
     ],
     layout: 'browser',
     shots: [
       {
+        src: '/images/ourea/cael-sales.webp',
+        alt: 'A sales report in Cael: gross and net sales, orders and average order value, sales over time against the previous period, and a breakdown',
+        w: 1600,
+        h: 833,
+      },
+      {
         src: '/images/ourea/cael-retail.webp',
         alt: 'Products in Cael for a grocery store: names in Chinese and English, barcodes, categories, prices, HST or exempt, stock and an on sale switch',
         w: 1158,
         h: 377,
-      },
-      {
-        src: '/images/ourea/cael-tables.webp',
-        alt: 'Tables in Cael grouped by area, private room, hall and window, each with seats, a QR card button and Edit',
-        w: 580,
-        h: 473,
       },
     ],
   },
@@ -213,11 +225,17 @@ function Stage({ stop }: { stop: Stop }) {
           ))}
         </div>
       )}
-      {layout === 'handheld' && <WizarQ2 s={shots[0]} className="max-w-[230px]" />}
+      {layout === 'handhelds' && (
+        <div className="grid w-full max-w-[600px] grid-cols-3 items-end gap-3 md:gap-6">
+          {shots.map((s, i) => (
+            <WizarQ2 key={s.src} s={s} className={cn(i === 1 && 'md:-translate-y-6')} />
+          ))}
+        </div>
+      )}
       {layout === 'browser' && (
         <div className="relative w-full max-w-[720px] pb-[22%]">
           <Browser s={shots[0]} className="w-[92%]" />
-          <Browser s={shots[1]} className="absolute bottom-0 right-0 w-[44%]" />
+          <Browser s={shots[1]} className="absolute bottom-0 right-0 w-[56%]" />
         </div>
       )}
       {layout === 'pair' && (

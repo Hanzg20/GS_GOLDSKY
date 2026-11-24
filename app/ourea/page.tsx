@@ -443,7 +443,12 @@ export default function OureaPage() {
                       />
                     )}
                     {d.id === 'q2' && <WizarQ2 s={IRIS_SHOT} className="mb-[-8%] w-[46%]" />}
-                    {d.id === 'q3pro' && <WizarQ3Pro s={IRIS_SHOT} className="mb-[-10%] w-[44%]" />}
+                    {d.id === 'q3pro' && (
+                      <WizarQ3Pro
+                        s={{ src: '/images/ourea/iris-keypad.webp', alt: 'Iris keypad on a WizarPOS Q3 Pro', w: 720, h: 1072 }}
+                        className="mb-[-10%] w-[44%]"
+                      />
+                    )}
                     {d.id === 'q3mini' && (
                       <WizarQ3mini
                         s={{ src: '/images/ourea/q3mini-splash.webp', alt: 'The Q3mini starting up: the GoldSky mark, powered by GoldSky', w: 480, h: 480 }}
