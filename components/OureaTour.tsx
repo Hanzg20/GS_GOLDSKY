@@ -1,0 +1,253 @@
+'use client';
+
+import { useState } from 'react';
+import { cn } from '@/lib/utils';
+import { CounterPOS, HandheldPOS } from './Devices';
+
+// The tour of real Ourea screens on /ourea: one tab per place the system
+// works, one stage that shows that place's screens. Screens are from the
+// Ourea app, Iris and the demo store (see app/ourea/page.tsx).
+
+type Shot = { src: string; alt: string; w: number; h: number };
+type Stop = {
+  id: string;
+  tab: string;
+  where: string;
+  title: string;
+  text: string;
+  points: string[];
+  layout: 'tablet' | 'phones' | 'handheld' | 'pair';
+  shots: Shot[];
+  note?: string;
+};
+
+const T = (src: string, alt: string, h = 795): Shot => ({ src: `/images/ourea/${src}.webp`, alt, w: 1600, h });
+const P = (src: string, alt: string): Shot => ({ src: `/images/ourea/${src}.webp`, alt, w: 585, h: 1266 });
+
+const STOPS: Stop[] = [
+  {
+    id: 'counter',
+    tab: 'Counter',
+    where: 'Ourea POS',
+    title: 'Ring it up in a few taps',
+    text: 'Dishes by category, options and add-ons that price themselves, then card, cash, QR or member card.',
+    points: [
+      'Spice levels and add-ons on each dish, required or optional',
+      'Hold, discount and split an order; refund part of it with a manager’s PIN',
+      'Dine in or take out, call numbers, tickets to the kitchen printer',
+    ],
+    layout: 'tablet',
+    shots: [
+      T(
+        'options',
+        'Choosing options for Braised Beef Noodle on Ourea POS: a required spice level and up to two add-ons, the price updating',
+      ),
+    ],
+  },
+  {
+    id: 'guest',
+    tab: 'Guest screen',
+    where: 'Ourea Eye',
+    title: 'The guest sees the order and picks the tip',
+    text: 'With Ourea Eye the card terminal is also the customer screen. Without one, the tip screen turns to the guest on the counter.',
+    points: ['Tips on the amount before tax, a custom amount, or none', 'Tap, chip or PIN on the same device'],
+    layout: 'tablet',
+    shots: [
+      T('tip', 'The tip screen turned to the guest: the total, 10, 12 or 15 percent with the amounts, a custom tip or no tip'),
+    ],
+  },
+  {
+    id: 'table',
+    tab: 'Table QR',
+    where: 'Ourea Scan',
+    title: 'Guests order from their own phones',
+    text: 'One cart for the whole table, dish photos and translated names, an allergy filter, and the beaver to order in one sentence.',
+    points: [
+      'English, Français, 中文 and العربية, chosen by the guest',
+      'Nothing goes in the cart until the guest taps',
+      'Orders go straight to the kitchen',
+    ],
+    layout: 'phones',
+    shots: [
+      P('scan-menu', 'The menu on a guest’s phone with dish photos, Chinese and English names, spice marks and prices'),
+      P(
+        'scan-beaver',
+        'Talk to Beaver: the guest typed “Two of us, not too spicy, something with chicken” and Beaver suggests Kung Pao Chicken for two',
+      ),
+      P('scan-cart', 'The table’s shared cart with two dishes, a note for the kitchen, the total and Place order'),
+    ],
+    note: 'Paying at the table from the guest’s phone is in pilot.',
+  },
+  {
+    id: 'online',
+    tab: 'Online orders',
+    where: 'Online ordering',
+    title: 'Online orders land on the same counter',
+    text: 'Your store gets its own ordering page for pickup or your own delivery. Paid orders arrive as New, Preparing and Ready.',
+    points: ['The time each order is due, and a ticket for the kitchen', 'Ready, or Can’t make it, in one tap'],
+    layout: 'tablet',
+    shots: [
+      T(
+        'online-orders',
+        'The Online orders board on Ourea: New, Preparing and Ready columns, an order with four items, a tip, a ready by time, Print ticket, Ready and Can’t make it',
+      ),
+    ],
+    note: 'Uber Eats and DoorDash orders are coming soon.',
+  },
+  {
+    id: 'handheld',
+    tab: 'Handheld',
+    where: 'Iris',
+    title: 'The checkout walks to the table',
+    text: 'Iris is Ourea in your staff’s hand: the floor plan, the keypad, the menu and delivery, with card or cash taken at the table.',
+    points: ['Runs on terminals from PAX, WizarPOS and ID TECH', 'Reminders and Apex, the store assistant, on the same device'],
+    layout: 'handheld',
+    shots: [
+      {
+        src: '/images/ourea/iris-tables.webp',
+        alt: 'Iris on a handheld terminal: the opening checklist, tabs for Tables, Keypad, Library and Delivery, three tables with one seated, and a reminder from Beaver',
+        w: 720,
+        h: 1082,
+      },
+    ],
+  },
+  {
+    id: 'close',
+    tab: 'Close of day',
+    where: 'Ourea POS',
+    title: 'The day’s takings and the cash drawer',
+    text: 'Transactions and the day report on the terminal, a counted drawer at every shift, and out of stock shown on the counter.',
+    points: ['Float, cash in and out, over or short worked out', 'Every store’s numbers also in Cael'],
+    layout: 'pair',
+    shots: [
+      T('day', 'Transactions on Ourea with the Day Settlement Report at the top and paid cash and card sales below'),
+      T(
+        'drawer',
+        'The cash drawer screen: open the drawer with a float, and an earlier shift showing expected, counted and one dollar short',
+      ),
+    ],
+  },
+];
+
+function Img({ s, className, eager }: { s: Shot; className?: string; eager?: boolean }) {
+  return (
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
+      src={s.src}
+      alt={s.alt}
+      width={s.w}
+      height={s.h}
+      loading={eager ? 'eager' : 'lazy'}
+      decoding="async"
+      className={cn('block h-auto w-full', className)}
+    />
+  );
+}
+
+/** A slim dark bezel, so the screen reads as a device without turning into a slab. */
+export function Screen({ s, className, phone, eager }: { s: Shot; className?: string; phone?: boolean; eager?: boolean }) {
+  return (
+    <div
+      className={cn(
+        'bg-[#0B0D12] shadow-[0_24px_48px_-24px_rgba(31,29,26,0.5)] ring-1 ring-black/10',
+        phone ? 'rounded-[32px] p-1.5' : 'rounded-2xl p-1.5',
+        className,
+      )}
+    >
+      <Img s={s} eager={eager} className={phone ? 'rounded-[26px]' : 'rounded-[10px]'} />
+    </div>
+  );
+}
+
+function Stage({ stop }: { stop: Stop }) {
+  const { layout, shots } = stop;
+  return (
+    <div className="flex min-h-[320px] items-center justify-center overflow-hidden rounded-3xl bg-brand-light p-6 md:min-h-[480px] md:p-10">
+      {layout === 'tablet' && <CounterPOS s={shots[0]} className="max-w-[680px]" />}
+      {layout === 'phones' && (
+        <div className="grid w-full max-w-[600px] grid-cols-3 items-center gap-3 md:gap-6">
+          {shots.map((s, i) => (
+            <Screen key={s.src} s={s} phone className={cn(i === 1 && 'md:-translate-y-6')} />
+          ))}
+        </div>
+      )}
+      {layout === 'handheld' && <HandheldPOS s={shots[0]} className="max-w-[240px]" />}
+      {layout === 'pair' && (
+        <div className="relative w-full max-w-[680px]">
+          <CounterPOS s={shots[0]} className="w-[88%]" />
+          <Screen s={shots[1]} className="absolute bottom-[8%] right-0 w-[52%]" />
+        </div>
+      )}
+    </div>
+  );
+}
+
+export function OureaTour() {
+  const [active, setActive] = useState(0);
+  const stop = STOPS[active];
+
+  function onKey(e: React.KeyboardEvent) {
+    const step = { ArrowRight: 1, ArrowDown: 1, ArrowLeft: -1, ArrowUp: -1 }[e.key];
+    if (step === undefined) return;
+    e.preventDefault();
+    const next = (active + step + STOPS.length) % STOPS.length;
+    setActive(next);
+    document.getElementById(`tour-tab-${STOPS[next].id}`)?.focus();
+  }
+
+  return (
+    <div>
+      <div
+        role="tablist"
+        aria-label="Ourea screens"
+        onKeyDown={onKey}
+        className="-mx-4 flex gap-2 overflow-x-auto px-4 pb-1 md:mx-0 md:flex-wrap md:px-0"
+      >
+        {STOPS.map((s, i) => {
+          const on = i === active;
+          return (
+            <button
+              key={s.id}
+              id={`tour-tab-${s.id}`}
+              role="tab"
+              aria-selected={on}
+              aria-controls="tour-panel"
+              tabIndex={on ? 0 : -1}
+              onClick={() => setActive(i)}
+              className={cn(
+                'body-5 shrink-0 whitespace-nowrap rounded-full border px-4 py-2 transition-colors duration-300 ease-gs focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand',
+                on ? 'border-ink bg-ink text-paper' : 'border-line text-ink-soft hover:border-line-strong hover:text-ink',
+              )}
+            >
+              {s.tab}
+            </button>
+          );
+        })}
+      </div>
+
+      <div
+        key={stop.id}
+        id="tour-panel"
+        role="tabpanel"
+        aria-labelledby={`tour-tab-${stop.id}`}
+        className="panel-in mt-8 grid grid-cols-1 items-center gap-8 lg:grid-cols-[1fr_2fr] lg:gap-12"
+      >
+        <div>
+          <p className="caption-3 uppercase tracking-widest text-brand-dark dark:text-brand">{stop.where}</p>
+          <h3 className="heading-4 mt-3 text-balance">{stop.title}</h3>
+          <p className="body-3 mt-4 text-pretty text-ink-soft">{stop.text}</p>
+          <ul className="mt-6 space-y-3">
+            {stop.points.map((p) => (
+              <li key={p} className="body-6 flex gap-3 text-ink-soft">
+                <span aria-hidden className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-brand" />
+                {p}
+              </li>
+            ))}
+          </ul>
+          {stop.note && <p className="caption-2 mt-6 text-ink-mute">{stop.note}</p>}
+        </div>
+        <Stage stop={stop} />
+      </div>
+    </div>
+  );
+}
