@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { cn } from '@/lib/utils';
-import { CounterPOS, WizarQ2 } from './Devices';
+import { CounterPOS, CounterPOSDual, WizarQ2, WizarQ3Pro, WizarQ3mini } from './Devices';
 
 // The tour of real Ourea screens on /ourea: one tab per place the system
 // works, one stage that shows that place's screens. Screens are from the
@@ -16,7 +16,7 @@ type Stop = {
   title: string;
   text: string;
   points: string[];
-  layout: 'tablet' | 'phones' | 'handhelds' | 'pair' | 'browser';
+  layout: 'tablet' | 'phones' | 'handhelds' | 'pair' | 'browser' | 'eye';
   shots: Shot[];
   note?: string;
 };
@@ -48,12 +48,19 @@ const STOPS: Stop[] = [
     id: 'guest',
     tab: 'Guest screen',
     where: 'Ourea Eye',
-    title: 'The guest sees the order and picks the tip',
-    text: 'With Ourea Eye the card terminal is also the customer screen. Without one, the tip screen turns to the guest on the counter.',
-    points: ['Tips on the amount before tax, a custom amount, or none', 'Tap, chip or PIN on the same device'],
-    layout: 'tablet',
+    title: 'Two screens: one for staff, one for the guest',
+    text: 'On a dual screen SUNMI D3 Pro the guest display faces the customer. With a WizarPOS Q3 Pro as the register, a Q3mini beside it is Ourea Eye: the card terminal and the guest’s screen in one.',
+    points: [
+      'The guest sees the total and picks the tip',
+      'Tips on the amount before tax, a custom amount, or none',
+      'Tap or chip on the Q3mini, right where the guest is looking',
+    ],
+    layout: 'eye',
     shots: [
-      T('tip', 'The tip screen turned to the guest: the total, 10, 12 or 15 percent with the amounts, a custom tip or no tip'),
+      T('counter', 'Ourea POS on a dual screen SUNMI D3 Pro: the cashier’s screen'),
+      { src: '/images/ourea/eye-tip-wide.webp', alt: 'The D3 Pro guest display: the total and the tip choice', w: 640, h: 400 },
+      { src: '/images/ourea/iris-keypad.webp', alt: 'A WizarPOS Q3 Pro as the register: the keypad', w: 720, h: 1072 },
+      { src: '/images/ourea/eye-tip.webp', alt: 'A Q3mini as Ourea Eye beside it: the total and the tip choice for the guest', w: 480, h: 480 },
     ],
   },
   {
@@ -230,6 +237,15 @@ function Stage({ stop }: { stop: Stop }) {
           {shots.map((s, i) => (
             <WizarQ2 key={s.src} s={s} className={cn(i === 1 && 'md:-translate-y-6')} />
           ))}
+        </div>
+      )}
+      {layout === 'eye' && (
+        <div className="grid w-full max-w-[720px] grid-cols-1 items-end gap-8 md:grid-cols-[3fr_2fr]">
+          <CounterPOSDual s={shots[0]} guest={shots[1]} />
+          <div className="flex items-end justify-center gap-3">
+            <WizarQ3Pro s={shots[2]} className="w-[48%]" />
+            <WizarQ3mini s={shots[3]} className="mb-2 w-[44%]" />
+          </div>
         </div>
       )}
       {layout === 'browser' && (

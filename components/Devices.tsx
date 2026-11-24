@@ -59,6 +59,44 @@ export function CounterPOS({ s, className, eager }: { s: Shot; className?: strin
   );
 }
 
+/**
+ * Desktop POS, dual screen: the same main display (left 1000 units of a
+ * 1300 × 760 drawing) and the guest display beside it on its own arm, 16:10,
+ * screen 256 × 160 at 1022, 262.
+ */
+export function CounterPOSDual({ s, guest, className, eager }: { s: Shot; guest: Shot; className?: string; eager?: boolean }) {
+  return (
+    <div className={cn('relative w-full', className)} style={{ aspectRatio: '1300 / 760' }}>
+      <svg viewBox="0 0 1300 760" aria-hidden className="absolute inset-0 h-full w-full">
+        <ellipse cx="640" cy="738" rx="430" ry="14" fill="rgba(31,29,26,0.18)" />
+        {/* one base for both screens, printer slot at the front */}
+        <path d="M250 676 Q250 652 276 652 H1196 Q1222 652 1222 676 V716 Q1222 732 1206 732 H266 Q250 732 250 716 Z" fill="#1C1F25" />
+        <path d="M262 664 H1210" stroke="#2C3038" strokeWidth="3" />
+        <rect x="350" y="672" width="300" height="8" rx="4" fill="#0E1014" />
+        {/* guest display arm and screen */}
+        <path d="M1132 436 H1168 L1176 656 H1124 Z" fill="#23262D" />
+        <rect x="1008" y="248" width="284" height="188" rx="14" fill="#16181D" />
+        <rect x="1012" y="252" width="276" height="180" rx="12" fill="#0F1115" />
+        <rect x="1022" y="262" width="256" height="160" rx="4" fill={APP_BG} />
+        {/* main display column and body, as CounterPOS */}
+        <path d="M440 556 H560 L588 656 H412 Z" fill="#23262D" />
+        <path d="M452 556 H548 L560 600 H440 Z" fill="#2C3038" />
+        <rect x="36" y="16" width="928" height="548" rx="24" fill="#16181D" />
+        <rect x="40" y="20" width="920" height="540" rx="21" fill="#0F1115" />
+        <rect x="58" y="38" width="884" height="497" rx="6" fill={APP_BG} />
+        <circle cx="500" cy="548" r="3.5" fill="#2A2E36" />
+        <rect x="40" y="20" width="920" height="540" rx="21" fill="none" stroke="rgba(255,255,255,0.06)" strokeWidth="2" />
+      </svg>
+      <div className="absolute overflow-hidden rounded-[0.5%]" style={{ left: '4.46%', top: '5%', width: '68%', height: '65.4%', background: APP_BG }}>
+        <ScreenImg s={s} eager={eager} />
+      </div>
+      <div className="absolute overflow-hidden rounded-[1.5%]" style={{ left: '78.62%', top: '34.47%', width: '19.69%', height: '21.05%', background: APP_BG }}>
+        <ScreenImg s={guest} eager={eager} fit="cover" />
+      </div>
+    </div>
+  );
+}
+
 // WizarPOS frames, from the makers' datasheets (2025-10):
 //   Q2      188 × 85 mm, 5.5" 720 × 1280, 58 mm printer on top, light grey
 //   Q3 Pro  166 × 78 mm, 6.5" 720 × 1600, slim, punch hole camera, black

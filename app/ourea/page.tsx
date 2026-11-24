@@ -14,7 +14,7 @@ import { ScrollReveal } from '@/components/ScrollReveal';
 import { QuickContact } from '@/components/QuickContact';
 import { TaglineReveal } from '@/components/TaglineReveal';
 import { Browser, OureaTour, Screen } from '@/components/OureaTour';
-import { CounterPOS, WizarQ2, WizarQ3Pro, WizarQ3mini } from '@/components/Devices';
+import { CounterPOSDual, WizarQ2, WizarQ3Pro, WizarQ3mini } from '@/components/Devices';
 import { Button } from '@/components/ui/Button';
 import { cn } from '@/lib/utils';
 
@@ -181,9 +181,9 @@ const STEPS = [
 // The devices, drawn from the makers' datasheets; screens are real.
 const IRIS_SHOT = { src: '/images/ourea/iris-tables.webp', alt: 'Iris: the tables view with the opening checklist and a reminder', w: 720, h: 1082 };
 const DEVICES: { id: string; maker: string; model: string; role: string; specs: string }[] = [
-  { id: 'd3', maker: 'SUNMI', model: 'D3 Pro', role: 'Ourea POS at the counter', specs: 'Desktop POS with a large touchscreen and the receipt printer in its base' },
+  { id: 'd3', maker: 'SUNMI', model: 'D3 Pro', role: 'Ourea POS at the counter', specs: 'Dual screen desktop POS: the cashier’s touchscreen, a guest display facing the customer, the printer in the base' },
   { id: 'q2', maker: 'WizarPOS', model: 'Q2', role: 'Iris in hand', specs: '5.5 inch screen, 58 mm printer built in, chip, tap and swipe, 415 g' },
-  { id: 'q3pro', maker: 'WizarPOS', model: 'Q3 Pro', role: 'Iris in hand', specs: '6.5 inch screen, slim and light at 357 g, chip and tap, optional barcode scanner' },
+  { id: 'q3pro', maker: 'WizarPOS', model: 'Q3 Pro', role: 'Iris in hand, or the register with a Q3mini', specs: '6.5 inch screen, 357 g, chip and tap. On the counter, a Q3mini beside it is the guest’s screen' },
   { id: 'q3mini', maker: 'WizarPOS', model: 'Q3mini', role: 'Ourea Eye, facing the guest', specs: '4 inch square screen, palm sized at 131 g, chip and tap under the screen' },
 ];
 
@@ -274,19 +274,20 @@ export default function OureaPage() {
 
           <ScrollReveal delay={120}>
             <div className="relative rounded-3xl bg-brand-light px-6 pb-8 pt-10 md:px-10 md:pb-10 md:pt-14">
-              <CounterPOS
+              <CounterPOSDual
                 eager
                 s={shot(
                   'counter',
-                  'Ourea POS at the counter: the cart on the left, dishes by category on the right, card, cash, QR and member payment buttons',
+                  'Ourea POS on a dual screen desktop POS: the cart and dishes by category for the cashier',
                 )}
-                className="w-[86%]"
+                guest={{ src: '/images/ourea/eye-tip-wide.webp', alt: 'The guest display: the total and the tip choice', w: 640, h: 400 }}
+                className="w-full"
               />
               <Screen
                 eager
                 phone
                 s={phone('scan-menu', 'Ourea Scan on a guest’s phone: the demo restaurant’s menu with dish photos and Talk to Beaver')}
-                className="absolute bottom-8 right-6 w-[26%] md:bottom-10 md:right-8"
+                className="absolute bottom-6 left-6 w-[20%] md:left-8"
               />
             </div>
           </ScrollReveal>
@@ -437,17 +438,24 @@ export default function OureaPage() {
                 <ScrollReveal delay={i * 80} className="flex h-full flex-col rounded-2xl border border-line bg-panel p-2">
                   <div className="flex h-56 items-end justify-center overflow-hidden rounded-xl bg-brand-light px-4 pt-6 md:h-72">
                     {d.id === 'd3' && (
-                      <CounterPOS
+                      <CounterPOSDual
                         s={shot('counter', 'Ourea POS on a SUNMI D3 Pro: the cart and dishes by category')}
+                        guest={{ src: '/images/ourea/eye-tip-wide.webp', alt: 'The D3 Pro guest display with the tip choice', w: 640, h: 400 }}
                         className="mb-4 w-full"
                       />
                     )}
                     {d.id === 'q2' && <WizarQ2 s={IRIS_SHOT} className="mb-[-8%] w-[46%]" />}
                     {d.id === 'q3pro' && (
-                      <WizarQ3Pro
-                        s={{ src: '/images/ourea/iris-keypad.webp', alt: 'Iris keypad on a WizarPOS Q3 Pro', w: 720, h: 1072 }}
-                        className="mb-[-10%] w-[44%]"
-                      />
+                      <div className="flex w-full items-end justify-center gap-3">
+                        <WizarQ3Pro
+                          s={{ src: '/images/ourea/iris-keypad.webp', alt: 'Iris keypad on a WizarPOS Q3 Pro as the register', w: 720, h: 1072 }}
+                          className="mb-[-12%] w-[42%]"
+                        />
+                        <WizarQ3mini
+                          s={{ src: '/images/ourea/eye-tip.webp', alt: 'A Q3mini beside it as Ourea Eye, showing the guest the tip choice', w: 480, h: 480 }}
+                          className="mb-4 w-[36%]"
+                        />
+                      </div>
                     )}
                     {d.id === 'q3mini' && (
                       <WizarQ3mini
