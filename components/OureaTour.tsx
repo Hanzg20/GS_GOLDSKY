@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { cn } from '@/lib/utils';
-import { CounterPOS, HandheldPOS } from './Devices';
+import { CounterPOS, WizarQ2 } from './Devices';
 
 // The tour of real Ourea screens on /ourea: one tab per place the system
 // works, one stage that shows that place's screens. Screens are from the
@@ -105,7 +105,7 @@ const STOPS: Stop[] = [
     shots: [
       {
         src: '/images/ourea/iris-tables.webp',
-        alt: 'Iris on a handheld terminal: the opening checklist, tabs for Tables, Keypad, Library and Delivery, three tables with one seated, and a reminder from Beaver',
+        alt: 'Iris on a WizarPOS Q2 handheld: the opening checklist, tabs for Tables, Keypad, Library and Delivery, three tables with one seated, and a reminder from Beaver',
         w: 720,
         h: 1082,
       },
@@ -213,7 +213,7 @@ function Stage({ stop }: { stop: Stop }) {
           ))}
         </div>
       )}
-      {layout === 'handheld' && <HandheldPOS s={shots[0]} className="max-w-[240px]" />}
+      {layout === 'handheld' && <WizarQ2 s={shots[0]} className="max-w-[230px]" />}
       {layout === 'browser' && (
         <div className="relative w-full max-w-[720px] pb-[22%]">
           <Browser s={shots[0]} className="w-[92%]" />

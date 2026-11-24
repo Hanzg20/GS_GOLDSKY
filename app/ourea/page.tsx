@@ -14,7 +14,7 @@ import { ScrollReveal } from '@/components/ScrollReveal';
 import { QuickContact } from '@/components/QuickContact';
 import { TaglineReveal } from '@/components/TaglineReveal';
 import { Browser, OureaTour, Screen } from '@/components/OureaTour';
-import { CounterPOS } from '@/components/Devices';
+import { CounterPOS, WizarQ2, WizarQ3Pro, WizarQ3mini } from '@/components/Devices';
 import { Button } from '@/components/ui/Button';
 import { cn } from '@/lib/utils';
 
@@ -178,9 +178,18 @@ const STEPS = [
   { title: 'Open with us beside you', text: 'We install and train your staff, then stay close through the first weeks.' },
 ];
 
+// The devices, drawn from the makers' datasheets; screens are real.
+const IRIS_SHOT = { src: '/images/ourea/iris-tables.webp', alt: 'Iris: the tables view with the opening checklist and a reminder', w: 720, h: 1082 };
+const DEVICES: { id: string; maker: string; model: string; role: string; specs: string }[] = [
+  { id: 'd3', maker: 'SUNMI', model: 'D3 Pro', role: 'Ourea POS at the counter', specs: 'Desktop POS with a large touchscreen and the receipt printer in its base' },
+  { id: 'q2', maker: 'WizarPOS', model: 'Q2', role: 'Iris in hand', specs: '5.5 inch screen, 58 mm printer built in, chip, tap and swipe, 415 g' },
+  { id: 'q3pro', maker: 'WizarPOS', model: 'Q3 Pro', role: 'Iris in hand', specs: '6.5 inch screen, slim and light at 357 g, chip and tap, optional barcode scanner' },
+  { id: 'q3mini', maker: 'WizarPOS', model: 'Q3mini', role: 'Ourea Eye, facing the guest', specs: '4 inch square screen, palm sized at 131 g, chip and tap under the screen' },
+];
+
 const HARDWARE = [
   { icon: DeviceTablet, title: 'The counter', text: 'A SUNMI desktop POS such as the D3 Pro, an Android tablet or a countertop terminal runs Ourea POS.' },
-  { icon: CreditCard, title: 'Payment terminals', text: 'WizarPOS Q3mini and Q2, PAX IM30, ID TECH NEO2 and NEO3.' },
+  { icon: CreditCard, title: 'Other terminals', text: 'PAX IM30 and ID TECH NEO2 and NEO3 run Iris and take payments too.' },
   { icon: Printer, title: 'Printers', text: 'Network receipt and kitchen printers (ESC/POS), or the terminal’s own.' },
   { icon: CashRegister, title: 'Cash drawer', text: 'Floats, cash in and out, and a counted drawer at every shift.' },
 ];
@@ -196,7 +205,7 @@ const FAQ: { q: string; a: string }[] = [
   },
   {
     q: 'Can I use the terminal I already have?',
-    a: 'Ourea runs on SUNMI desktop POS and on terminals from WizarPOS, PAX and ID TECH, from Android 7.1 up. Tell us the model and we will confirm it before you buy anything.',
+    a: 'Ourea runs on SUNMI desktop POS such as the D3 Pro, the WizarPOS Q2, Q3 Pro and Q3mini, and terminals from PAX and ID TECH, from Android 7.1 up. Tell us the model and we will confirm it before you buy anything.',
   },
   {
     q: 'Who processes the card payments?',
@@ -402,6 +411,52 @@ export default function OureaPage() {
                       </li>
                     ))}
                   </ul>
+                </ScrollReveal>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      {/* The devices */}
+      <section aria-labelledby="devices-title" className="px-4 py-16 md:py-24">
+        <div className="mx-auto max-w-content">
+          <ScrollReveal className="max-w-[680px]">
+            <Eyebrow>The devices</Eyebrow>
+            <h2 id="devices-title" className="heading-3 mt-3 text-balance">
+              What it runs on
+            </h2>
+            <p className="body-3 mt-4 text-pretty text-ink-soft">
+              A desktop POS at the counter, handhelds for the floor and a small screen for the guest. We help you
+              pick and set them up.
+            </p>
+          </ScrollReveal>
+          <ul className="mt-12 grid grid-cols-2 gap-4 lg:grid-cols-4">
+            {DEVICES.map((d, i) => (
+              <li key={d.id}>
+                <ScrollReveal delay={i * 80} className="flex h-full flex-col rounded-2xl border border-line bg-panel p-2">
+                  <div className="flex h-56 items-end justify-center overflow-hidden rounded-xl bg-brand-light px-4 pt-6 md:h-72">
+                    {d.id === 'd3' && (
+                      <CounterPOS
+                        s={shot('counter', 'Ourea POS on a SUNMI D3 Pro: the cart and dishes by category')}
+                        className="mb-4 w-full"
+                      />
+                    )}
+                    {d.id === 'q2' && <WizarQ2 s={IRIS_SHOT} className="mb-[-8%] w-[46%]" />}
+                    {d.id === 'q3pro' && <WizarQ3Pro s={IRIS_SHOT} className="mb-[-10%] w-[44%]" />}
+                    {d.id === 'q3mini' && (
+                      <WizarQ3mini
+                        s={{ src: '/images/ourea/q3mini-splash.webp', alt: 'The Q3mini starting up: the GoldSky mark, powered by GoldSky', w: 480, h: 480 }}
+                        className="mb-6 w-[58%]"
+                      />
+                    )}
+                  </div>
+                  <div className="flex flex-1 flex-col p-4">
+                    <p className="caption-4 uppercase tracking-widest text-ink-mute">{d.maker}</p>
+                    <h3 className="heading-6 mt-1">{d.model}</h3>
+                    <p className="body-5 mt-1 text-brand-dark dark:text-brand">{d.role}</p>
+                    <p className="body-6 mt-3 text-pretty text-ink-soft">{d.specs}</p>
+                  </div>
                 </ScrollReveal>
               </li>
             ))}
