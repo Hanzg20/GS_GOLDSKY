@@ -101,7 +101,7 @@ const SCENARIOS: Scenario[] = [
       { icon: Cards, title: 'One menu everywhere', text: 'Change a price in Cael and every screen has it.' },
       { icon: ChatCircleText, title: 'Ask how today went', text: 'Apex answers questions about your sales in plain words.' },
     ],
-    href: '/solutions/attended',
+    href: '/ourea',
   },
   {
     id: 'laundry',
@@ -158,7 +158,7 @@ const SCENARIOS: Scenario[] = [
       { icon: HandTap, title: 'Checkout in hand', text: 'Iris walks to the table, so the card never leaves the guest.' },
       { icon: Cards, title: 'One catalogue', text: 'Counter, handheld and table QR all read the same menu.' },
     ],
-    href: '/solutions/attended',
+    href: '/ourea',
   },
   {
     id: 'vend',

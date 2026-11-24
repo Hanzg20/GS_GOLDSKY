@@ -4,8 +4,8 @@ const columns: { title: string; links: { label: string; href: string }[] }[] = [
   {
     title: 'Product lines',
     links: [
-      { label: 'Ourea · desktop POS', href: '/solutions/attended' },
-      { label: 'Iris · handheld POS', href: '/solutions/attended' },
+      { label: 'Ourea · store system', href: '/ourea' },
+      { label: 'Iris · handheld POS', href: '/ourea' },
       { label: 'Aegis · self serve', href: '/solutions/unattended' },
       { label: 'Cael · cloud platform', href: '/products/software' },
     ],

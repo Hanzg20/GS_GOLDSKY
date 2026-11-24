@@ -40,8 +40,8 @@ const BUSINESSES: {
     text: 'Orders in fast, out to the kitchen, paid at the counter.',
     points: ['Dine in or take out, order notes, daily call numbers', 'Kitchen tickets', 'Customer display where guests pick their own tip', 'Cash drawer and shifts, counted at close'],
     status: 'live',
-    href: '/solutions/attended',
-    cta: 'Counter and handheld',
+    href: '/ourea',
+    cta: 'About Ourea',
   },
   {
     icon: ForkKnife,
@@ -50,8 +50,8 @@ const BUSINESSES: {
     text: 'The floor plan at the counter, the payment at the table.',
     points: ['Floor plan, checks, rounds, split payments', 'Handheld checkout at the table, card or cash', 'QR ordering from the table, straight to the kitchen', 'Guests order in their own language'],
     status: 'live',
-    href: '/solutions/attended',
-    cta: 'Counter and handheld',
+    href: '/ourea',
+    cta: 'About Ourea',
   },
   {
     icon: Car,

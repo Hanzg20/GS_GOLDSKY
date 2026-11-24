@@ -59,7 +59,7 @@ const LINES: Record<'ourea' | 'iris' | 'aegis' | 'cael', Line> = {
     name: 'Ourea',
     role: 'At the counter',
     text: 'The counter that holds steady. Quick service and dine in, a customer display, cash drawer and shifts, and table QR ordering where guests order in one sentence, in their own language.',
-    href: '/solutions/attended',
+    href: '/ourea',
     art: {
       src: '/images/art/line-ourea-640.webp',
       srcSet: '/images/art/line-ourea-640.webp 640w, /images/art/line-ourea.webp 1200w',
@@ -72,7 +72,7 @@ const LINES: Record<'ourea' | 'iris' | 'aegis' | 'cael', Line> = {
     name: 'Iris',
     role: 'In hand',
     text: "Checkout that walks to the table. Card or cash in your staff's hand, on terminals from three makers.",
-    href: '/solutions/attended',
+    href: '/ourea',
     art: {
       src: '/images/art/line-iris-640.webp',
       srcSet: '/images/art/line-iris-640.webp 640w, /images/art/line-iris.webp 1200w',

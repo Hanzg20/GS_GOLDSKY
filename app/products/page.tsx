@@ -48,7 +48,7 @@ const SECTIONS: Section[] = [
       'Table QR ordering: one shared cart per table, straight to the kitchen, call a server',
       'Partial refunds and offline card sales, both behind a manager’s say',
     ],
-    href: '/solutions/attended',
+    href: '/ourea',
     art: {
       src: '/images/art/line-ourea-640.webp',
       srcSet: '/images/art/line-ourea-640.webp 640w, /images/art/line-ourea.webp 1200w',
@@ -67,7 +67,7 @@ const SECTIONS: Section[] = [
       'Runs on payment terminals from three makers',
       'The same journal, delivery orders and Apex as Ourea',
     ],
-    href: '/solutions/attended',
+    href: '/ourea',
     art: {
       src: '/images/art/line-iris-640.webp',
       srcSet: '/images/art/line-iris-640.webp 640w, /images/art/line-iris.webp 1200w',
