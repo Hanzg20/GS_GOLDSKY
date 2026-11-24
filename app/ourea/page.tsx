@@ -124,11 +124,11 @@ const FAMILY: {
   {
     name: 'Cael',
     role: 'The cloud platform',
-    text: 'Menus, prices, dish photos, devices and reports for every store, from any browser.',
+    text: 'Sales reports, menus, prices, dish photos and devices for every store, from any browser.',
     status: 'live',
     thumb: {
       kind: 'browser',
-      s: { src: '/images/ourea/cael-menu.webp', alt: 'Cael: the restaurant’s dishes with categories, prices, tax and an on sale switch', w: 1158, h: 493 },
+      s: { src: '/images/ourea/cael-sales.webp', alt: 'Cael: a sales report with gross and net sales, orders, average order value and sales over time', w: 1600, h: 833 },
     },
   },
 ];
