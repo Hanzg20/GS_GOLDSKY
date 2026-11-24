@@ -119,7 +119,7 @@ const FAMILY: {
     role: 'Your own ordering page',
     text: 'Pickup and your own delivery, on the same order board as the counter.',
     status: 'new',
-    thumb: { kind: 'tablet', s: shot('online-orders', 'The online orders board') },
+    thumb: { kind: 'phone', s: phone('online-home', 'The store’s own ordering page on a phone: pickup or delivery') },
   },
   {
     name: 'Cael',

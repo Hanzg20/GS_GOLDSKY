@@ -16,7 +16,7 @@ type Stop = {
   title: string;
   text: string;
   points: string[];
-  layout: 'tablet' | 'phones' | 'handhelds' | 'pair' | 'browser' | 'eye';
+  layout: 'tablet' | 'phones' | 'handhelds' | 'pair' | 'browser' | 'eye' | 'online';
   shots: Shot[];
   note?: string;
 };
@@ -89,11 +89,17 @@ const STOPS: Stop[] = [
     id: 'online',
     tab: 'Online orders',
     where: 'Online ordering',
-    title: 'Online orders land on the same counter',
-    text: 'Your store gets its own ordering page for pickup or your own delivery. Paid orders arrive as New, Preparing and Ready.',
-    points: ['The time each order is due, and a ticket for the kitchen', 'Ready, or Can’t make it, in one tap'],
-    layout: 'tablet',
+    title: 'Your own ordering page, orders on the same counter',
+    text: 'Customers order from your store’s own page for pickup or your own delivery, and pay on their phone. Paid orders arrive on Ourea as New, Preparing and Ready.',
+    points: [
+      'Pickup as soon as possible or at a time they choose',
+      'Your own delivery, with the time it usually takes',
+      'On the counter: the time each order is due, a kitchen ticket, Ready in one tap',
+    ],
+    layout: 'online',
     shots: [
+      P('online-home', 'The store’s ordering page on a phone: open now, pickup or delivery, address and phone, dishes with photos and a Checkout bar'),
+      P('online-checkout', 'Checkout for pickup: the order and total, as soon as possible or scheduled, name and phone'),
       T(
         'online-orders',
         'The Online orders board on Ourea: New, Preparing and Ready columns, an order with four items, a tip, a ready by time, Print ticket, Ready and Can’t make it',
@@ -246,6 +252,15 @@ function Stage({ stop }: { stop: Stop }) {
             <WizarQ3Pro s={shots[2]} className="w-[48%]" />
             <WizarQ3mini s={shots[3]} className="mb-2 w-[44%]" />
           </div>
+        </div>
+      )}
+      {layout === 'online' && (
+        <div className="grid w-full max-w-[720px] grid-cols-[2fr_3fr] items-center gap-4 md:gap-8">
+          <div className="grid grid-cols-2 gap-2 md:gap-3">
+            <Screen s={shots[0]} phone />
+            <Screen s={shots[1]} phone className="mt-8" />
+          </div>
+          <CounterPOS s={shots[2]} />
         </div>
       )}
       {layout === 'browser' && (
