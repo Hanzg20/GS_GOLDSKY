@@ -9,7 +9,6 @@ import { cn } from '@/lib/utils';
 
 const NAV_ITEMS = [
   { label: 'Home', href: '/' },
-  { label: 'Ourea', href: '/ourea' },
   { label: 'Solutions', href: '/solutions' },
   { label: 'Products', href: '/products' },
   { label: 'Case studies', href: '/case-studies' },

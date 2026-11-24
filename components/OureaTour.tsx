@@ -16,7 +16,7 @@ type Stop = {
   title: string;
   text: string;
   points: string[];
-  layout: 'tablet' | 'phones' | 'handheld' | 'pair';
+  layout: 'tablet' | 'phones' | 'handheld' | 'pair' | 'browser';
   shots: Shot[];
   note?: string;
 };
@@ -127,6 +127,33 @@ const STOPS: Stop[] = [
       ),
     ],
   },
+  {
+    id: 'cael',
+    tab: 'Cael cloud',
+    where: 'Cael',
+    title: 'Every store’s menu and tables, from any browser',
+    text: 'Products, barcodes, prices and tax rates for every store, tables and their QR cards, devices and reports. Change it once and Ourea and Iris pick it up.',
+    points: [
+      'Bulk import of products from CSV or Excel',
+      'A tax rate per product, stock, and a switch to take an item off sale',
+      'Tables by area, each with a QR card to print',
+    ],
+    layout: 'browser',
+    shots: [
+      {
+        src: '/images/ourea/cael-retail.webp',
+        alt: 'Products in Cael for a grocery store: names in Chinese and English, barcodes, categories, prices, HST or exempt, stock and an on sale switch',
+        w: 1158,
+        h: 377,
+      },
+      {
+        src: '/images/ourea/cael-tables.webp',
+        alt: 'Tables in Cael grouped by area, private room, hall and window, each with seats, a QR card button and Edit',
+        w: 580,
+        h: 473,
+      },
+    ],
+  },
 ];
 
 function Img({ s, className, eager }: { s: Shot; className?: string; eager?: boolean }) {
@@ -159,6 +186,21 @@ export function Screen({ s, className, phone, eager }: { s: Shot; className?: st
   );
 }
 
+/** A light browser window for Cael, the web platform. */
+export function Browser({ s, className, eager }: { s: Shot; className?: string; eager?: boolean }) {
+  return (
+    <div className={cn('overflow-hidden rounded-xl bg-white shadow-[0_24px_48px_-24px_rgba(31,29,26,0.45)] ring-1 ring-black/10', className)}>
+      <div className="flex items-center gap-2 border-b border-black/5 bg-[#F4F2EE] px-3 py-2">
+        <span className="h-2 w-2 rounded-full bg-black/15" />
+        <span className="h-2 w-2 rounded-full bg-black/15" />
+        <span className="h-2 w-2 rounded-full bg-black/15" />
+        <span className="caption-5 ml-2 rounded-md bg-white px-2 py-0.5 text-[#6F695F]">cmp.goldsky.ca</span>
+      </div>
+      <Img s={s} eager={eager} />
+    </div>
+  );
+}
+
 function Stage({ stop }: { stop: Stop }) {
   const { layout, shots } = stop;
   return (
@@ -172,6 +214,12 @@ function Stage({ stop }: { stop: Stop }) {
         </div>
       )}
       {layout === 'handheld' && <HandheldPOS s={shots[0]} className="max-w-[240px]" />}
+      {layout === 'browser' && (
+        <div className="relative w-full max-w-[720px] pb-[22%]">
+          <Browser s={shots[0]} className="w-[92%]" />
+          <Browser s={shots[1]} className="absolute bottom-0 right-0 w-[44%]" />
+        </div>
+      )}
       {layout === 'pair' && (
         <div className="relative w-full max-w-[680px]">
           <CounterPOS s={shots[0]} className="w-[88%]" />

@@ -2,7 +2,6 @@ import type { Metadata } from 'next';
 import {
   ArrowRight,
   CashRegister,
-  CloudArrowUp,
   CreditCard,
   DeviceTablet,
   ForkKnife,
@@ -14,7 +13,7 @@ import {
 import { ScrollReveal } from '@/components/ScrollReveal';
 import { QuickContact } from '@/components/QuickContact';
 import { TaglineReveal } from '@/components/TaglineReveal';
-import { OureaTour, Screen } from '@/components/OureaTour';
+import { Browser, OureaTour, Screen } from '@/components/OureaTour';
 import { CounterPOS } from '@/components/Devices';
 import { Button } from '@/components/ui/Button';
 import { cn } from '@/lib/utils';
@@ -85,12 +84,12 @@ const FAMILY: {
   role: string;
   text: string;
   status: Status;
-  thumb: { kind: 'tablet' | 'phone'; s: ReturnType<typeof shot> } | null;
+  thumb: { kind: 'tablet' | 'phone' | 'browser'; s: ReturnType<typeof shot> };
 }[] = [
   {
     name: 'Ourea POS',
     role: 'At the counter',
-    text: 'The countertop checkout on an Android tablet or terminal: card, cash, QR and member card.',
+    text: 'The countertop checkout on a SUNMI desktop POS, an Android tablet or a terminal: card, cash, QR and member card.',
     status: 'live',
     thumb: { kind: 'tablet', s: shot('counter', 'Ourea POS: the cart and a grid of dishes by category') },
   },
@@ -127,7 +126,10 @@ const FAMILY: {
     role: 'The cloud platform',
     text: 'Menus, prices, dish photos, devices and reports for every store, from any browser.',
     status: 'live',
-    thumb: null,
+    thumb: {
+      kind: 'browser',
+      s: { src: '/images/ourea/cael-menu.webp', alt: 'Cael: the restaurant’s dishes with categories, prices, tax and an on sale switch', w: 1158, h: 493 },
+    },
   },
 ];
 
@@ -177,7 +179,7 @@ const STEPS = [
 ];
 
 const HARDWARE = [
-  { icon: DeviceTablet, title: 'The counter', text: 'An Android tablet or countertop terminal runs Ourea POS.' },
+  { icon: DeviceTablet, title: 'The counter', text: 'A SUNMI desktop POS such as the D3 Pro, an Android tablet or a countertop terminal runs Ourea POS.' },
   { icon: CreditCard, title: 'Payment terminals', text: 'WizarPOS Q3mini and Q2, PAX IM30, ID TECH NEO2 and NEO3.' },
   { icon: Printer, title: 'Printers', text: 'Network receipt and kitchen printers (ESC/POS), or the terminal’s own.' },
   { icon: CashRegister, title: 'Cash drawer', text: 'Floats, cash in and out, and a counted drawer at every shift.' },
@@ -190,11 +192,11 @@ const FAQ: { q: string; a: string }[] = [
   },
   {
     q: 'Which devices do I need?',
-    a: 'An Android tablet or countertop terminal at the counter, a payment terminal, and a receipt printer. Add Iris handhelds, a kitchen printer or Ourea Eye as you need them. We help you pick.',
+    a: 'A desktop POS such as the SUNMI D3 Pro, or an Android tablet, at the counter, a payment terminal, and a receipt printer. Add Iris handhelds, a kitchen printer or Ourea Eye as you need them. We help you pick.',
   },
   {
     q: 'Can I use the terminal I already have?',
-    a: 'Ourea runs on terminals from WizarPOS, PAX and ID TECH, from Android 7.1 up. Tell us the model and we will confirm it before you buy anything.',
+    a: 'Ourea runs on SUNMI desktop POS and on terminals from WizarPOS, PAX and ID TECH, from Android 7.1 up. Tell us the model and we will confirm it before you buy anything.',
   },
   {
     q: 'Who processes the card payments?',
@@ -249,6 +251,7 @@ export default function OureaPage() {
             <div className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-4 border-t border-line pt-6">
               <span className="flex items-center gap-5">
                 <span className="caption-4 uppercase tracking-widest text-ink-mute">Runs on</span>
+                <span className="font-sans text-lg font-bold tracking-[0.18em] text-ink-mute">SUNMI</span>
                 <Mark src="/images/partners/wizarpos.png" ratio={645 / 96} label="WizarPOS" />
                 <Mark src="/images/partners/pax.svg" ratio={130.648 / 56.873} label="PAX" />
                 <Mark src="/images/partners/idtech.png" ratio={533 / 96} label="ID TECH" />
@@ -298,15 +301,12 @@ export default function OureaPage() {
               <li key={f.name}>
                 <ScrollReveal delay={(i % 3) * 80} className="flex h-full flex-col rounded-2xl border border-line bg-panel p-2">
                   <div className="relative flex aspect-[16/10] items-start justify-center overflow-hidden rounded-xl bg-brand-light">
-                    {f.thumb?.kind === 'tablet' && (
+                    {f.thumb.kind === 'tablet' && (
                       <Screen s={f.thumb.s} className="absolute left-6 top-6 w-[130%] max-w-none" />
                     )}
-                    {f.thumb?.kind === 'phone' && <Screen s={f.thumb.s} phone className="mt-6 w-[42%]" />}
-                    {!f.thumb && (
-                      <div className="flex h-full w-full flex-col items-center justify-center gap-3">
-                        <CloudArrowUp size={48} className="text-brand" />
-                        <p className="caption-1 text-ink-soft">Menus · Prices · Devices · Reports</p>
-                      </div>
+                    {f.thumb.kind === 'phone' && <Screen s={f.thumb.s} phone className="mt-6 w-[42%]" />}
+                    {f.thumb.kind === 'browser' && (
+                      <Browser s={f.thumb.s} className="absolute left-6 top-6 w-[130%] max-w-none" />
                     )}
                   </div>
                   <div className="flex flex-1 flex-col p-4">
