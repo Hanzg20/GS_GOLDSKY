@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { seo } from '@/lib/seo';
 import {
   ArrowCounterClockwise,
   ArrowRight,
@@ -21,11 +22,12 @@ import { ScrollReveal } from '@/components/ScrollReveal';
 import { PhotoSlot } from '@/components/PhotoSlot';
 import { QuickContact } from '@/components/QuickContact';
 
-export const metadata: Metadata = {
-  title: 'Eagleson Coin Wash · GoldSky case study',
+export const metadata: Metadata = seo({
+  path: '/case-studies',
+  title: 'Self serve car wash card payments in Kanata · Eagleson case study',
   description:
     'A self serve car wash in Kanata, Ontario, where customers pay at the bay and the vacuum by card, phone or member code, with nobody behind the counter. Run on Aegis Wash, Aegis Timer and Cael.',
-};
+});
 
 // Facts on this page come from the GS-SSP release notes for Aegis Wash and
 // Aegis Timer (C:\workspace\gs-ssp\docs\releases, 2026-10-21 to 2026-11-08),

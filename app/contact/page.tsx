@@ -1,12 +1,15 @@
 import type { Metadata } from 'next';
+import { seo } from '@/lib/seo';
 import { Buildings, Clock, EnvelopeSimple, Translate } from '@phosphor-icons/react/dist/ssr';
 import { ScrollReveal } from '@/components/ScrollReveal';
 import { QuickContact } from '@/components/QuickContact';
 
-export const metadata: Metadata = {
-  title: 'Contact · Talk to our team',
-  description: 'Talk to GoldSky about your counter, your self serve site or an integration. Ottawa, Ontario.',
-};
+export const metadata: Metadata = seo({
+  path: '/contact',
+  title: 'Contact GoldSky · POS and payments in Ottawa',
+  description:
+    'Talk to GoldSky about a POS for your restaurant or shop, QR ordering, online ordering or card payment for a self serve site. Ottawa, Ontario; English and Mandarin.',
+});
 
 // Details carried over from the previous contact page (hours, languages,
 // one business day reply, corporation number); nothing new is claimed.

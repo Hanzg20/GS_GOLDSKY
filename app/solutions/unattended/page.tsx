@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { seo } from '@/lib/seo';
 import {
   ArrowRight,
   ArrowsClockwise,
@@ -13,11 +14,12 @@ import { PhotoSlot } from '@/components/PhotoSlot';
 import { AegisAppIcon, type AegisApp } from '@/components/art/LineEmblem';
 import { QuickContact } from '@/components/QuickContact';
 
-export const metadata: Metadata = {
-  title: 'Self serve · Aegis',
+export const metadata: Metadata = seo({
+  path: '/solutions/unattended',
+  title: 'Card payment terminals for self serve car washes and vending · Aegis',
   description:
     'Aegis puts a card terminal on machines that work alone: car wash bays and vacuums today, vending and partner machines in pilot. No product, no charge.',
-};
+});
 
 // Aegis, from docs/CAPABILITIES.md (the Aegis table and "shared by every
 // Aegis app"). Status words match the Products page. The self-serve app can

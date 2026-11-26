@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { seo } from '@/lib/seo';
 import {
   ArrowRight,
   Buildings,
@@ -11,11 +12,12 @@ import {
 import { ScrollReveal } from '@/components/ScrollReveal';
 import { QuickContact } from '@/components/QuickContact';
 
-export const metadata: Metadata = {
-  title: 'Solutions · By kind of business',
+export const metadata: Metadata = seo({
+  path: '/solutions',
+  title: 'Solutions · POS and payments for restaurants, shops and car washes',
   description:
     'GoldSky for quick service counters, dine in restaurants, self serve car washes, vending and partner machines, and owners with several sites.',
-};
+});
 
 // By kind of business, matching the site types in the contact form. Every
 // line is a ✅ item in docs/CAPABILITIES.md, or carries its status pill

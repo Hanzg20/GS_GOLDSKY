@@ -1,4 +1,6 @@
 import type { Metadata } from 'next';
+import { faqJsonLd, seo } from '@/lib/seo';
+import { JsonLd } from '@/components/JsonLd';
 import {
   ArrowDown,
   ArrowRight,
@@ -28,11 +30,12 @@ import { NightPhoto } from '@/components/NightPhoto';
 import { ApexBeaver } from '@/components/ApexBeaver';
 import type { NightId } from '@/lib/nightPhotos';
 
-export const metadata: Metadata = {
-  title: 'GoldSky · Payment and store tools for Canadian businesses',
+export const metadata: Metadata = seo({
+  path: '/',
+  title: 'GoldSky · POS and payment systems in Ottawa, Canada',
   description:
-    'GS-SSP brings counter, handheld and self serve payments together on one platform. Built in Ottawa, running in Kanata.',
-};
+    'GoldSky is an Ottawa team building POS systems, QR code table ordering, online ordering and card payment for restaurants, retail stores, self serve car washes and vending machines across Canada.',
+});
 
 // Every product fact on this page comes from the GS-SSP project
 // (C:\workspace\gs-ssp: CLAUDE.md, docs/system_architecture.md, docs/releases)
@@ -281,6 +284,7 @@ function SectionLabel({ children, className }: { children: React.ReactNode; clas
 export default function HomePage() {
   return (
     <>
+      <JsonLd data={faqJsonLd(FAQ)} />
       {/* 1 · Hero: a scroll scene on large screens. The frame stays pinned while
           the sun rises and the five guardians ink in, one by one. */}
       <DayRail />

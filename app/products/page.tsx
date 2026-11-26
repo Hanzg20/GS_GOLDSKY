@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { seo } from '@/lib/seo';
 import { ArrowRight, Check } from '@phosphor-icons/react/dist/ssr';
 import { Button } from '@/components/ui/Button';
 import { ScrollReveal } from '@/components/ScrollReveal';
@@ -10,11 +11,12 @@ import { QuickContact } from '@/components/QuickContact';
 import type { NightId } from '@/lib/nightPhotos';
 import { cn } from '@/lib/utils';
 
-export const metadata: Metadata = {
-  title: 'Products · The GoldSky terminal family',
+export const metadata: Metadata = seo({
+  path: '/products',
+  title: 'Products · POS terminals, handhelds and self serve payment',
   description:
     'Five product lines on one platform: Ourea at the counter, Iris in hand, Aegis when no one is there, Cael in the cloud, and Apex, the AI assistant in the middle.',
-};
+});
 
 // The family page, after the structure of a "full series" launch: one claim,
 // then each line as a role. Every capability listed is a ✅ line in

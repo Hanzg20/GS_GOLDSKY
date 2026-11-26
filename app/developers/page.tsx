@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { seo } from '@/lib/seo';
 import {
   ArrowRight,
   CloudArrowUp,
@@ -16,11 +17,12 @@ import { Button } from '@/components/ui/Button';
 import { ScrollReveal } from '@/components/ScrollReveal';
 import { QuickContact } from '@/components/QuickContact';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = seo({
+  path: '/developers',
   title: 'Developers · Build on GS‑SSP',
   description:
     'Connect your machine to a GoldSky payment terminal with two HTTP endpoints, no SDK and no card data. The Aegis Flex Controller API, the terminals GS‑SSP runs on, and how to get developer access.',
-};
+});
 
 // Facts: C:\workspace\gs-ssp\docs\partner\flex_controller_api.md (v1) and
 // docs/CAPABILITIES.md. Aegis Flex is "terminal done, partner controller not

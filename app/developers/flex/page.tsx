@@ -1,12 +1,14 @@
 import type { Metadata } from 'next';
+import { seo } from '@/lib/seo';
 import { ArrowLeft } from '@phosphor-icons/react/dist/ssr';
 import { Button } from '@/components/ui/Button';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = seo({
+  path: '/developers/flex',
   title: 'Aegis Flex Controller API v1 · GoldSky Developers',
   description:
     'The interface between a GoldSky Aegis Flex payment terminal and your machine’s controller: a status check, a dispense call, and the money rules behind them.',
-};
+});
 
 // Source: C:\workspace\gs-ssp\docs\partner\flex_controller_api.md (v1). Keep the
 // two in step. The serial number in the example is a placeholder, and the

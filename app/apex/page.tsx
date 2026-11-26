@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { seo } from '@/lib/seo';
 import {
   ArrowRight,
   BellRinging,
@@ -19,11 +20,12 @@ import { LineEmblem } from '@/components/art/LineEmblem';
 import { ApexBeaver } from '@/components/ApexBeaver';
 import { QuickContact } from '@/components/QuickContact';
 
-export const metadata: Metadata = {
-  title: 'Apex · The GoldSky AI assistant',
+export const metadata: Metadata = seo({
+  path: '/apex',
+  title: 'Apex · The AI assistant for restaurant and store owners',
   description:
     'Ask your store in plain words and get numbers you can check. Apex looks things up, acts once you confirm, and speaks up first. Your guests order in one sentence, in their own language.',
-};
+});
 
 // Every claim on this page is a ✅ line in docs/CAPABILITIES.md §1 (from the
 // GS-SSP project). The example exchanges show the kind of question Apex takes;

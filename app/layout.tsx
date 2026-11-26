@@ -1,4 +1,6 @@
 import type { Metadata } from 'next';
+import { JsonLd } from '@/components/JsonLd';
+import { ORGANIZATION, SITE } from '@/lib/seo';
 import { Barlow, Manrope, Newsreader, Noto_Sans_SC, Noto_Serif_SC } from 'next/font/google';
 import { GeistMono } from 'geist/font/mono';
 import './globals.css';
@@ -50,15 +52,14 @@ const notoSerifSC = Noto_Serif_SC({
 });
 
 export const metadata: Metadata = {
-  title: 'GoldSky · Payment and store tools for Canadian businesses',
+  title: 'GoldSky · POS and payment systems in Ottawa, Canada',
   description:
-    'GS-SSP brings counter, handheld and self serve payments together on one platform. Built in Ottawa, running in Kanata.',
-  metadataBase: new URL('https://www.goldsky.ca'),
+    'GoldSky is an Ottawa team building POS systems, QR code table ordering, online ordering and card payment for restaurants, retail stores, self serve car washes and vending machines across Canada.',
+  metadataBase: new URL(SITE),
   openGraph: {
-    title: 'GoldSky · Payment and store tools for Canadian businesses',
+    title: 'GoldSky · POS and payment systems in Ottawa, Canada',
     description:
-      'GS-SSP brings counter, handheld and self serve payments together on one platform. Built in Ottawa, running in Kanata.',
-    url: 'https://www.goldsky.ca',
+      'GoldSky is an Ottawa team building POS systems, QR code table ordering, online ordering and card payment for restaurants, retail stores, self serve car washes and vending machines across Canada.',
     siteName: 'GoldSky Technologies',
     images: [
       {
@@ -95,6 +96,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
       </head>
       <body className="font-sans antialiased">
+        <JsonLd data={ORGANIZATION} />
         <a
           href="#main"
           className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-lg focus:bg-ink focus:px-3 focus:py-2 focus:text-paper"

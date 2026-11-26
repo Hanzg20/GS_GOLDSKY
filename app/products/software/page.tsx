@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { seo } from '@/lib/seo';
 import {
   Heartbeat,
   Images,
@@ -13,11 +14,12 @@ import { ScrollReveal } from '@/components/ScrollReveal';
 import { LineArt } from '@/components/LineArt';
 import { QuickContact } from '@/components/QuickContact';
 
-export const metadata: Metadata = {
-  title: 'Cael · Every store in one place',
+export const metadata: Metadata = seo({
+  path: '/products/software',
+  title: 'Cael · Cloud back office for every store and terminal',
   description:
     'Cael is the GoldSky cloud console: prices, products, screens, ads, coupons and sales for every store and terminal, managed from anywhere, with Apex to ask across stores.',
-};
+});
 
 // Cael, from the Cael table in docs/CAPABILITIES.md (✅ lines only). Remote
 // void/refund is GoldSky admins only, so it is not offered to owners here.

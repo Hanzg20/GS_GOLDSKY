@@ -1,4 +1,6 @@
 import type { Metadata } from 'next';
+import { faqJsonLd, seo } from '@/lib/seo';
+import { JsonLd } from '@/components/JsonLd';
 import {
   ArrowRight,
   CashRegister,
@@ -18,11 +20,13 @@ import { CounterPOSDual, WizarQ2, WizarQ3Pro, WizarQ3mini } from '@/components/D
 import { Button } from '@/components/ui/Button';
 import { cn } from '@/lib/utils';
 
-export const metadata: Metadata = {
-  title: 'Ourea · The store system for restaurants and shops',
+export const metadata: Metadata = seo({
+  path: '/ourea',
+  title: 'Ourea · Restaurant and retail POS with QR and online ordering',
   description:
-    'Ourea runs the counter, the table and online orders in one system: a countertop POS, a customer display, Iris in your staff’s hand, QR ordering, online ordering and Cael in the cloud.',
-};
+    'Ourea is a POS system for restaurants and shops in Ottawa and across Canada: a SUNMI or Android counter, WizarPOS handhelds, QR code table ordering, your own online ordering page and Cael in the cloud.',
+  image: { url: '/images/ourea/og-ourea.jpg', width: 1200, height: 630, alt: 'Ourea POS at the counter and QR ordering on a guest’s phone' },
+});
 
 // Ourea is the umbrella brand for the store system (owner, 2026-11-23): the
 // counter POS, Ourea Eye, Iris (the handheld POS), Ourea Scan, online ordering
@@ -234,6 +238,7 @@ const FAQ: { q: string; a: string }[] = [
 export default function OureaPage() {
   return (
     <>
+      <JsonLd data={faqJsonLd(FAQ)} />
       {/* Hero: copy on the left, the real counter and the guest's phone on a warm stage */}
       <section aria-labelledby="ourea-title" className="overflow-hidden px-4 pb-16 pt-28 md:pb-24 md:pt-32">
         <div className="mx-auto grid max-w-content grid-cols-1 items-center gap-12 lg:grid-cols-[6fr_5fr] lg:gap-12">

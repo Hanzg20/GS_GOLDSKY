@@ -1,12 +1,16 @@
 import type { Metadata } from 'next';
+import { seo } from '@/lib/seo';
 
 // Retired 2026-11-14: the old terminal spec sheet and the dated EV/parking
 // teaser had claims with no source. Cloudflare Pages answers this address with
 // a 301 from public/_redirects; this page is only the fallback.
-export const metadata: Metadata = {
+export const metadata: Metadata = seo({
+  path: '/solutions/next-gen',
   title: 'Moved to Products',
-  robots: { index: false },
-};
+  description:
+    'Moved to Products',
+  noindex: true,
+});
 
 export default function Moved() {
   return (

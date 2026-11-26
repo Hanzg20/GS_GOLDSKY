@@ -1,12 +1,16 @@
 import type { Metadata } from 'next';
+import { seo } from '@/lib/seo';
 
 // /innovation became /developers (2026-11-13). Cloudflare Pages answers the old
 // address with a 301 from public/_redirects; this page is only the fallback
 // for hosts that ignore that file.
-export const metadata: Metadata = {
+export const metadata: Metadata = seo({
+  path: '/innovation',
   title: 'Moved to Developers',
-  robots: { index: false },
-};
+  description:
+    'Moved to Developers',
+  noindex: true,
+});
 
 export default function InnovationMoved() {
   return (

@@ -1,9 +1,12 @@
 import type { Metadata } from 'next';
+import { seo } from '@/lib/seo';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = seo({
+  path: '/privacy',
   title: 'Privacy policy · GoldSky',
-  description: 'How GoldSky Technologies collects, uses and protects your information.',
-};
+  description:
+    'How GoldSky Technologies collects, uses and protects your information.',
+});
 
 // Text from the previous page (pending legal review). Changes: the developer
 // application form no longer exists, and the paragraph on where form messages

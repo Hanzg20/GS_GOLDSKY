@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { seo } from '@/lib/seo';
 import {
   CallBell,
   CashRegister,
@@ -15,11 +16,12 @@ import { ScrollReveal } from '@/components/ScrollReveal';
 import { LineArt } from '@/components/LineArt';
 import { QuickContact } from '@/components/QuickContact';
 
-export const metadata: Metadata = {
-  title: 'At the counter and the table · Ourea and Iris',
+export const metadata: Metadata = seo({
+  path: '/solutions/attended',
+  title: 'Restaurant POS and handheld checkout · Ourea and Iris',
   description:
     'Ourea, the countertop POS for quick service, dine in and shops, and Iris, the same checkout in your staff’s hand. QR ordering at the table, a customer display, cash drawer and shifts, and Apex.',
-};
+});
 
 // Ourea and Iris, from docs/CAPABILITIES.md §2. Only ✅ lines. Pay at the table
 // from the guest's phone is 🟡 (sandbox) and delivery platforms 🔵: both only
